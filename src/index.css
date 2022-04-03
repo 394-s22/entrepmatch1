@@ -17,27 +17,41 @@ code {
   text-align: center;
 }
 .user_container {
-
-  width: 30vw;
-  border: 5px solid red;
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20;
+  border: 2px solid red;
 }
 
 .profile_pic {
-  width: 30vw;
+  width: 70%;
   height: auto;
 }
 
 .profile_pic_image {
-
-  position: relative;
-  width: 30vw;
-  height: auto;
+  border-radius: 30px;
   display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
 
 }
 
 .project_container {
   word-wrap: break-word;
   text-align: left;
+}
+
+.like_dislike_buttons {
+  display: grid;
+  grid-auto-flow: column;
+  grid-column-gap: 10px;
+  border-radius: 20px;
+  font-size: 20px;
+  color: black;
+  padding: 10px;
+  text-align: center;
+  overflow: hidden;
 }
