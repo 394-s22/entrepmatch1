@@ -11,3 +11,33 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.header {
+  font-family: "Arial";
+  text-align: center;
+}
+.user_container {
+
+  width: 30vw;
+  border: 5px solid red;
+  text-align: center;
+}
+
+.profile_pic {
+  width: 30vw;
+  height: auto;
+}
+
+.profile_pic_image {
+
+  position: relative;
+  width: 30vw;
+  height: auto;
+  display: block;
+
+}
+
+.project_container {
+  word-wrap: break-word;
+  text-align: left;
+}
