@@ -6,30 +6,31 @@ import { ProjectsList } from './projects';
 const User = ( {user} ) => {
     const [show, setShow] = useState(false);
     const handleClose = () =>  setShow(false);
-    const handleShow = () => setShow(true)
-  
+    const handleShow = () => setShow(true);
+    const [index, setIndex] = useState(0);
+    
     return (
     <div class="user_container">
-  
+ 
       <div class="header">
-      <h1>{user.name}</h1>
+      <h1>{user[index].name}</h1>
       </div>
   
       <div class="profile_pic">
-        <img class="profile_pic_image" src={user.pictures}></img>
+        <img class="profile_pic_image" src={user[index].pictures}></img>
         </div>
   
   
       <div class="projects">
         <h2>Projects:</h2>
-        <ProjectsList projects = {user.projects} />
+        <ProjectsList projects = {user[index].projects} />
       </div>
   
       <div class="additional_user_info">
-        <p>Favorite Entrepreneur: {user.favoriteEntreprenuer}</p>
-        <p>Industry Interest: {user.industryInterest}</p>
-        <p>School: {user.school}</p>
-        <p>Major: {user.major}</p>
+        <p>Favorite Entrepreneur: {user[index].favoriteEntreprenuer}</p>
+        <p>Industry Interest: {user[index].industryInterest}</p>
+        <p>School: {user[index].school}</p>
+        <p>Major: {user[index].major}</p>
         
   
         </div>
@@ -38,23 +39,35 @@ const User = ( {user} ) => {
           <button onClick={handleShow}> Like </button >
           <Modal show={show} onHide={handleClose}>
           <Modal.Header closeButton>
-            <Modal.Title>{user.name}'s contact Information </Modal.Title>
+            <Modal.Title>{user[index].name}'s contact Information </Modal.Title>
           </Modal.Header>
-          <Modal.Body>Contact {user.name} at {user.phoneNumber} </Modal.Body>
+          <Modal.Body>Contact {user[index].name} at {user[index].phoneNumber} </Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" onClick={handleClose}>
               Close
             </Button>
-            {/* <Button variant="primary" onClick={handleClose}>
-              Save Changes
-            </Button> */}
+            <Button variant="primary" 
+              onClick={()=>{
+                setIndex(index + 1);
+            }}>
+              Next Profile
+            </Button>
           </Modal.Footer>
         </Modal>
       </>
-          <button> Dislike </button>
+          <button onClick={() => setIndex(index + 1)}> Dislike </button>
         </div>
     </div>
     );
   };
+
+  export const UserInfoList = ({ users }) => (
+  
+    <div>
+      
+    { Object.values(users).map(user => <User user={ user } />) }
+    </div>
+    
+  );
 
   export default User

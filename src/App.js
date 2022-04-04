@@ -2,6 +2,7 @@ import './App.css';
 import React,{useState,useEffect} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import User from './components/users.js'
+import { UserInfoList } from './components/users.js';
 
 
 
@@ -71,14 +72,14 @@ const userInfo = {
     ] 
 }
 
-const UserInfoList = ({ users }) => (
+// const UserInfoList = ({ users }) => (
   
-  <div>
+//   <div>
     
-  { Object.values(users).map(user => <User user={ user } />) }
-  </div>
+//   { Object.values(users).map(user => <User user={ user } />) }
+//   </div>
   
-);
+// );
 
 function App() {
   console.log(userInfo.users);
@@ -86,7 +87,7 @@ function App() {
   
   return (
     <div >
-      <UserInfoList users= {userInfo.users} />
+      <User user= {userInfo.users} />
     </div>
   );
 
