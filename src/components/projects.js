@@ -1,4 +1,6 @@
 
+import ListGroup from 'react-bootstrap/ListGroup';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 export const ProjectsList = ({ projects }) => (
     <div>
@@ -9,15 +11,13 @@ export const ProjectsList = ({ projects }) => (
   );
   
   const Project = ({ project }) => (
-    <div class="project_container">
-      <p><b>{project.name}</b></p>
-      <p>Project Description: {project.projectDescription}</p>
-      
-      <p>Team Size: {project.teamSize}</p>
-      <p>Project Duration: {project.projectDuration}</p>
-      <p>Greatest Moment: {project.greatestMoment}</p>
-      <a href={project.projectLink}><p>Project link: {project.projectLink}</p></a>
-      
-    </div>
+    <ListGroup variant="flush">
+      <ListGroup.Item><b>{project.name}</b></ListGroup.Item>
+      <ListGroup.Item>Project Description: {project.projectDescription}</ListGroup.Item>
+      <ListGroup.Item>Team Size: {project.teamSize}</ListGroup.Item>
+      <ListGroup.Item>Project Duration: {project.projectDuration}</ListGroup.Item>
+      <ListGroup.Item>Greatest Moment: {project.greatestMoment}</ListGroup.Item>
+      <ListGroup.Item><a href={project.projectLink}>Project link: {project.projectLink}</a></ListGroup.Item>
+    </ListGroup>
   );
   
