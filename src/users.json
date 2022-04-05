@@ -27,7 +27,7 @@
         "school" : "Northwestern",
         "major" : "Computer Science",
         "skills" : {
-            "artistic" : [],
+            "artistic" : ["design"],
             "technical" : ["React", "Python", "SQL"],
             "softSkills" : ["Organization", "Notion"]
         } 
@@ -59,7 +59,7 @@
         "school" : "University of Pennsylvannia",
         "major" : "Computer Science",
         "skills" : {
-            "artistic" : [],
+            "artistic" : ["photoshop"],
             "technical" : ["React", "Python", "SQL"],
             "softSkills" : ["Organization", "Notion", "Leadership"]
         } 
