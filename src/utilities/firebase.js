@@ -2,6 +2,7 @@ import { initializeApp } from 'firebase/app';
 import { getDatabase, onValue, ref, set } from 'firebase/database';
 import { useState, useEffect } from 'react';
 
+
 const firebaseConfig = {
     apiKey: "AIzaSyCOXyXKim_wbUjqI8kfr-zMyaVBkwMo5No",
     authDomain: "entrepmatch.firebaseapp.com",

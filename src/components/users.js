@@ -16,7 +16,7 @@ const User = ({ user }) => {
   const [index, setIndex] = useState(0);
 
   return (
-    <Card style={{ width: '33rem', margin: 'auto' }}>
+    <Card style={{ width: 'auto', margin: 'auto' }}>
     <Card.Body>
 
     <Card.Title>{user[index].name}</Card.Title>
