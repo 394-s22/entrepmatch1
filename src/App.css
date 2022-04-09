@@ -38,3 +38,9 @@
     transform: rotate(360deg);
   }
 }
+
+/* .navlink{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+} */

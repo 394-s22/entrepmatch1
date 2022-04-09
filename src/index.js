@@ -3,10 +3,21 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { BrowserRouter, Routes, Route, } from "react-router-dom";
+import Matches from "./routes/matches";
+import Settings from "./routes/settings";
+
 
 ReactDOM.render(
+  
   <React.StrictMode>
-    <App />
+  <BrowserRouter>
+    <Routes>
+      <Route path="/" element={<App />} />
+      <Route path="matches" element={<Matches />} />
+      <Route path="settings" element={<Settings />} />  
+    </Routes>
+  </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')
 );
