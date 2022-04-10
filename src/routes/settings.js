@@ -1,7 +1,7 @@
 import '../App.css';
 import React,{useState,useEffect} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import User from '../components/users.js'
+import ProfileEdit from '../components/profileEdit.js'
 import { useData } from '../utilities/firebase.js';
 import { Link } from "react-router-dom";
 
@@ -12,9 +12,11 @@ export default function Settings() {
   if (error) return <h1>{error}</h1>;
   if (loading) return <h1>Loading...</h1>
 
+  const currentUser = userInfo.users[0];
   
   return (
     <div >
+      <ProfileEdit user= { currentUser } />
       <nav
         style={{
           padding:10,
