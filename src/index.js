@@ -6,7 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, Routes, Route, } from "react-router-dom";
 import Matches from "./routes/matches";
 import Settings from "./routes/settings";
-
+import SettingUpdate from "./routes/setting-update"
 
 ReactDOM.render(
   
@@ -16,6 +16,7 @@ ReactDOM.render(
       <Route path="/" element={<App />} />
       <Route path="matches" element={<Matches />} />
       <Route path="settings" element={<Settings />} />  
+      <Route path="setting-update" element={<SettingUpdate />} />  
     </Routes>
   </BrowserRouter>
   </React.StrictMode>,

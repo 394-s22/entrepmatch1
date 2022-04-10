@@ -7,6 +7,7 @@ import Carousel from 'react-bootstrap/Carousel';
 import ListGroup from 'react-bootstrap/ListGroup';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { SkillsList, Skill } from './skills'; 
+import { Link } from "react-router-dom";
 
 
 const ProfileEdit = ({ user }) => {
@@ -16,11 +17,14 @@ const ProfileEdit = ({ user }) => {
     <Card style={{ width: 'auto', margin: 'auto' }}>
     <Card.Body>
 
-    <Card.Title>{user.name}</Card.Title>
+    <Card.Title>
+        {user.name}
+        <Link to="/setting-update" className='navlink' style={{
+          float:"right"
+        }}> Update Profile</Link>
+    </Card.Title>
 
       <Card.Img variant="top" src={user.pictures} />
-
-
       <Card.Title>Projects:</Card.Title>
       <ProjectsList projects = {user.projects} />
 
