@@ -8,14 +8,31 @@ import { Link } from "react-router-dom";
 
 export default function Matches() {
   const [userInfo, loading, error] = useData('/'); 
+
+
+  const current_user_id = 0 // need to update this after testing to be the current user
+
   
+  const matches = [1, 2]
+
+
   if (error) return <h1>{error}</h1>;
   if (loading) return <h1>Loading...</h1>
+
+  
+
 
   
   return (
     <div >
       <h1> Matches Page...</h1>
+
+      {matches.map(function(object, i){
+        console.log("object is", object)
+
+        return <div><Link to={"/conversation?user_id=" + object} key={i}>{userInfo.users[object].name}</Link><br></br></div>;
+      })}
+
       <nav
         style={{
           padding:10,

@@ -7,6 +7,7 @@ import { BrowserRouter, Routes, Route, } from "react-router-dom";
 import Matches from "./routes/matches";
 import Settings from "./routes/settings";
 import Likes from "./routes/likes"
+import Conversation from "./routes/conversation"
 
 
 ReactDOM.render(
@@ -18,6 +19,7 @@ ReactDOM.render(
       <Route path="likes" element={<Likes />} />  
       <Route path="matches" element={<Matches />} />
       <Route path="settings" element={<Settings />} />  
+      <Route path="conversation" element={<Conversation />} />  
     </Routes>
   </BrowserRouter>
   </React.StrictMode>,
