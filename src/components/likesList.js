@@ -9,27 +9,25 @@ import User from '../components/users.js'
   );
 
 
-
-  const UserLike = ({ user }) => {
+const UserLike = ({ user }) => {
     const [curr, userLike] = useState(0);
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-    
+
     const idLikesArray = () => (
-      Object.values(user[curr].liked_users).map(user => user.liking_user_id)
-    ) 
-
-    const findIdUser = () => (
-      idLikesArray().forEach(element => 
-              user.findIndex(id => element === id.user_id))
+        Object.values(user[curr].liked_users).map(user => user.liking_user_id)
     );
-    
-    console.log('hey')
-    console.log(findIdUser())
-    console.log()
 
-    console.log(user)
+    const indexLikeArray = () => (
+        Object.values(user[curr].liked_users).map(user => user.liking_user_id -1)
+    );
+    console.log(indexLikeArray());
+
+      console.log(indexLikeArray.values);
+      console.log("works");
+
+
     return( 
       <Card style= {{display: 'flex', 
                     flexDirection: 'column',
@@ -37,7 +35,6 @@ import User from '../components/users.js'
                     margin: 10
         }}>
         <Card.Body> 
-        
         <Card.Title> { user[user.findIndex(id => id.user_id === idLikesArray()[0])].name} </Card.Title>
         <Card.Subtitle> { user[user.findIndex(id => id.user_id === idLikesArray()[0])].school} </Card.Subtitle>
         <Card.Text> Need to get the message here... Not sure what to do </Card.Text>
@@ -64,5 +61,11 @@ import User from '../components/users.js'
     </Card>
     )
 };
+
+const UserLikeList = ({ users }) => (
+    <div>
+        {Object.values(users).map(user => <UserLike key={user.user_id} user={user} />)}
+    </div>
+);
 
 export default UserLike;
