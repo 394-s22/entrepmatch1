@@ -24,7 +24,7 @@ function App() {
   if (loading) return <h1>Loading...</h1>
 
   console.log(userInfo.users);
-  console.log(userInfo.projects)
+  // console.log(userInfo.projects)
   
   return (
     <div >
