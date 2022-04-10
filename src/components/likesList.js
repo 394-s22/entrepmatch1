@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import { Button } from 'react-bootstrap';
+import Card from 'react-bootstrap/Card';
+
 
  const idLikes = ({ user }) => (
     Object.values(user.liked_users).map(user => user.liking_user_id)
@@ -8,9 +11,10 @@ import React, { useState, useEffect } from 'react';
 
   const UserLike = ({ user }) => {
     const [curr, userLike] = useState(0);
-    // console.log(
-    //   Object.values(user[curr].liked_users).map(user => user.liking_user_id)
-    // )
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+    
     const idLikesArray = () => (
       Object.values(user[curr].liked_users).map(user => user.liking_user_id)
     ) 
@@ -26,13 +30,19 @@ import React, { useState, useEffect } from 'react';
 
     console.log(user)
     return( 
-      <div className="card m-1 p-2">
-      <div className="card-body">
-        <div className="card-title">{ user[user.findIndex(id => id.user_id === idLikesArray()[0])].name}</div>
-        <div className="card-subtitle"> { user[user.findIndex(id => id.user_id === idLikesArray()[0])].school} </div>
-        <div className="card-text"> { user[user.findIndex(id => id.user_id === idLikesArray()[0])].favoriteEntrepreneur} </div>
-      </div>
-    </div>
+      <Card style= {{display: 'flex', 
+                    flexDirection: 'column',
+                    justifyContent: 'space-around',
+                    margin: 10
+        }}>
+        <Card.Body> 
+        
+        <Card.Title> { user[user.findIndex(id => id.user_id === idLikesArray()[0])].name} </Card.Title>
+        <Card.Subtitle> { user[user.findIndex(id => id.user_id === idLikesArray()[0])].school} </Card.Subtitle>
+        <Card.Text> Need to get the message here... Not sure what to do </Card.Text>
+        <Button variant="primary" onClick={handleShow}>Show Profile</Button>
+        </Card.Body>
+    </Card>
     )
 };
 
