@@ -6,6 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, Routes, Route, } from "react-router-dom";
 import Matches from "./routes/matches";
 import Settings from "./routes/settings";
+import Likes from "./routes/likes"
 
 
 ReactDOM.render(
@@ -14,6 +15,7 @@ ReactDOM.render(
   <BrowserRouter>
     <Routes>
       <Route path="/" element={<App />} />
+      <Route path="likes" element={<Likes />} />  
       <Route path="matches" element={<Matches />} />
       <Route path="settings" element={<Settings />} />  
     </Routes>

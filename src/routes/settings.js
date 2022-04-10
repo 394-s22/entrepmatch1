@@ -15,6 +15,7 @@ export default function Settings() {
   
   return (
     <div >
+      <h1> Settings Page...</h1>
       <nav
         style={{
           padding:10,
@@ -25,7 +26,8 @@ export default function Settings() {
         }}
       >
         <Link to="/" className='navlink'> 🌠 Profiles </Link>
-        <Link to="/matches" className='navlink'> 👍 Mathces</Link>
+        <Link to="/likes" className='navlink'> 👍 Likes </Link>
+        <Link to="/matches" className='navlink'> 😲 Mathces</Link>
         <Link to="/settings" className='navlink'> ⚙️ Settings</Link>
       </nav>
     </div>
