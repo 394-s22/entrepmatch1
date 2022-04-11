@@ -19,8 +19,6 @@ export default function Conversation() {
   if (error) return <h1>{error}</h1>;
   if (loading) return <h1>Loading...</h1>
 
-  console.log("userInfo:", userInfo.users[current_user_id])
-  console.log("all_user_messages:", userInfo.users[current_user_id]['conversations'])
   const all_user_messages = userInfo.users[current_user_id]['conversations'] // every message the user has sent to any user
 
   // filtering all the users' conversations to find conversations between current_user_id and conversation_user_id (users' match)
@@ -39,7 +37,6 @@ export default function Conversation() {
   }
 
   // sorting by timestamp
-  console.log("messages_sent_to_user:", messages_sent_to_user)
   var conversation_sorted_chronologically = []
   for (var i = 0; i < messages_user_sent.length; i++) {
     conversation_sorted_chronologically.push(messages_user_sent[i])
@@ -54,27 +51,19 @@ export default function Conversation() {
 
   console.log("conversation_sorted_chronologically: ", conversation_sorted_chronologically)
 
-
   return (
     <div >
       <h1 id="conversation-head"> Conversation</h1>
       <body id="conversation-body">
         <MessageList messages={conversation_sorted_chronologically} />
       </body>
-      <nav
-        style={{
-          padding: 10,
-          display: "flex",
-          flexDirection: 'row',
-          justifyContent: 'space-around',
-          backgroundColor: 'white',
-        }}
-      >
-        <Link to="/" className='navlink'> 🌠 Profiles </Link>
-        <Link to="/likes" className='navlink'> 👍 Likes </Link>
-        <Link to="/matches" className='navlink'> 😲 Mathces</Link>
-        <Link to="/settings" className='navlink'> ⚙️ Settings</Link>
+      <nav className='navlink'>
+        <Link to="/" > 🌠 Profiles </Link>
+        <Link to="/likes" > 👍 Likes </Link>
+        <Link to="/matches"> 😲 Mathces</Link>
+        <Link to="/settings" > ⚙️ Settings</Link>
       </nav>
+
     </div>
   );
 
@@ -89,33 +78,32 @@ const MessageList = ({ messages }) => (
 const Message = ({ message }) => (
 
   <div>
-    <p class="name">
-      <Avatar size="50" src={GetUserPicture(message.sending_userID)} />
-      {GetUserName(message.sending_userID)}
+    <p>
+      <Avatar size="50" src={GetUserInfo(message.sending_userID).userAvatar} />
+      <span id='name'>{GetUserInfo(message.sending_userID).userName}</span>
     </p>
-    <p class="message">
+    <p id="message">
       {message.message}
     </p>
   </div>
 
 );
 
-export function GetUserPicture(userID) {
+// Return avatar and name of the current sender
+function GetUserInfo(userID) {
   const [userInfo, loading, error] = useData('/');
+
 
   if (error) return <h1>{error}</h1>;
   if (loading) return <h1>Loading...</h1>
 
-  return userInfo.users[userID]['pictures'];
-};
+  const thisUser = {
+    userName: userInfo.users[userID]['name'],
+    userAvatar: userInfo.users[userID]['pictures']
+  };
 
-export function GetUserName(userID) {
-  const [userInfo, loading, error] = useData('/');
+  return thisUser;
 
-  if (error) return <h1>{error}</h1>;
-  if (loading) return <h1>Loading...</h1>
-
-  return userInfo.users[userID]['name'];
 };
 
 
