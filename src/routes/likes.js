@@ -4,19 +4,19 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import User from '../components/users.js'
 import { useData } from '../utilities/firebase.js';
 import { Link } from "react-router-dom";
-import UserLike, { LikesList } from '../components/likesList';
- 
+import UserLikeList from '../components/likesList'; 
 
 export default function Likes() {
   const [userInfo, loading, error] = useData('/'); 
   
   if (error) return <h1>{error}</h1>;
   if (loading) return <h1>Loading...</h1>
-  
+  console.log("hey")
+  console.log(Object.values(userInfo.users))
   return (
     <div >
       <h1> Likes </h1>
-      <UserLike user= {userInfo.users} />
+      <UserLikeList users= {userInfo.users} />
       <nav
         style={{
           padding:10,

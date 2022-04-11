@@ -2,30 +2,73 @@ import React, { useState, useEffect } from 'react';
 import { Button, Modal } from 'react-bootstrap';
 import Card from 'react-bootstrap/Card';
 import User from '../components/users.js'
+import ListGroup from 'react-bootstrap/ListGroup';
+import Carousel from 'react-bootstrap/Carousel';
+import { ProjectsList } from './projects';
+import { SkillsList, Skill } from './skills'; 
 
 
  const idLikes = ({ user }) => (
     Object.values(user.liked_users).map(user => user.liking_user_id)
   );
 
+  const UserModalLike = ({user}) => (
+    <Card style={{ width: 'auto', margin: 'auto' }}>
+    <Card.Body>
+
+    <Card.Title>{user.name}</Card.Title>
+
+      <Card.Img variant="top" src={user.pictures} />
+
+
+      <Card.Title>Projects:</Card.Title>
+      <ProjectsList projects = {user.projects} />
+
+    <Card.Title>About me: </Card.Title>
+    <ListGroup variant="flush">
+    <ListGroup.Item>Favorite Entrepreneur: {user.favoriteEntreprenuer}</ListGroup.Item>
+    <ListGroup.Item>Industry Interest: {user.industryInterest}</ListGroup.Item>
+    <ListGroup.Item>School: {user.school}</ListGroup.Item>
+    <ListGroup.Item>Major: {user.major}</ListGroup.Item>
+  </ListGroup>
+
+  <Carousel>
+
+    <Carousel.Item>
+  <Card.Title>Artistic Skills: </Card.Title>
+    <ListGroup variant="flush">
+      <SkillsList skills = {user.skills.artistic} />  
+    </ListGroup>
+    </Carousel.Item>
+
+    <Carousel.Item>
+  <Card.Title>Technical Skills: </Card.Title>
+    <ListGroup variant="flush">
+      <SkillsList skills = {user.skills.technical} />  
+    </ListGroup>
+    </Carousel.Item>
+
+    <Carousel.Item>
+  <Card.Title>Soft Skills: </Card.Title>
+    <ListGroup variant="flush">
+      <SkillsList skills = {user.skills.softSkills} />  
+    </ListGroup>
+    </Carousel.Item>
+
+
+    </Carousel>
+
+      </Card.Body>
+      </Card>
+  );
+
 
 const UserLike = ({ user }) => {
-    const [curr, userLike] = useState(0);
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+    const [curr, diffUser] = useState(0);
 
-    const idLikesArray = () => (
-        Object.values(user[curr].liked_users).map(user => user.liking_user_id)
-    );
-
-    const indexLikeArray = () => (
-        Object.values(user[curr].liked_users).map(user => user.liking_user_id -1)
-    );
-    console.log(indexLikeArray());
-
-      console.log(indexLikeArray.values);
-      console.log("works");
 
 
     return( 
@@ -35,16 +78,16 @@ const UserLike = ({ user }) => {
                     margin: 10
         }}>
         <Card.Body> 
-        <Card.Title> { user[user.findIndex(id => id.user_id === idLikesArray()[0])].name} </Card.Title>
-        <Card.Subtitle> { user[user.findIndex(id => id.user_id === idLikesArray()[0])].school} </Card.Subtitle>
-        <Card.Text> Need to get the message here... Not sure what to do </Card.Text>
+        <Card.Title> { user.name} </Card.Title>
+        <Card.Subtitle> { user.school} </Card.Subtitle>
+        <Card.Text> Sample Message </Card.Text>
         <>
         <Button variant="primary" onClick={handleShow}>Show Profile</Button>
         <Modal show={show} onHide={handleClose}>
             <Modal.Header closeButton>
               <Modal.Title> contact Information </Modal.Title>
             </Modal.Header>
-            <Modal.Body>Contact  </Modal.Body>
+            <UserModalLike user= {user} />
             <Modal.Footer>
               <Button variant="secondary" onClick={handleClose}>
                 Close
@@ -52,7 +95,7 @@ const UserLike = ({ user }) => {
               <Button variant="primary" onClick={() => {
                 setShow(false);
                 }}>
-                Next Profile
+                Match
               </Button>
             </Modal.Footer>
           </Modal>
@@ -62,10 +105,19 @@ const UserLike = ({ user }) => {
     )
 };
 
-const UserLikeList = ({ users }) => (
-    <div>
-        {Object.values(users).map(user => <UserLike key={user.user_id} user={user} />)}
-    </div>
-);
+const UserLikeList = ({ user, users }) => {
+    const [curr, diffUser] = useState(0);
+    const indexLikeArray = () => (
+      Object.values(user[curr].liked_users).map(user => user.liking_user_id -1)
+    );
 
-export default UserLike;
+    return (  
+      <div>
+          {Object.values(users).map(user => 
+            <UserLike key={user.user_id} user={user} />)}
+      </div>
+      )
+};
+
+
+export default UserLikeList;
