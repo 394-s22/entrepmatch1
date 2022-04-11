@@ -57,7 +57,7 @@ export default function Conversation() {
       <body id="conversation-body">
         <MessageList messages={conversation_sorted_chronologically} />
       </body>
-      <nav className='navlink'>
+      <nav className='nav'>
         <Link to="/" > 🌠 Profiles </Link>
         <Link to="/likes" > 👍 Likes </Link>
         <Link to="/matches"> 😲 Mathces</Link>
