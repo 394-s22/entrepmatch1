@@ -36,13 +36,13 @@ const User = ({ user }) => {
   </ListGroup>
 
   <Carousel>
-
-    <Carousel.Item>
+  <Carousel.Item>
   <Card.Title>Artistic Skills: </Card.Title>
     <ListGroup variant="flush">
       <SkillsList skills = {user[index].skills.artistic} />  
     </ListGroup>
     </Carousel.Item>
+
 
     <Carousel.Item>
   <Card.Title>Technical Skills: </Card.Title>
