@@ -10,7 +10,7 @@ import Avatar from 'react-avatar';
 export default function Conversation() {
   const [userInfo, loading, error] = useData('/');
 
-  const current_user_id = 1 // need to update this after testing to be the current user
+  const current_user_id = 0 // need to update this after testing to be the current user
 
   const queryParams = new URLSearchParams(window.location.search)
   const conversation_user_id = queryParams.get("user_id") // person the conversation is opened with
