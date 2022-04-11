@@ -13,10 +13,15 @@ export default function Likes() {
   if (loading) return <h1>Loading...</h1>
   console.log("hey")
   console.log(Object.values(userInfo.users))
+
+  //temp: remove user 1
+  const users = userInfo.users;
+  const usersWithoutFirst = users.slice(1);
+
   return (
     <div >
       <h1> Likes </h1>
-      <UserLikeList users= {userInfo.users} />
+      <UserLikeList users= {usersWithoutFirst} />
       <nav
         style={{
           padding:10,
