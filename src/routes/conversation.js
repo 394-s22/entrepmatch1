@@ -71,7 +71,7 @@ export default function Conversation() {
         <MessageList messages={conversation_sorted_chronologically} />
         <div id="send_message">
         <textarea id="message_textarea" placeholder="Say something!"></textarea>
-        <button class="send_message_button" onclick="sendMessage">Send</button>
+        <button class="send_message_button" onClick={sendMessage}>Send</button>
         </div>
       </body>
       <nav className='nav'>
