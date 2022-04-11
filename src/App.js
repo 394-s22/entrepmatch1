@@ -40,7 +40,8 @@ function App() {
         }}
       >
         <Link to="/" className='navlink'> 🌠 Profiles </Link>
-        <Link to="/matches" className='navlink'> 👍 Mathces</Link>
+        <Link to="/likes" className='navlink'> 👍 Likes </Link>
+        <Link to="/matches" className='navlink'> 😲 Mathces</Link>
         <Link to="/settings" className='navlink'> ⚙️ Settings</Link>
       </nav>
     </div>
