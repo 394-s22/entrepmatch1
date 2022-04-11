@@ -1,7 +1,7 @@
 import '../App.css';
 import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { useData } from '../utilities/firebase.js';
+import { useData, setData } from '../utilities/firebase.js';
 import { Link } from "react-router-dom";
 import Avatar from 'react-avatar';
 
@@ -19,7 +19,8 @@ export default function Conversation() {
   if (error) return <h1>{error}</h1>;
   if (loading) return <h1>Loading...</h1>
 
-  const all_user_messages = userInfo.users[current_user_id]['conversations'] // every message the user has sent to any user
+  var all_user_messages = userInfo.users[current_user_id]['conversations'] // every message the user has sent to any user
+  var all_conversation_partner_messages = userInfo.users[conversation_user_id]['conversations'] // every message the user has sent to any user
 
   // filtering all the users' conversations to find conversations between current_user_id and conversation_user_id (users' match)
   var messages_user_sent = []
@@ -51,16 +52,32 @@ export default function Conversation() {
 
   console.log("conversation_sorted_chronologically: ", conversation_sorted_chronologically)
 
+  const sendMessage = async () => {
+      const message = document.getElementById("message_textarea").value
+    all_user_messages.push({"message": message, "receiving_userID": conversation_user_id, "sending_userID": current_user_id, "timestamp": Date.now()})
+    all_conversation_partner_messages.push({"message": message, "receiving_userID": conversation_user_id, "sending_userID": current_user_id, "timestamp": Date.now()})
+    try {
+        setData(`/users/` + current_user_id + `/conversations`, all_user_messages);
+        setData(`/users/` + conversation_user_id + `/conversations`, all_conversation_partner_messages);
+    } catch (error) {
+        alert(error);
+        }
+    }
+
   return (
     <div >
       <h1 id="conversation-head"> Conversation</h1>
       <body id="conversation-body">
         <MessageList messages={conversation_sorted_chronologically} />
+        <div id="send_message">
+        <textarea id="message_textarea" placeholder="Say something!"></textarea>
+        <button class="send_message_button" onclick="sendMessage">Send</button>
+        </div>
       </body>
       <nav className='nav'>
         <Link to="/" > 🌠 Profiles </Link>
         <Link to="/likes" > 👍 Likes </Link>
-        <Link to="/matches"> 😲 Mathces</Link>
+        <Link to="/matches"> 😲 Matches</Link>
         <Link to="/settings" > ⚙️ Settings</Link>
       </nav>
 
@@ -68,6 +85,8 @@ export default function Conversation() {
   );
 
 }
+
+
 
 const MessageList = ({ messages }) => (
   <div>
