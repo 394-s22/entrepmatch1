@@ -1,34 +1,38 @@
-import './App.css';
+import '../App.css';
 import React,{useState,useEffect} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import User from './components/users.js'
-import { UserInfoList } from './components/users.js';
-import { useData } from './utilities/firebase.js';
+import User from '../components/users.js'
+import { useData } from '../utilities/firebase.js';
 import { Link } from "react-router-dom";
 
 
-
-// const UserInfoList = ({ users }) => (
-  
-//   <div>
-    
-//   { Object.values(users).map(user => <User user={ user } />) }
-//   </div>
-  
-// );
-
-function App() {
+export default function Matches() {
   const [userInfo, loading, error] = useData('/'); 
+
+
+  const current_user_id = 0 // need to update this after testing to be the current user
+
   
+  const matches = [1, 2]
+
+
   if (error) return <h1>{error}</h1>;
   if (loading) return <h1>Loading...</h1>
 
-  console.log(userInfo.users);
-  console.log(userInfo.projects)
+  
+
+
   
   return (
     <div >
-      <User user= {userInfo.users} />
+      <h1> Matches Page...</h1>
+
+      {matches.map(function(object, i){
+        console.log("object is", object)
+
+        return <div><Link to={"/conversation?user_id=" + object} key={i}>{userInfo.users[object].name}</Link><br></br></div>;
+      })}
+
       <nav
         style={{
           padding:10,
@@ -47,5 +51,3 @@ function App() {
   );
 
 }
-
-export default App;
