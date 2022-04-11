@@ -28,7 +28,7 @@ export default function Settings() {
       >
         <Link to="/" className='navlink'> 🌠 Profiles </Link>
         <Link to="/likes" className='navlink'> 👍 Likes </Link>
-        <Link to="/matches" className='navlink'> 😲 Mathces</Link>
+        <Link to="/matches" className='navlink'> 😲 Matches</Link>
         <Link to="/settings" className='navlink'> ⚙️ Settings</Link>
       </nav>
     </div>
