@@ -22,13 +22,15 @@ function App() {
   
   if (error) return <h1>{error}</h1>;
   if (loading) return <h1>Loading...</h1>
-
-  console.log(userInfo.users);
-  // console.log(userInfo.projects)
   
+
+  //temp: remove user 1
+  const users = userInfo.users;
+  const usersWithoutFirst = users.slice(1);
+
   return (
     <div >
-      <User user= {userInfo.users} />
+      <User user= {usersWithoutFirst} />
       <nav
         style={{
           padding:10,
