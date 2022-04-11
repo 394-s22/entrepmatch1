@@ -67,8 +67,8 @@ const User = ({ user }) => {
     
       <div class="like_dislike_buttons" >
         <>
-          <button onClick={handleShow}> Like </button >
-          <Modal show={show} onHide={handleClose}>
+          <button onClick={() => setIndex((index + 1) % user.length)}> Like </button >
+          {/* <Modal show={show} onHide={handleClose}>
             <Modal.Header closeButton>
               <Modal.Title>{user[index].name}'s contact Information </Modal.Title>
             </Modal.Header>
@@ -84,7 +84,7 @@ const User = ({ user }) => {
                 Next Profile
               </Button>
             </Modal.Footer>
-          </Modal>
+          </Modal> */}
         </>
         <button onClick={() => setIndex((index + 1) % user.length)}> Dislike </button>
       </div>

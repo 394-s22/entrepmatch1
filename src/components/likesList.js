@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Button, Modal } from 'react-bootstrap';
 import Card from 'react-bootstrap/Card';
-import User from '../components/users.js'
 import ListGroup from 'react-bootstrap/ListGroup';
 import Carousel from 'react-bootstrap/Carousel';
 import { ProjectsList } from './projects';
 import { SkillsList, Skill } from './skills'; 
+import { useNavigate } from "react-router-dom";
+
 
 
  const idLikes = ({ user }) => (
@@ -67,8 +68,7 @@ const UserLike = ({ user }) => {
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-    const [curr, diffUser] = useState(0);
-
+    const navigate = useNavigate();
 
 
     return( 
@@ -85,16 +85,14 @@ const UserLike = ({ user }) => {
         <Button variant="primary" onClick={handleShow}>Show Profile</Button>
         <Modal show={show} onHide={handleClose}>
             <Modal.Header closeButton>
-              <Modal.Title> contact Information </Modal.Title>
+              <Modal.Title> {user.name}'s Profile </Modal.Title>
             </Modal.Header>
             <UserModalLike user= {user} />
             <Modal.Footer>
               <Button variant="secondary" onClick={handleClose}>
                 Close
               </Button>
-              <Button variant="primary" onClick={() => {
-                setShow(false);
-                }}>
+              <Button variant="primary" onClick={()=>navigate("/matches")}>
                 Match
               </Button>
             </Modal.Footer>
@@ -107,8 +105,8 @@ const UserLike = ({ user }) => {
 
 const UserLikeList = ({ user, users }) => {
     const [curr, diffUser] = useState(0);
-    const indexLikeArray = () => (
-      Object.values(user[curr].liked_users).map(user => user.liking_user_id -1)
+    const userIdArray = () => (
+      Object.values(user[curr].liked_users).map(user => user.liking_user_id)
     );
 
     return (  
