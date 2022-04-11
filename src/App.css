@@ -34,9 +34,27 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
+}
+
+#conversation-head {
+  text-align: center;
+  color: aliceblue;
+  background: rgb(95, 48, 184);
+  padding: 4%;
+  font-family: "Times New Roman", Times, serif;
+}
+
+#conversation-body {
+  padding: 2%;
+}
+
+.message {
+  font-family: "Times New Roman", Times, serif;
+  font-size: medium;
 }
 
 /* .navlink{
