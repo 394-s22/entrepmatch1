@@ -62,7 +62,7 @@
   padding: 1%;
 }
 
-.navlink {
+.nav {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
