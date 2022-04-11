@@ -22,6 +22,7 @@ function App() {
   
   if (error) return <h1>{error}</h1>;
   if (loading) return <h1>Loading...</h1>
+  
 
   //temp: remove user 1
   const users = userInfo.users;
