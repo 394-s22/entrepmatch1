@@ -31,6 +31,9 @@ export default function SettingUpdate() {
     try {
         setData(`/users/0/name`, inputs.name);
         setData(`/users/0/school`, inputs.school);
+        setData(`/users/0/favoriteEntreprenuer`, inputs.fav);
+        setData(`/users/0/major`, inputs.major);
+        setData(`/users/0/phoneNumber`, inputs.number);
     } catch (error) {
         alert(error);
     }
@@ -55,7 +58,30 @@ export default function SettingUpdate() {
             onChange={handleChange}
         />
         </label><br/>
-        
+        <label>Favorite Entreprenuer:
+        <input 
+            type="text" 
+            name="fav" 
+            value={inputs.fav || ""} 
+            onChange={handleChange}
+        />
+        </label><br/>
+        <label>Major:
+        <input 
+            type="text" 
+            name="major" 
+            value={inputs.major || ""} 
+            onChange={handleChange}
+        />
+        </label><br/>
+        <label>Phone Number:
+        <input 
+            type="text" 
+            name="number" 
+            value={inputs.number || ""} 
+            onChange={handleChange}
+        />
+        </label><br/>
         <input type="submit" />
       </form>
     </div>
