@@ -10,7 +10,7 @@ import SettingUpdate from "./routes/setting-update"
 import Likes from "./routes/likes"
 import Conversation from "./routes/conversation"
 import Profiles from "./routes/profiles"
-
+import SignUp from "./routes/signup"
 ReactDOM.render(
   
   <React.StrictMode>
@@ -18,6 +18,7 @@ ReactDOM.render(
     <Routes>
       <Route path="/" element={<App />} />
       <Route path="profiles" element={<Profiles />} />
+      <Route path="signup" element={<SignUp />} />
       <Route path="likes" element={<Likes />} />  
       <Route path="matches" element={<Matches />} />
       <Route path="settings" element={<Settings />} />  

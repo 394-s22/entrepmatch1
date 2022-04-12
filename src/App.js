@@ -36,7 +36,7 @@ function App() {
             </h1>
             
             <Link to="/profiles" className='navlink'> 🌠 Login </Link>
-            <Link to="/profiles" className='navlink'> 🌠 SignUp </Link>
+            <Link to="/signup" className='navlink'> 🌠 SignUp </Link>
         </div>
      
       
