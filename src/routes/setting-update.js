@@ -1,10 +1,8 @@
 import '../App.css';
-import React,{useState,useEffect} from 'react';
+import React,{useState} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useData, setData } from '../utilities/firebase.js';
-import { Link } from "react-router-dom";
-import Form from 'react-bootstrap/Form';
-import { Button } from 'react-bootstrap';
+
 
 export default function SettingUpdate() {
   const [userInfo, loading, error] = useData('/'); 
@@ -29,16 +27,19 @@ export default function SettingUpdate() {
 
   const updateInput = async () => {
     try {
-        setData(`/users/0/name`, inputs.name);
-        setData(`/users/0/school`, inputs.school);
-        setData(`/users/0/favoriteEntreprenuer`, inputs.fav);
-        setData(`/users/0/major`, inputs.major);
-        setData(`/users/0/phoneNumber`, inputs.number);
+      if (inputs.name) setData(`/users/0/name`, inputs.name);
+      if (inputs.school)  setData(`/users/0/school`, inputs.school);
+      if (inputs.fav)  setData(`/users/0/favoriteEntreprenuer`, inputs.fav);
+      if (inputs.major)  setData(`/users/0/major`, inputs.major);
+      if (inputs.number)  setData(`/users/0/phoneNumber`, inputs.number);
     } catch (error) {
         alert(error);
+        console.log('here')
     }
   };
-  
+
+  console.log(userInfo['users'][0]);
+  const user = userInfo['users'][0];
   return (
     <div >
       <form onSubmit={handleSubmit}>
@@ -46,7 +47,7 @@ export default function SettingUpdate() {
         <input 
             type="text" 
             name="name" 
-            value={inputs.name || ""} 
+            value={inputs.name || user['name']} 
             onChange={handleChange}
         />
         </label><br/>
@@ -54,7 +55,7 @@ export default function SettingUpdate() {
         <input 
             type="text" 
             name="school" 
-            value={inputs.school || ""} 
+            value={inputs.school || user['school']} 
             onChange={handleChange}
         />
         </label><br/>
@@ -62,7 +63,7 @@ export default function SettingUpdate() {
         <input 
             type="text" 
             name="fav" 
-            value={inputs.fav || ""} 
+            value={inputs.fav || user['favoriteEntreprenuer']} 
             onChange={handleChange}
         />
         </label><br/>
@@ -70,7 +71,7 @@ export default function SettingUpdate() {
         <input 
             type="text" 
             name="major" 
-            value={inputs.major || ""} 
+            value={inputs.major || user['major']} 
             onChange={handleChange}
         />
         </label><br/>
@@ -78,7 +79,7 @@ export default function SettingUpdate() {
         <input 
             type="text" 
             name="number" 
-            value={inputs.number || ""} 
+            value={inputs.number || user['phoneNumber']} 
             onChange={handleChange}
         />
         </label><br/>
