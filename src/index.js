@@ -9,6 +9,7 @@ import Settings from "./routes/settings";
 import SettingUpdate from "./routes/setting-update"
 import Likes from "./routes/likes"
 import Conversation from "./routes/conversation"
+import Profiles from "./routes/profiles"
 
 ReactDOM.render(
   
@@ -16,6 +17,7 @@ ReactDOM.render(
   <BrowserRouter>
     <Routes>
       <Route path="/" element={<App />} />
+      <Route path="profiles" element={<Profiles />} />
       <Route path="likes" element={<Likes />} />  
       <Route path="matches" element={<Matches />} />
       <Route path="settings" element={<Settings />} />  

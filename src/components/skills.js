@@ -1,5 +1,6 @@
 import ListGroup from 'react-bootstrap/ListGroup';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import React from 'react';
 
 export const SkillsList = ({ skills }) => (
     <div>

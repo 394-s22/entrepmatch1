@@ -30,21 +30,16 @@ function App() {
 
   return (
     <div >
-      <User user= {usersWithoutFirst} />
-      <nav
-        style={{
-          padding:10,
-          display:"flex",
-          flexDirection: 'row',
-          justifyContent: 'space-around',
-          backgroundColor: 'white',
-        }}
-      >
-        <Link to="/" className='navlink'> 🌠 Profiles </Link>
-        <Link to="/likes" className='navlink'> 👍 Likes </Link>
-        <Link to="/matches" className='navlink'> 😲 Matches</Link>
-        <Link to="/settings" className='navlink'> ⚙️ Settings</Link>
-      </nav>
+      <div>
+            <h1>
+                Entrepmatch
+            </h1>
+            
+            <Link to="/profiles" className='navlink'> 🌠 Login </Link>
+            <Link to="/profiles" className='navlink'> 🌠 SignUp </Link>
+        </div>
+     
+      
     </div>
   );
 
