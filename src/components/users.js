@@ -25,7 +25,7 @@ const User = ({ user }) => {
     var liked_users = userInfo.users[index]['liked_users']
     var users_liked = userInfo.users[current_user_id]['users_liked']
 
-    var current_user_seen = userInfo.users[current_user_id]['seen']
+    var current_user_seen = userInfo.users[current_user_id]['seen_users']
 
     current_user_seen.push(index)
 
@@ -33,7 +33,7 @@ const User = ({ user }) => {
     liked_users.push({"liked_field": "temp_field", "liked_message": "temp_message", "liking_user_id": index, "receiving_user_id": current_user_id})
 
     try {
-      setData(`/users/` + current_user_id + `/seen`, current_user_seen);
+      setData(`/users/` + current_user_id + `/seen_users`, current_user_seen);
       setData(`/users/` + current_user_id + `/liked_users`, users_liked);
       setData(`/users/` + index + `/users_liked`, liked_users);
   } catch (error) {
