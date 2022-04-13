@@ -7,13 +7,39 @@ import Carousel from 'react-bootstrap/Carousel';
 import ListGroup from 'react-bootstrap/ListGroup';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { SkillsList, Skill } from './skills'; 
+import { useData, setData } from '../utilities/firebase.js';
 
 
 const User = ({ user }) => {
+  const [userInfo, loading, error] = useData('/');
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const [index, setIndex] = useState(0);
+
+  const current_user_id = 0
+
+  const likeUser = async () => {
+    setIndex((index + 1))
+
+    var liked_users = userInfo.users[index]['liked_users']
+    var users_liked = userInfo.users[current_user_id]['users_liked']
+
+    var current_user_seen = userInfo.users[current_user_id]['seen']
+
+    current_user_seen.push(index)
+
+    users_liked.push({"liked_field": "temp_field", "liked_message": "temp_message", "liking_user_id": current_user_id, "receiving_user_id": index})
+    liked_users.push({"liked_field": "temp_field", "liked_message": "temp_message", "liking_user_id": index, "receiving_user_id": current_user_id})
+
+    try {
+      setData(`/users/` + current_user_id + `/seen`, current_user_seen);
+      setData(`/users/` + current_user_id + `/liked_users`, users_liked);
+      setData(`/users/` + index + `/users_liked`, liked_users);
+  } catch (error) {
+      alert(error);
+      }
+  }
 
   return (
     <Card style={{ width: 'auto', margin: 'auto' }}>
@@ -67,7 +93,7 @@ const User = ({ user }) => {
     
       <div class="like_dislike_buttons" >
         <>
-          <button onClick={() => setIndex((index + 1) % user.length)}> Like </button >
+          <button onClick={likeUser}> Like </button >
           {/* <Modal show={show} onHide={handleClose}>
             <Modal.Header closeButton>
               <Modal.Title>{user[index].name}'s contact Information </Modal.Title>
