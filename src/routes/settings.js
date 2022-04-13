@@ -4,15 +4,21 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import ProfileEdit from '../components/profileEdit.js'
 import { useData } from '../utilities/firebase.js';
 import { Link } from "react-router-dom";
+import { cuid } from './signup';
 
 
 export default function Settings() {
   const [userInfo, loading, error] = useData('/'); 
+  const currentUserId = cuid();
   
   if (error) return <h1>{error}</h1>;
   if (loading) return <h1>Loading...</h1>
 
-  const currentUser = userInfo.users[0];
+  const currentUser = userInfo.users[currentUserId];
+  console.log("currentUserId");
+
+  console.log(currentUserId);
+  console.log(userInfo);
   
   return (
     <div >
