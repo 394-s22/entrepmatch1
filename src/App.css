@@ -2,6 +2,19 @@
   text-align: center;
 }
 
+.welcomepage{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+  
+}
+
+
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;

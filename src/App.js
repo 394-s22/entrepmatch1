@@ -29,15 +29,15 @@ function App() {
   const usersWithoutFirst = users.slice(1);
 
   return (
-    <div >
-      <div>
+    < div class="wpsection" >
+      <div class="welcomepage">
             <h1>
                 Entrepmatch
             </h1>
             
             <Link to="/profiles" className='navlink'> 🌠 Login </Link>
             <Link to="/signup" className='navlink'> 🌠 SignUp </Link>
-        </div>
+      </div>
      
       
     </div>
