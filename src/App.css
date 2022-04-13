@@ -5,15 +5,19 @@
 .welcomepage{
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   position: relative;
   height: 100vh;
   width: 100vw;
-  
 }
 
-
+.links{
+  border: solid 1px black;
+  width: 30vw;
+  display: flex;
+  justify-content: space-evenly;
+}
 
 .App-logo {
   height: 40vmin;

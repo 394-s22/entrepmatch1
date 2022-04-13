@@ -34,9 +34,10 @@ function App() {
             <h1>
                 Entrepmatch
             </h1>
-            
-            <Link to="/profiles" className='navlink'> 🌠 Login </Link>
-            <Link to="/signup" className='navlink'> 🌠 SignUp </Link>
+            <div class="links">
+              <Link to="/profiles" className='navlink'> 🌠 Login </Link>
+              <Link to="/signup" className='navlink'> 🌠 SignUp </Link>
+            </div>
       </div>
      
       
