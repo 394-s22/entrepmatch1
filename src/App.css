@@ -13,8 +13,7 @@
 }
 
 .links{
-  border: solid 1px black;
-  width: 30vw;
+  width: 20vw;
   display: flex;
   justify-content: space-evenly;
 }
