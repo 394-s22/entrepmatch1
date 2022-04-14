@@ -7,61 +7,62 @@ import { ProjectsList } from './projects';
 import { SkillsList, Skill } from './skills'; 
 import { useNavigate } from "react-router-dom";
 
+import CardContent from '@mui/material/CardContent';
+import CardHeader from '@mui/material/CardHeader';
+import Typography from '@mui/material/Typography';
 
 
- const idLikes = ({ user }) => (
-    Object.values(user.liked_users).map(user => user.liking_user_id)
-  );
-
-  const UserModalLike = ({user}) => (
-    <Card style={{ width: 'auto', margin: 'auto' }}>
-    <Card.Body>
-
-    <Card.Title>{user.name}</Card.Title>
-
-      <Card.Img variant="top" src={user.pictures} />
 
 
-      <Card.Title>Projects:</Card.Title>
-      <ProjectsList projects = {user.projects} />
+  // const UserModalLike = ({user}) => (
+  //   <Card style={{ width: 'auto', margin: 'auto' }}>
+  //   <Card.Body>
 
-    <Card.Title>About me: </Card.Title>
-    <ListGroup variant="flush">
-    <ListGroup.Item>Favorite Entrepreneur: {user.favoriteEntreprenuer}</ListGroup.Item>
-    <ListGroup.Item>Industry Interest: {user.industryInterest}</ListGroup.Item>
-    <ListGroup.Item>School: {user.school}</ListGroup.Item>
-    <ListGroup.Item>Major: {user.major}</ListGroup.Item>
-  </ListGroup>
+  //   <Card.Title>{user.name}</Card.Title>
 
-  <Carousel>
-
-    <Carousel.Item>
-  <Card.Title>Artistic Skills: </Card.Title>
-    <ListGroup variant="flush">
-      <SkillsList skills = {user.skills.artistic} />  
-    </ListGroup>
-    </Carousel.Item>
-
-    <Carousel.Item>
-  <Card.Title>Technical Skills: </Card.Title>
-    <ListGroup variant="flush">
-      <SkillsList skills = {user.skills.technical} />  
-    </ListGroup>
-    </Carousel.Item>
-
-    <Carousel.Item>
-  <Card.Title>Soft Skills: </Card.Title>
-    <ListGroup variant="flush">
-      <SkillsList skills = {user.skills.softSkills} />  
-    </ListGroup>
-    </Carousel.Item>
+  //     <Card.Img variant="top" src={user.pictures} />
 
 
-    </Carousel>
+  //     <Card.Title>Projects:</Card.Title>
+  //     <ProjectsList projects = {user.projects} />
 
-      </Card.Body>
-      </Card>
-  );
+  //   <Card.Title>About me: </Card.Title>
+  //   <ListGroup variant="flush">
+  //   <ListGroup.Item>Favorite Entrepreneur: {user.favoriteEntreprenuer}</ListGroup.Item>
+  //   <ListGroup.Item>Industry Interest: {user.industryInterest}</ListGroup.Item>
+  //   <ListGroup.Item>School: {user.school}</ListGroup.Item>
+  //   <ListGroup.Item>Major: {user.major}</ListGroup.Item>
+  // </ListGroup>
+
+  // <Carousel>
+
+  //   <Carousel.Item>
+  // <Card.Title>Artistic Skills: </Card.Title>
+  //   <ListGroup variant="flush">
+  //     <SkillsList skills = {user.skills.artistic} />  
+  //   </ListGroup>
+  //   </Carousel.Item>
+
+  //   <Carousel.Item>
+  // <Card.Title>Technical Skills: </Card.Title>
+  //   <ListGroup variant="flush">
+  //     <SkillsList skills = {user.skills.technical} />  
+  //   </ListGroup>
+  //   </Carousel.Item>
+
+  //   <Carousel.Item>
+  // <Card.Title>Soft Skills: </Card.Title>
+  //   <ListGroup variant="flush">
+  //     <SkillsList skills = {user.skills.softSkills} />  
+  //   </ListGroup>
+  //   </Carousel.Item>
+
+
+  //   </Carousel>
+
+  //     </Card.Body>
+  //     </Card>
+  // );
 
 
 const UserLike = ({ user }) => {
@@ -72,13 +73,22 @@ const UserLike = ({ user }) => {
 
 
     return( 
-      <Card style= {{display: 'flex', 
+      <Card sx= {{display: 'flex', 
                     flexDirection: 'column',
                     justifyContent: 'space-around',
                     margin: 10
         }}>
-        <Card.Body> 
-        <Card.Title> { user.name} </Card.Title>
+          <CardHeader title={user.name} 
+                            subheader={user.school}/>
+          <CardContent>
+          <Typography variant="body2" color="text.secondary">
+            Lizards are a widespread group of squamate reptiles, with over 6,000
+            species, ranging across all continents except Antarctica
+          </Typography>
+          </CardContent>
+          
+        {/* <Card.Body> 
+        <Card.Header> { user.name} </>
         <Card.Subtitle> { user.school} </Card.Subtitle>
         <Card.Text> Sample Message </Card.Text>
         <>
@@ -98,16 +108,13 @@ const UserLike = ({ user }) => {
             </Modal.Footer>
           </Modal>
         </>
-        </Card.Body>
+        </Card.Body> */}
     </Card>
     )
 };
 
-const UserLikeList = ({ user, users }) => {
-    const [curr, diffUser] = useState(0);
-    const userIdArray = () => (
-      Object.values(user[curr].liked_users).map(user => user.liking_user_id)
-    );
+const UserLikeList = ({ users }) => {
+    
 
     return (  
       <div>

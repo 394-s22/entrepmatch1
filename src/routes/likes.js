@@ -29,7 +29,7 @@ export default function Likes() {
   const userIdArray = Object.values(current_user.liked_users).map(user => user.liking_user_id)
 
   const users_the_user_has_liked = Object.values(current_user.users_liked).map(user => user.receiving_user_id)
-
+  console.log('reach here')
   const users_who_have_liked_the_user_but_the_user_hasnt_liked_back = []
 
   for (var i = 0; i < userIdArray.length; i++){
@@ -52,6 +52,8 @@ export default function Likes() {
       users_to_show.push(users[i])
     }
   }
+  console.logu('users_to_show:')
+  console.log(users_to_show)
 
   if (users_to_show.length === 0) return (
     <div >

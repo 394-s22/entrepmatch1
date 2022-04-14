@@ -2,7 +2,6 @@ import './App.css';
 import React,{useState,useEffect} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import User from './components/users.js'
-import { UserInfoList } from './components/users.js';
 import { useData } from './utilities/firebase.js';
 import { Link } from "react-router-dom";
 
@@ -26,7 +25,7 @@ function App() {
 
   //temp: remove user 1
   const users = userInfo.users;
-  const usersWithoutFirst = users.slice(1);
+  const usersWithoutFirst = users;
 
   return (
     <div >

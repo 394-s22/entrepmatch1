@@ -1,23 +1,33 @@
 
 import ListGroup from 'react-bootstrap/ListGroup';
-import 'bootstrap/dist/css/bootstrap.min.css';
+
+import Box from '@mui/material/Box';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import Stack from '@mui/material/Stack';
+import { ListItemText } from '@mui/material';
+import Paper from '@mui/material/Paper';
+import { styled } from '@mui/material/styles';
+
 
 export const ProjectsList = ({ projects }) => (
-    <div>
+    <Stack spacing={1}>
       
     { Object.values(projects).map(project => <Project key={project.name} project={ project } />) }
-    </div>
+    </Stack>
     
   );
   
   const Project = ({ project }) => (
-    <ListGroup variant="flush">
-      <ListGroup.Item><b>{project.name}</b></ListGroup.Item>
-      <ListGroup.Item>Project Description: {project.projectDescription}</ListGroup.Item>
-      <ListGroup.Item>Team Size: {project.teamSize}</ListGroup.Item>
-      <ListGroup.Item>Project Duration: {project.projectDuration}</ListGroup.Item>
-      <ListGroup.Item>Greatest Moment: {project.greatestMoment}</ListGroup.Item>
-      <ListGroup.Item><a href={project.projectLink}>Project link: {project.projectLink}</a></ListGroup.Item>
-    </ListGroup>
+    <Box sx={{width:"100%", border: 1, paddingLeft: "4px", borderRadius:2}}>
+    <List >
+      <ListItemText primary={project.name} />
+          <ListItemText secondary= {"Project Description: " + project.projectDescription} />
+          <ListItemText secondary= { "Team Size: " + project.teamSize}  />
+          <ListItemText secondary={"Project Duration: " + project.projectDuration } />
+          <ListItemText secondary={"Greatest Moment: " + project.greatestMoment }  />
+      
+      {/* <ListGroup.Item><a href={project.projectLink}>Project link: {project.projectLink}</a></ListGroup.Item> */}
+    </List>
+    </Box>
   );
-  
