@@ -4,24 +4,18 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import ProfileEdit from '../components/profileEdit.js'
 import { useData } from '../utilities/firebase.js';
 import { Link } from "react-router-dom";
-import { cuid, $currentUserId } from './signup';
 
 
 export default function Settings() {
   const [userInfo, loading, error] = useData('/'); 
   if (error) return <h1>{error}</h1>;
   if (loading) return <h1>Loading...</h1>
+  console.log(Object.keys(userInfo.users).pop());
+
+
+  const currentUser = userInfo.users["-N-ePF4nUjiwCcUgKkbF"];
   
-  //const cu_id = userInfo.cu;
-  console.log(cu_id);
-
-  const cu_id = userInfo.users.length -1;
-
-  const currentUser = userInfo.users["-N-aAMg9ywcYk5yumwJm"];
   
-  console.log(userInfo);
-
-  console.log(currentUser);
   
   return (
     <div >
