@@ -25,8 +25,8 @@ function App() {
   
 
   //temp: remove user 1
-  const users = userInfo.users;
-  const usersWithoutFirst = users.slice(1);
+  // const users = userInfo.users;
+  // const usersWithoutFirst = users.slice(1);
 
   return (
     < div class="wpsection" >

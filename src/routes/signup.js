@@ -27,7 +27,7 @@ export default function SignUp() {
   const sendMessage = async () => {
     
     //DO this for all fields
-    const message = document.getElementById("name").value;
+    const message = document.getElementById("fullname").value;
     
 
     console.log(message);
@@ -37,9 +37,33 @@ export default function SignUp() {
   // Here is where we push the data
   //Once confident about the right format, remove the /3/ and let it oush to users
   try {
-      pushData(`/users/3/`, {
-        
-        name: message
+      pushData(`/users/`, {
+        conversations:"",
+        favoriteEntreprenuer: document.getElementById("favoriteEntreprenuer").value,
+        industryInterest: document.getElementById("industryInterest").value,
+        likedusers: null,
+        major: document.getElementById("major").value,
+        name: document.getElementById("fullname").value,
+        phoneNumber: document.getElementById("phoneNumber").value,
+        pictures: document.getElementById("pictures").value,
+        projects: {
+          greatestMoment: document.getElementById("greatest moment").value,
+          name: document.getElementById("project name").value,
+          school: document.getElementById("school").value,
+          projectDescription: document.getElementById("project description").value,
+          
+          projectDuration: document.getElementById("project duration").value,
+          projectLink: document.getElementById("project link").value,
+          teamSize: document.getElementById("team size").value
+        },
+        school: document.getElementById("school").value,
+        "skills" : {
+          "artistic" : ["design"],
+          "technical" : ["React", "Python", "SQL"],
+          "softSkills" : ["Organization", "Notion"]
+      } ,
+        user_id: null,
+        users_liked: null,
         }
       );
   } catch (error) {
@@ -68,11 +92,28 @@ export default function SignUp() {
           backgroundColor: 'white',
         }}
         >
-      <input type="text" id="name" placeholder ="Trial"></input>
+      {/* <input type="text" id="name" placeholder ="Trial"></input>
       <input type="text" id="phoneNumber" placeholder="phone Number"></input>
       <input type="text" id="favoriteEntreprenuer" placeholder="favorite entrepreneur"></input>
       <input type="text" id="industryInterest" placeholder="industry interest(can be a list)"></input>
       <input type="text" id="school" placeholder="school"></input>
+       */}
+      <input type="text" id="fullname" placeholder ="Full Name" required></input>
+      <input type="text" id="pictures" placeholder="pictures"></input>
+
+      <input type="text" id="phoneNumber" placeholder="phone Number"></input>
+      <input type="text" id="favoriteEntreprenuer" placeholder="favorite entrepreneur"></input>
+      <input type="text" id="industryInterest" placeholder="industry interest(can be a list)"></input>
+      <input type="text" id="school" placeholder="school"></input>
+      <input type="text" id="major" placeholder="major"></input>
+
+      <input type="text" id="skills" placeholder="skills(can be a list)"></input>
+      <input type="text" id="project name" placeholder="project name"></input>
+      <input type="text" id="team size" placeholder="team size"></input>
+      <input type="text" id="project duration" placeholder="project duration"></input>
+      <input type="text" id="greatest moment" placeholder="greatest moment"></input>
+      <input type="text" id="project link" placeholder="project link"></input>
+      <input type="text" id="project description" placeholder="project description"></input>
 
 
       {/* <input type="text" id="phonenumber" value=""></input>

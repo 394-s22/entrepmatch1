@@ -34,11 +34,11 @@ export default function Profiles() {
 
   //temp: remove user 1
   const users = userInfo.users;
-  const usersWithoutFirst = users.slice(1);
+  // const usersWithoutFirst = users[1];
 
   return (
     <div >
-      <User user= {usersWithoutFirst} />
+      <User user= {users} />
       <nav
         style={{
           padding:10,

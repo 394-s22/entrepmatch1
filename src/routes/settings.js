@@ -12,17 +12,20 @@ export default function Settings() {
   if (error) return <h1>{error}</h1>;
   if (loading) return <h1>Loading...</h1>
   
-  const cu_id = userInfo.cu;
-  const currentUser = userInfo.users[cu_id];
-  
+  //const cu_id = userInfo.cu;
   console.log(cu_id);
 
-  console.log($currentUserId);
+  const cu_id = userInfo.users.length -1;
+
+  const currentUser = userInfo.users["-N-aAMg9ywcYk5yumwJm"];
+  
   console.log(userInfo);
+
+  console.log(currentUser);
   
   return (
     <div >
-      <ProfileEdit user= { currentUser } />
+      {<ProfileEdit user= { currentUser } /> }
       <nav
         style={{
           padding:10,

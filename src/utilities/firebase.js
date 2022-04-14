@@ -48,3 +48,4 @@ export const setData = (path, value) => (
 export const pushData = (path, value) => (
   push(ref(database, path), value)
 );
+
