@@ -10,10 +10,10 @@ import { useData, setData,pushData } from '../utilities/firebase.js';
 import { Link } from "react-router-dom";
 import Avatar from 'react-avatar';
 
-var currentUserId = 0;
+export var $currentUserId = 0;
 
 export function cuid() {
-    return currentUserId;
+    return $currentUserId;
 }
 
 export default function SignUp() {
@@ -31,8 +31,8 @@ export default function SignUp() {
     
 
     console.log(message);
-    currentUserId = 2;
-    console.log(currentUserId);
+    $currentUserId = 2;
+    console.log($currentUserId);
 
   // Here is where we push the data
   //Once confident about the right format, remove the /3/ and let it oush to users
@@ -45,7 +45,16 @@ export default function SignUp() {
   } catch (error) {
       alert(error);
       }
+      try {
+        setData(`cu`, 2);
+    } catch (error) {
+        alert(error);
+        }
+  
+  
   }
+
+  
 
 
   // Insert input text fields

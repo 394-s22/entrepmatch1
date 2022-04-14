@@ -1,23 +1,23 @@
 import '../App.css';
-import React,{useState,useEffect} from 'react';
+import React,{useState,useEffect, useReducer} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import ProfileEdit from '../components/profileEdit.js'
 import { useData } from '../utilities/firebase.js';
 import { Link } from "react-router-dom";
-import { cuid } from './signup';
+import { cuid, $currentUserId } from './signup';
 
 
 export default function Settings() {
   const [userInfo, loading, error] = useData('/'); 
-  const currentUserId = cuid();
-  
   if (error) return <h1>{error}</h1>;
   if (loading) return <h1>Loading...</h1>
+  
+  const cu_id = userInfo.cu;
+  const currentUser = userInfo.users[cu_id];
+  
+  console.log(cu_id);
 
-  const currentUser = userInfo.users[currentUserId];
-  console.log("currentUserId");
-
-  console.log(currentUserId);
+  console.log($currentUserId);
   console.log(userInfo);
   
   return (
