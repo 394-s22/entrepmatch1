@@ -13,7 +13,7 @@ export default function Settings() {
   console.log(Object.keys(userInfo.users).pop());
 
 
-  const currentUser = userInfo.users["-N-ePF4nUjiwCcUgKkbF"];
+  const currentUser = userInfo.users[Object.keys(userInfo.users).pop()];
   
   
   
