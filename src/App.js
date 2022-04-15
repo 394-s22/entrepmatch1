@@ -31,15 +31,23 @@ const SignOutButton = () => (
     Sign Out
   </button>
 );
-
 function App() {
   const [userInfo, loading, error] = useData('/'); 
   const [user] = useUserState();
 
+  console.log((userInfo.users))
   
+  
+
   if (error) return <h1>{error}</h1>;
   if (loading) return <h1>Loading...</h1>
-  
+
+  //If user does not have uid in the users json redirect sign in
+  if ((user === null)) {
+    return(
+      window.location= "/signup"
+    )
+  }
 
   return (
     < div class="wpsection" >

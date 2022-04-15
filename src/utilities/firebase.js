@@ -54,6 +54,7 @@ export const pushData = (path, value) => (
 //Sign in with Google
 export const signInWithGoogle = () => {
   signInWithPopup(getAuth(firebase), new GoogleAuthProvider());
+  
 };
 
 
@@ -72,3 +73,4 @@ export const useUserState = () => {
 
   return [user];
 };
+

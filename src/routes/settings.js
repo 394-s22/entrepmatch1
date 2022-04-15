@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import ProfileEdit from '../components/profileEdit.js'
 import { useData } from '../utilities/firebase.js';
 import { Link } from "react-router-dom";
+import { signOut } from 'firebase/auth';
 
 
 export default function Settings() {
@@ -15,11 +16,17 @@ export default function Settings() {
 
   const currentUser = userInfo.users[Object.keys(userInfo.users).pop()];
   
-  
+  const SignOutButton = () => (
+    <button className="btn btn-secondary btn-sm"
+        onClick={() => signOut()}>
+      Sign Out
+    </button>
+  );
   
   return (
     <div >
       {<ProfileEdit user= { currentUser } /> }
+      <SignOutButton/>
       <nav
         style={{
           padding:10,

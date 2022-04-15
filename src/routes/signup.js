@@ -6,12 +6,17 @@ import UserLikeList from '../components/likesList';
 
 import '../App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { useData, setData,pushData } from '../utilities/firebase.js';
+import { useData, setData, signOut, pushData  } from '../utilities/firebase.js';
 import { Link } from "react-router-dom";
 import Avatar from 'react-avatar';
 
 
-
+const SignOutButton = () => (
+  <button className="btn btn-secondary btn-sm"
+      onClick={() => signOut()}>
+    Sign Out
+  </button>
+);
 
 export default function SignUp() {
   
@@ -121,7 +126,7 @@ export default function SignUp() {
 
 
       <button onClick={sendMessage}>Enter</button>
-
+      <SignOutButton />
     </div>
   );
     }
