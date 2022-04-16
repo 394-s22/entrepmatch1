@@ -1,13 +1,23 @@
 import '../App.css';
-import React,{useState,useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import User from '../components/users.js'
 import { useData } from '../utilities/firebase.js';
 import { Link } from "react-router-dom";
 
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import Divider from '@mui/material/Divider';
+import ListItemText from '@mui/material/ListItemText';
+import ListItemAvatar from '@mui/material/ListItemAvatar';
+import Avatar from '@mui/material/Avatar';
+import Typography from '@mui/material/Typography';
+
+// import User from '../components/users.js';
+
 
 export default function Matches() {
-  const [userInfo, loading, error] = useData('/'); 
+  const [userInfo, loading, error] = useData('/');
   if (error) return <h1>{error}</h1>;
   if (loading) return <h1>Loading...</h1>
 
@@ -19,12 +29,12 @@ export default function Matches() {
 
   // getting current user
   var current_user = ""
-  for (var i = 0; i < users.length; i++){
-    if (users[i].user_id == current_user_id){
+  for (var i = 0; i < users.length; i++) {
+    if (users[i].user_id == current_user_id) {
       current_user = users[i]
     }
   }
-  
+
   // users who the current user has liked 
   const userIdArray = Object.values(current_user.liked_users).map(user => user.liking_user_id)
   console.log("userIdArray", userIdArray)
@@ -34,13 +44,13 @@ export default function Matches() {
   const matches = []
   const users_to_show = []
 
-  for (var i = 0; i < userIdArray.length; i++){
-    if (users_the_user_has_liked.includes(userIdArray[i])){
+  for (var i = 0; i < userIdArray.length; i++) {
+    if (users_the_user_has_liked.includes(userIdArray[i])) {
       matches.push(userIdArray[i])
     }
   }
 
-  for (var i = 0; i < matches.length; i++){
+  for (var i = 0; i < matches.length; i++) {
     users_to_show.push(users[matches[i]])
   }
 
@@ -51,24 +61,51 @@ export default function Matches() {
   if (error) return <h1>{error}</h1>;
   if (loading) return <h1>Loading...</h1>
 
-  
 
 
-  
+
+
   return (
     <div >
       <h1> Matches Page...</h1>
 
-      {matches.map(function(object, i){
+
+
+      {matches.map(function (object, i) {
         console.log("object is", object)
 
-        return <div><Link to={"/conversation?user_id=" + object} key={i}>{users_to_show[i].name}</Link><br></br></div>;
+        return <div>
+          <ListItem alignItems="flex-start" onClick={(e) => {
+            e.preventDefault();
+            window.location.href = "/conversation?user_id=" + object;
+          }}>
+            <ListItemAvatar >
+              <Avatar alt="Remy Sharp" src={users_to_show[i].pictures} />
+            </ListItemAvatar>
+            <ListItemText
+              primary={users_to_show[i].name}
+              secondary={
+                <React.Fragment>
+                  <Typography
+                    sx={{ display: 'inline' }}
+                    component="span"
+                    variant="body2"
+                    color="text.primary"
+                  >
+                    You matched
+                  </Typography>
+                  {" — Start chatting!"}
+                </React.Fragment>
+              }
+            />
+          </ListItem>
+        </div>;
       })}
 
       <nav
         style={{
-          padding:10,
-          display:"flex",
+          padding: 10,
+          display: "flex",
           flexDirection: 'row',
           justifyContent: 'space-around',
           backgroundColor: 'white',
