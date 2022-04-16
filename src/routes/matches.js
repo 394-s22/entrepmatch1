@@ -5,21 +5,30 @@ import User from '../components/users.js'
 import { useData } from '../utilities/firebase.js';
 import { Link } from "react-router-dom";
 
-import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
-import Divider from '@mui/material/Divider';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
+
+// import * as React from 'react';
+import Box from '@mui/material/Box';
+import BottomNavigation from '@mui/material/BottomNavigation';
+import BottomNavigationAction from '@mui/material/BottomNavigationAction';
+import Paper from '@mui/material/Paper';
+// import RestoreIcon from '@mui/icons-material/Restore';
+// import FavoriteIcon from '@mui/icons-material/Favorite';
+// import LocationOnIcon from '@mui/icons-material/LocationOn';
 
 // import User from '../components/users.js';
 
 
 export default function Matches() {
   const [userInfo, loading, error] = useData('/');
+  const [value, setValue] = React.useState(0);
   if (error) return <h1>{error}</h1>;
   if (loading) return <h1>Loading...</h1>
+
 
 
   const current_user_id = 0 // need to update this after testing to be the current user
@@ -67,13 +76,14 @@ export default function Matches() {
 
   return (
     <div >
-      <h1> Matches Page...</h1>
+      <h1 class="top-bar"> Matches</h1>
 
 
 
       {matches.map(function (object, i) {
         console.log("object is", object)
 
+        // Stylish the matches page
         return <div>
           <ListItem alignItems="flex-start" onClick={(e) => {
             e.preventDefault();
@@ -102,20 +112,16 @@ export default function Matches() {
         </div>;
       })}
 
-      <nav
-        style={{
-          padding: 10,
-          display: "flex",
-          flexDirection: 'row',
-          justifyContent: 'space-around',
-          backgroundColor: 'white',
-        }}
-      >
-        <Link to="/" className='navlink'> 🌠 Profiles </Link>
-        <Link to="/likes" className='navlink'> 👍 Likes </Link>
-        <Link to="/matches" className='navlink'> 😲 Matches</Link>
-        <Link to="/settings" className='navlink'> ⚙️ Settings</Link>
-      </nav>
+      <Paper sx={{ position: 'fixed', bottom: 0, left: 0, right: 0 }} elevation={3}>
+        <BottomNavigation
+        showLabels
+        >
+          <BottomNavigationAction label="Profiles" component={Link} to="/" />
+          <BottomNavigationAction label="Likes" component={Link} to="/likes" />
+          <BottomNavigationAction label="Matches" component={Link} to="/matches" />
+          <BottomNavigationAction label="Settings" component={Link} to="/settings" />
+        </BottomNavigation>
+      </Paper>
     </div>
   );
 
