@@ -6,51 +6,75 @@ import Card from 'react-bootstrap/Card';
 import Carousel from 'react-bootstrap/Carousel';
 import ListGroup from 'react-bootstrap/ListGroup';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { SkillsList, Skill } from './skills'; 
-import { useData, setData, useUserState, pushData} from '../utilities/firebase.js';
+import { SkillsList, Skill } from './skills';
+import { useData, setData, useUserState, pushData } from '../utilities/firebase.js';
 
 
 const User = ({ user }) => {
   const [userInfo, loading, error] = useData('/');
-  
+
   const [index, setIndex] = useState(0);
   const [currentUser] = useUserState();
 
   if (error) return <h1>{error}</h1>;
   if (loading) return <h1>Loading...</h1>
 
-  console.log(currentUser);
+  console.log("currentUser:", currentUser);
 
   var currentProfileId = Object.keys(userInfo.users)[index];
+  console.log("currentProfileId:", currentProfileId)
 
-  if(currentUser){
-    for (const info in user) {
-      if(user[info]["user_id"] === currentUser.uid){
-        delete user[info];
+  if (currentUser) {
+    for (const info in userInfo.users) {
+      if (userInfo.users[info]["user_id"] === currentUser.uid) {
+        var curUserId = info
+        delete user[info]
       }
     }
   }
-  
-  
+
+
 
   const likeUser = async () => {
-    setIndex(index+1);
-    console.log(user[currentProfileId].projects);
+    console.log("index", index)
+    // setIndex((index+1) % user.length)
+
+    setIndex(index + 1);
 
     var liked_users = userInfo.users[currentProfileId]['liked_users']
-    var users_liked = userInfo.users[currentUser.user_id]['users_liked']
+    console.log("currentUser.user_id:", curUserId)
+    var users_liked = userInfo.users[curUserId]['users_liked']
 
-    var current_user_seen = userInfo.users[currentUser.user_id]['seen_users']
+    var current_user_seen = userInfo.users[curUserId]['seen_users']
 
-    current_user_seen.push(currentProfileId)
+    console.log("current_user_seen:", current_user_seen)
 
-    users_liked.push({"liked_field": "temp_field", "liked_message": "temp_message", "liking_user_id": currentUser.user_id, "receiving_user_id": currentProfileId})
-    liked_users.push({"liked_field": "temp_field", "liked_message": "temp_message", "liking_user_id": currentProfileId, "receiving_user_id": currentUser.user_id})
+    if (current_user_seen === undefined) {
+      current_user_seen = [currentProfileId]
+    } else {
+      console.log("current_user_seen:", current_user_seen)
+      current_user_seen.push(currentProfileId)
+    }
+    // current_user_seen.push(currentProfileId)
+
+    if (users_liked === undefined) {
+      users_liked = [{ "liked_field": "temp_field", "liked_message": "temp_message", "liking_user_id": userInfo.users[curUserId].user_id, "receiving_user_id": currentProfileId }]
+    } else {
+      users_liked.push({ "liked_field": "temp_field", "liked_message": "temp_message", "liking_user_id": userInfo.users[curUserId].user_id, "receiving_user_id": currentProfileId })
+    }
+
+
+    // console.log("liked_users:", liked_users)
+    if (liked_users === undefined) {
+      liked_users = [{ "liked_field": "temp_field", "liked_message": "temp_message", "liking_user_id": currentProfileId, "receiving_user_id": userInfo.users[curUserId].user_id }]
+    } else {
+      liked_users.push({ "liked_field": "temp_field", "liked_message": "temp_message", "liking_user_id": currentProfileId, "receiving_user_id": userInfo.users[curUserId].user_id })
+    }
 
     try {
-      setData(`/users/` + currentUser.user_id + `/seen_users`, current_user_seen);
-      setData(`/users/` + currentUser.user_id + `/liked_users`, users_liked);
-      setData(`/users/` + currentProfileId + `/users_liked`, liked_users);
+      setData(`/users/` + curUserId + `/seen_users`, current_user_seen);
+      setData(`/users/` + curUserId + `/liked_users`, users_liked);
+      pushData(`/users/` + currentProfileId + `/users_liked`, liked_users);
     } catch (error) {
       alert(error);
     }
@@ -58,54 +82,54 @@ const User = ({ user }) => {
 
   return (
     <Card style={{ width: 'auto', margin: 'auto' }}>
-    <Card.Body>
+      <Card.Body>
 
-    <Card.Title>{user[currentProfileId].name}</Card.Title>
+        <Card.Title>{user[currentProfileId].name}</Card.Title>
 
-      <Card.Img variant="top" src={user[currentProfileId].pictures} />
-
-
-      <Card.Title>Projects:</Card.Title>
-      <ProjectsList projects = {user[currentProfileId].projects} />
-
-    <Card.Title>About me: </Card.Title>
-    <ListGroup variant="flush">
-    <ListGroup.Item>Favorite Entrepreneur: {user[currentProfileId].favoriteEntreprenuer}</ListGroup.Item>
-    <ListGroup.Item>Industry Interest: {user[currentProfileId].industryInterest}</ListGroup.Item>
-    <ListGroup.Item>School: {user[currentProfileId].school}</ListGroup.Item>
-    <ListGroup.Item>Major: {user[currentProfileId].major}</ListGroup.Item>
-  </ListGroup>
-
-  <Carousel>
-  <Carousel.Item>
-  <Card.Title>Artistic Skills: </Card.Title>
-    <ListGroup variant="flush">
-      <SkillsList skills = {user[currentProfileId].skills.artistic} />  
-    </ListGroup>
-    </Carousel.Item>
+        <Card.Img variant="top" src={user[currentProfileId].pictures} />
 
 
-    <Carousel.Item>
-  <Card.Title>Technical Skills: </Card.Title>
-    <ListGroup variant="flush">
-      <SkillsList skills = {user[currentProfileId].skills.technical} />  
-    </ListGroup>
-    </Carousel.Item>
+        <Card.Title>Projects:</Card.Title>
+        <ProjectsList projects={user[currentProfileId].projects} />
 
-    <Carousel.Item>
-  <Card.Title>Soft Skills: </Card.Title>
-    <ListGroup variant="flush">
-      <SkillsList skills = {user[currentProfileId].skills.softSkills} />  
-    </ListGroup>
-    </Carousel.Item>
+        <Card.Title>About me: </Card.Title>
+        <ListGroup variant="flush">
+          <ListGroup.Item>Favorite Entrepreneur: {user[currentProfileId].favoriteEntreprenuer}</ListGroup.Item>
+          <ListGroup.Item>Industry Interest: {user[currentProfileId].industryInterest}</ListGroup.Item>
+          <ListGroup.Item>School: {user[currentProfileId].school}</ListGroup.Item>
+          <ListGroup.Item>Major: {user[currentProfileId].major}</ListGroup.Item>
+        </ListGroup>
+
+        <Carousel>
+          <Carousel.Item>
+            <Card.Title>Artistic Skills: </Card.Title>
+            <ListGroup variant="flush">
+              <SkillsList skills={user[currentProfileId].skills.artistic} />
+            </ListGroup>
+          </Carousel.Item>
+
+
+          <Carousel.Item>
+            <Card.Title>Technical Skills: </Card.Title>
+            <ListGroup variant="flush">
+              <SkillsList skills={user[currentProfileId].skills.technical} />
+            </ListGroup>
+          </Carousel.Item>
+
+          <Carousel.Item>
+            <Card.Title>Soft Skills: </Card.Title>
+            <ListGroup variant="flush">
+              <SkillsList skills={user[currentProfileId].skills.softSkills} />
+            </ListGroup>
+          </Carousel.Item>
 
 
 
 
-    </Carousel>
+        </Carousel>
 
       </Card.Body>
-    
+
       <div className="like_dislike_buttons" >
         <>
           <button onClick={likeUser}> Like </button >
