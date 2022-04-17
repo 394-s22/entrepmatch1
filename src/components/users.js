@@ -19,8 +19,6 @@ const User = ({ user }) => {
   if (error) return <h1>{error}</h1>;
   if (loading) return <h1>Loading...</h1>
 
-  console.log("currentUser:", currentUser);
-
   var currentProfileId = Object.keys(userInfo.users)[index];
   console.log("currentProfileId:", currentProfileId)
 
@@ -32,40 +30,34 @@ const User = ({ user }) => {
       }
     }
   }
+  console.log("curUserId:", curUserId)
 
   console.log(Object.keys(userInfo.users).length)
 
   const likeUser = async () => {
-    console.log("index", index)
-    // setIndex((index+1) % user.length)
 
     setIndex(index + 1);
 
-    var liked_users = userInfo.users[currentProfileId]['liked_users']
-    console.log("currentUser.user_id:", curUserId)
-    var users_liked = userInfo.users[curUserId]['users_liked']
-
+    var liked_users = userInfo.users[curUserId]['liked_users']
+    var users_liked = userInfo.users[currentProfileId]['users_liked']
     var current_user_seen = userInfo.users[curUserId]['seen_users']
 
-    console.log("current_user_seen:", current_user_seen)
-
-    if (current_user_seen === undefined) {
+    // add the profile to the seen list
+    if (!current_user_seen) {
       current_user_seen = [currentProfileId]
     } else {
-      console.log("current_user_seen:", current_user_seen)
       current_user_seen.push(currentProfileId)
     }
-    // current_user_seen.push(currentProfileId)
 
-    if (users_liked === undefined) {
-      users_liked = [{ "liked_field": "temp_field", "liked_message": "temp_message", "liking_user_id": userInfo.users[curUserId].user_id, "receiving_user_id": currentProfileId }]
+    // add the current user to whom liked this profile
+    if (!users_liked) {
+      users_liked = [{ "liked_field": "temp_field", "liked_message": "temp_message", "liking_user_id": currentProfileId, "receiving_user_id": userInfo.users[curUserId].user_id }]
     } else {
-      users_liked.push({ "liked_field": "temp_field", "liked_message": "temp_message", "liking_user_id": userInfo.users[curUserId].user_id, "receiving_user_id": currentProfileId })
+      users_liked = [{ "liked_field": "temp_field", "liked_message": "temp_message", "liking_user_id": currentProfileId, "receiving_user_id": userInfo.users[curUserId].user_id }]
     }
 
-
-    // console.log("liked_users:", liked_users)
-    if (liked_users === undefined) {
+    // add the profile to whom the current user has liked
+    if (!liked_users) {
       liked_users = [{ "liked_field": "temp_field", "liked_message": "temp_message", "liking_user_id": currentProfileId, "receiving_user_id": userInfo.users[curUserId].user_id }]
     } else {
       liked_users.push({ "liked_field": "temp_field", "liked_message": "temp_message", "liking_user_id": currentProfileId, "receiving_user_id": userInfo.users[curUserId].user_id })
@@ -73,8 +65,8 @@ const User = ({ user }) => {
 
     try {
       setData(`/users/` + curUserId + `/seen_users`, current_user_seen);
-      setData(`/users/` + curUserId + `/liked_users`, users_liked);
-      pushData(`/users/` + currentProfileId + `/users_liked`, liked_users);
+      setData(`/users/` + currentProfileId + `/users_liked`, users_liked);
+      setData(`/users/` + curUserId + `/liked_users`, liked_users);
     } catch (error) {
       alert(error);
     }
@@ -134,7 +126,7 @@ const User = ({ user }) => {
         <>
           <button onClick={likeUser}> Like </button >
         </>
-        <button onClick={() => setIndex((index + 1) % (Object.keys(userInfo.users).length- 1))}> Dislike </button>
+        <button onClick={() => setIndex((index + 1) % (Object.keys(userInfo.users).length - 1))}> Dislike </button>
       </div>
     </Card>
   );
