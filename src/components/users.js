@@ -33,7 +33,7 @@ const User = ({ user }) => {
     }
   }
 
-
+  console.log(Object.keys(userInfo.users).length)
 
   const likeUser = async () => {
     console.log("index", index)
@@ -79,7 +79,7 @@ const User = ({ user }) => {
       alert(error);
     }
   }
-
+  console.log("index", index)
   return (
     <Card style={{ width: 'auto', margin: 'auto' }}>
       <Card.Body>
@@ -134,7 +134,7 @@ const User = ({ user }) => {
         <>
           <button onClick={likeUser}> Like </button >
         </>
-        <button onClick={() => setIndex((index + 1) % user.length)}> Dislike </button>
+        <button onClick={() => setIndex((index + 1) % (Object.keys(userInfo.users).length- 1))}> Dislike </button>
       </div>
     </Card>
   );
