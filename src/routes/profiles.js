@@ -1,30 +1,24 @@
 import '../App.css';
 import React,{useState,useEffect} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import ProfileEdit from '../components/profileEdit.js'
-import { useData, useUserState } from '../utilities/firebase.js';
+import User from '../components/users.js'
+import { UserInfoList } from '../components/users.js';
+import { useData } from '../utilities/firebase.js';
 import { Link } from "react-router-dom";
 
-
-export default function Settings() {
+function Profiles() {
   const [userInfo, loading, error] = useData('/'); 
-  const [user] = useUserState();
   
   if (error) return <h1>{error}</h1>;
   if (loading) return <h1>Loading...</h1>
-
-  var currentUser = {};
-  if(user){
-    for (const info in userInfo.users) {
-      if(userInfo.users[info]["user_id"] == user.uid){
-        currentUser = userInfo.users[info]
-      }
-    }
-  }
   
+
+  //temp: remove user 1
+  const users = userInfo.users;
+
   return (
     <div >
-      <ProfileEdit user= { currentUser } />
+      <User user= {users} />
       <nav
         style={{
           padding:10,
@@ -43,3 +37,5 @@ export default function Settings() {
   );
 
 }
+
+export default Profiles;

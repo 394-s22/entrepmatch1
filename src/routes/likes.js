@@ -2,33 +2,47 @@ import '../App.css';
 import React,{useState,useEffect} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import User from '../components/users.js'
-import { useData } from '../utilities/firebase.js';
+import { useData, useUserState } from '../utilities/firebase.js';
 import { Link } from "react-router-dom";
 import UserLikeList from '../components/likesList'; 
 
 export default function Likes() {
   const [userInfo, loading, error] = useData('/'); 
+  const [currentUser] = useUserState();
   
   if (error) return <h1>{error}</h1>;
   if (loading) return <h1>Loading...</h1>
-  console.log("hey")
   console.log(Object.values(userInfo.users))
+
+  var current_user_id = 0 // need to update this after testing to be the current user
+  if(currentUser){
+    current_user_id = currentUser.uid;
+  }
 
   //temp: remove user 1
   const curr = 0 // currently logged in user 
   const users = userInfo.users;
   const users_to_show = []
 
-  var current_user = ""
-  for (var i = 0; i < users.length; i++){
-    if (users[i].user_id == curr){
-      current_user = users[i]
+  var current_user = {};
+  if(currentUser){
+    for (const info in userInfo.users) {
+      if(userInfo.users[info]["user_id"] == current_user_id){
+        current_user = userInfo.users[info]
+      }
     }
   }
+  console.log(current_user);
 
-  const userIdArray = Object.values(current_user.liked_users).map(user => user.liking_user_id)
+  var userIdArray = [];
+  if(current_user.liked_users){
+    userIdArray = Object.values(current_user.liked_users).map(user => user.liking_user_id)
+  }
 
-  const users_the_user_has_liked = Object.values(current_user.users_liked).map(user => user.receiving_user_id)
+  var users_the_user_has_liked = [];
+  if(current_user.users_liked){
+    users_the_user_has_liked = Object.values(current_user.users_liked).map(user => user.receiving_user_id)
+  }
 
   const users_who_have_liked_the_user_but_the_user_hasnt_liked_back = []
 

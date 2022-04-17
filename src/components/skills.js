@@ -9,7 +9,7 @@ export const SkillsList = ({ skills }) => (
     
   );
 export const Skill = ({ skill }) => (
-    <div class="container">
+    <div className="container">
       <ListGroup.Item>{skill}</ListGroup.Item>
     </div>
   );
