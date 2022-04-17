@@ -7,14 +7,12 @@ import Carousel from 'react-bootstrap/Carousel';
 import ListGroup from 'react-bootstrap/ListGroup';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { SkillsList, Skill } from './skills'; 
-import { useData, setData, useUserState } from '../utilities/firebase.js';
+import { useData, setData, useUserState, pushData} from '../utilities/firebase.js';
 
 
 const User = ({ user }) => {
   const [userInfo, loading, error] = useData('/');
-  const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  
   const [index, setIndex] = useState(0);
   const [currentUser] = useUserState();
 
@@ -27,7 +25,7 @@ const User = ({ user }) => {
 
   if(currentUser){
     for (const info in user) {
-      if(user[info]["user_id"] == currentUser.uid){
+      if(user[info]["user_id"] === currentUser.uid){
         delete user[info];
       }
     }
@@ -111,23 +109,6 @@ const User = ({ user }) => {
       <div className="like_dislike_buttons" >
         <>
           <button onClick={likeUser}> Like </button >
-          {/* <Modal show={show} onHide={handleClose}>
-            <Modal.Header closeButton>
-              <Modal.Title>{user[index].name}'s contact Information </Modal.Title>
-            </Modal.Header>
-            <Modal.Body>Contact {user[index].name} at {user[index].phoneNumber} </Modal.Body>
-            <Modal.Footer>
-              <Button variant="secondary" onClick={handleClose}>
-                Close
-              </Button>
-              <Button variant="primary" onClick={() => {
-                setShow(false);
-                setIndex((index + 1) % user.length);
-              }}>
-                Next Profile
-              </Button>
-            </Modal.Footer>
-          </Modal> */}
         </>
         <button onClick={() => setIndex((index + 1) % user.length)}> Dislike </button>
       </div>

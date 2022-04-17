@@ -32,7 +32,6 @@ export default function SignUp() {
         conversations:"",
         favoriteEntreprenuer: document.getElementById("favoriteEntreprenuer").value,
         industryInterest: document.getElementById("industryInterest").value,
-        likedusers: null,
         major: document.getElementById("major").value,
         name: document.getElementById("fullname").value,
         phoneNumber: document.getElementById("phoneNumber").value,
@@ -53,10 +52,9 @@ export default function SignUp() {
           "technical" : ["React", "Python", "SQL"],
           "softSkills" : ["Organization", "Notion"]
         },
-        "liked_users" : "none",
-        "users_liked" : "none",
+        liked_users : [],
+        users_liked :[],
         user_id: user.uid,
-        users_liked: null,
         }
       );
     } catch (error) {

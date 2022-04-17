@@ -31,7 +31,7 @@ function App() {
   
   if(user){
     for (const info in userInfo.users) {
-      if(userInfo.users[info]["user_id"] == user.uid){
+      if(userInfo.users[info]["user_id"] === user.uid){
         createdUser = true;
       }
     }
