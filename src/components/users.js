@@ -36,7 +36,7 @@ const User = ({ user }) => {
 
   const likeUser = async () => {
 
-    setIndex(index + 1);
+    setIndex((index + 1) % (Object.keys(userInfo.users).length - 1))
 
     var liked_users = userInfo.users[curUserId]['liked_users']
     var users_liked = userInfo.users[currentProfileId]['users_liked']
@@ -49,11 +49,11 @@ const User = ({ user }) => {
       current_user_seen.push(currentProfileId)
     }
 
-    // add the current user to whom liked this profile
+    // add the current user to who liked this profile
     if (!users_liked) {
       users_liked = [{ "liked_field": "temp_field", "liked_message": "temp_message", "liking_user_id": currentProfileId, "receiving_user_id": userInfo.users[curUserId].user_id }]
     } else {
-      users_liked = [{ "liked_field": "temp_field", "liked_message": "temp_message", "liking_user_id": currentProfileId, "receiving_user_id": userInfo.users[curUserId].user_id }]
+      users_liked.push({ "liked_field": "temp_field", "liked_message": "temp_message", "liking_user_id": currentProfileId, "receiving_user_id": userInfo.users[curUserId].user_id })
     }
 
     // add the profile to whom the current user has liked
