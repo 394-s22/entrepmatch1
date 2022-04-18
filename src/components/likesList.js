@@ -6,12 +6,9 @@ import Carousel from 'react-bootstrap/Carousel';
 import { ProjectsList } from './projects';
 import { SkillsList, Skill } from './skills'; 
 import { useNavigate } from "react-router-dom";
+import { useData, setData, useUserState, pushData } from '../utilities/firebase.js';
 
 
-
- const idLikes = ({ user }) => (
-    Object.values(user.liked_users).map(user => user.liking_user_id)
-  );
 
   const UserModalLike = ({user}) => (
     <Card style={{ width: 'auto', margin: 'auto' }}>
@@ -70,6 +67,87 @@ const UserLike = ({ user }) => {
     const handleShow = () => setShow(true);
     const navigate = useNavigate();
 
+    const [userInfo, loading, error] = useData('/');
+
+    const [currentUser] = useUserState();
+
+
+  if (error) return <h1>{error}</h1>;
+  if (loading) return <h1>Loading...</h1>
+
+
+  //need to fix becaue we can't delete the user and step with the index and can't find...
+  if (currentUser) {
+    for (const info in userInfo.users) {
+      if (userInfo.users[info]["user_id"] === currentUser.uid) {
+        var curUserId = info
+        delete user[info]
+      }
+    }
+  }
+  console.log("curUserId:", curUserId)
+
+  var modalProfileInd = ""
+    for (const tmp in userInfo.users) {
+      if (userInfo.users[tmp].user_id === user.user_id) {
+        modalProfileInd = tmp;
+        break; 
+      }
+    }
+
+  const likeUser = async () => {
+
+    var liked_users = userInfo.users[curUserId]['liked_users']
+    var users_liked = userInfo.users[modalProfileInd]['users_liked']
+    var current_user_seen = userInfo.users[curUserId]['seen_users']
+
+
+    // if the current user has liked this user
+    var flag = true;
+    if (liked_users) {
+      for (const tmp in liked_users) {
+        if (liked_users[tmp].liking_user_id === modalProfileInd) {
+          flag = false
+          break;
+        }
+      }
+    }
+    
+    console.log("flag", flag)
+    console.log("modal ind", modalProfileInd)
+
+    if (flag) {
+      // add the current user to who liked this profile
+      if (!users_liked) {
+        users_liked = [{ "liked_field": "temp_field", "liked_message": "temp_message", "receiving_user_id": curUserId }]
+      } else {
+        users_liked.push({ "liked_field": "temp_field", "liked_message": "temp_message", "receiving_user_id": curUserId })
+      }
+
+      // add the profile to whom the current user has liked
+      if (!liked_users) {
+        liked_users = [{ "liked_field": "temp_field", "liked_message": "temp_message", "liking_user_id": modalProfileInd }]
+      } else {
+        liked_users.push({ "liked_field": "temp_field", "liked_message": "temp_message", "liking_user_id":  modalProfileInd })
+      }
+
+      // add the profile to the seen list
+      if (!current_user_seen) {
+        current_user_seen = [modalProfileInd]
+      } else {
+        current_user_seen.push(modalProfileInd)
+      }
+    }
+
+
+    try {
+      setData(`/users/` + curUserId + `/seen_users`, current_user_seen);
+      setData(`/users/` + modalProfileInd + `/users_liked`, users_liked);
+      setData(`/users/` + curUserId + `/liked_users`, liked_users);
+    } catch (error) {
+      alert(error);
+    }
+  }
 
     return( 
       <Card style= {{display: 'flex', 
@@ -92,7 +170,9 @@ const UserLike = ({ user }) => {
               <Button variant="secondary" onClick={handleClose}>
                 Close
               </Button>
-              <Button variant="primary" onClick={()=>navigate("/matches")}>
+              <Button variant="primary" onClick={()=>{
+                  likeUser();
+                  navigate("/matches")}}>
                 Match
               </Button>
             </Modal.Footer>

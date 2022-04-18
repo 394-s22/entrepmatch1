@@ -3,48 +3,54 @@ import React,{useState,useEffect} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import User from './components/users.js'
 import { UserInfoList } from './components/users.js';
-import { useData } from './utilities/firebase.js';
+import { useData, signInWithGoogle, signOut, useUserState } from './utilities/firebase.js';
 import { Link } from "react-router-dom";
+import { Button } from 'bootstrap';
 
+const SignInButton = () => (
+  <button className="btn btn-secondary btn-sm"
+      onClick={() => signInWithGoogle()}>
+    Sign In
+  </button>
+);
 
-
-// const UserInfoList = ({ users }) => (
-  
-//   <div>
-    
-//   { Object.values(users).map(user => <User user={ user } />) }
-//   </div>
-  
-// );
+const SignOutButton = () => (
+  <button className="btn btn-secondary btn-sm"
+      onClick={() => signOut()}>
+    Sign Out
+  </button>
+);
 
 function App() {
   const [userInfo, loading, error] = useData('/'); 
+  const [user] = useUserState();
+  var createdUser = false;
   
   if (error) return <h1>{error}</h1>;
   if (loading) return <h1>Loading...</h1>
   
+  if(user){
+    for (const info in userInfo.users) {
+      if(userInfo.users[info]["user_id"] === user.uid){
+        createdUser = true;
+      }
+    }
 
-  //temp: remove user 1
-  const users = userInfo.users;
-  const usersWithoutFirst = users.slice(1);
+    if(createdUser){
+      window.location.href = './profiles';
+    }else{
+      window.location.href = './signup'
+    }
+  }
 
   return (
-    <div >
-      <User user= {usersWithoutFirst} />
-      <nav
-        style={{
-          padding:10,
-          display:"flex",
-          flexDirection: 'row',
-          justifyContent: 'space-around',
-          backgroundColor: 'white',
-        }}
-      >
-        <Link to="/" className='navlink'> 🌠 Profiles </Link>
-        <Link to="/likes" className='navlink'> 👍 Likes </Link>
-        <Link to="/matches" className='navlink'> 😲 Matches</Link>
-        <Link to="/settings" className='navlink'> ⚙️ Settings</Link>
-      </nav>
+    < div className="wpsection" >
+      <div className="welcomepage">
+            <h1>
+                Entrepmatch
+            </h1>
+            { user ? <SignOutButton /> : <SignInButton /> }
+      </div>
     </div>
   );
 

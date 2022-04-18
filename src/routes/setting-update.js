@@ -1,18 +1,30 @@
 import '../App.css';
 import React,{useState,useEffect} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { useData, setData } from '../utilities/firebase.js';
+import { useData, setData, useUserState } from '../utilities/firebase.js';
 import { Link } from "react-router-dom";
 import Form from 'react-bootstrap/Form';
 import { Button } from 'react-bootstrap';
 
 export default function SettingUpdate() {
   const [userInfo, loading, error] = useData('/'); 
+  const [user] = useUserState();
   
   var [inputs, setInputs] = useState({});
   
   if (error) return <h1>{error}</h1>;
   if (loading) return <h1>Loading...</h1>
+
+  var currentUser = {};
+  var currentUserId = "";
+  if(user){
+    for (const info in userInfo.users) {
+      if(userInfo.users[info]["user_id"] == user.uid){
+        currentUser = userInfo.users[info];
+        currentUserId = info;
+      }
+    }
+  }
 
   const handleChange = (event) => {
     const name = event.target.name;
@@ -29,11 +41,11 @@ export default function SettingUpdate() {
 
   const updateInput = async () => {
     try {
-        setData(`/users/0/name`, inputs.name);
-        setData(`/users/0/school`, inputs.school);
-        setData(`/users/0/favoriteEntreprenuer`, inputs.fav);
-        setData(`/users/0/major`, inputs.major);
-        setData(`/users/0/phoneNumber`, inputs.number);
+        setData(`/users/` + currentUserId + `/name`, inputs.name);
+        setData(`/users/` + currentUserId + `school`, inputs.school);
+        setData(`/users/` + currentUserId + `favoriteEntreprenuer`, inputs.fav);
+        setData(`/users/` + currentUserId + `major`, inputs.major);
+        setData(`/users/` + currentUserId + `phoneNumber`, inputs.number);
     } catch (error) {
         alert(error);
     }
