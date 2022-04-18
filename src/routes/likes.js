@@ -38,33 +38,37 @@ export default function Likes() {
   if(current_user.liked_users){
     userIdArray = Object.values(current_user.liked_users).map(user => user.liking_user_id)
   }
+  console.log("userIdArray:", userIdArray)
 
   var users_the_user_has_liked = [];
   if(current_user.users_liked){
+    console.log(current_user.users_liked)
     users_the_user_has_liked = Object.values(current_user.users_liked).map(user => user.receiving_user_id)
   }
+  console.log("hgkas:", current_user)
+  console.log("users_the_user_has_liked:", users_the_user_has_liked)
 
   const users_who_have_liked_the_user_but_the_user_hasnt_liked_back = []
 
-  for (var i = 0; i < userIdArray.length; i++){
-    if (users_the_user_has_liked.includes(userIdArray[i])){
+  for (var i = 0; i < users_the_user_has_liked.length; i++){
+    if (userIdArray.includes(users_the_user_has_liked[i])){
       var ignore = 0
       // this is a match not a like 
     }
     else{
-      users_who_have_liked_the_user_but_the_user_hasnt_liked_back.push(userIdArray[i])
+      users_who_have_liked_the_user_but_the_user_hasnt_liked_back.push(users_the_user_has_liked[i])
     }
   }
 
-
-  console.log("userIdArray is" + typeof userIdArray)
-  console.log(userIdArray)
+  
+  console.log("users_who_have_liked_the_user_but_the_user_hasnt_liked_back", users_who_have_liked_the_user_but_the_user_hasnt_liked_back)
 
   // getting users who have liked the current user 
-  for (var i = 0; i < users.length; i++){
-    if (users_who_have_liked_the_user_but_the_user_hasnt_liked_back.includes(users[i].user_id) && users[i].user_id != curr){
-      users_to_show.push(users[i])
-    }
+  for (var i = 0; i < users_who_have_liked_the_user_but_the_user_hasnt_liked_back.length; i++){
+    // if (users_who_have_liked_the_user_but_the_user_hasnt_liked_back.includes(users[i].user_id) && users[i].user_id != curr){
+    //   users_to_show.push(users[i])
+    // }
+    users_to_show.push(users[users_who_have_liked_the_user_but_the_user_hasnt_liked_back[i]])
   }
 
   if (users_to_show.length === 0) return (

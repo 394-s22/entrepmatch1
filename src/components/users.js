@@ -32,8 +32,6 @@ const User = ({ user }) => {
   }
   console.log("curUserId:", curUserId)
 
-  console.log(Object.keys(userInfo.users).length)
-
   const likeUser = async () => {
 
     setIndex((index + 1) % (Object.keys(userInfo.users).length - 1))
@@ -42,26 +40,41 @@ const User = ({ user }) => {
     var users_liked = userInfo.users[currentProfileId]['users_liked']
     var current_user_seen = userInfo.users[curUserId]['seen_users']
 
-    // add the profile to the seen list
-    if (!current_user_seen) {
-      current_user_seen = [currentProfileId]
-    } else {
-      current_user_seen.push(currentProfileId)
+
+    // if the current user has liked this user
+    var flag = true;
+    if (liked_users) {
+      for (const tmp in liked_users) {
+        if (liked_users[tmp].liking_user_id === currentProfileId) {
+          flag = false
+          break;
+        }
+      }
     }
 
-    // add the current user to who liked this profile
-    if (!users_liked) {
-      users_liked = [{ "liked_field": "temp_field", "liked_message": "temp_message", "liking_user_id": currentProfileId, "receiving_user_id": userInfo.users[curUserId].user_id }]
-    } else {
-      users_liked.push({ "liked_field": "temp_field", "liked_message": "temp_message", "liking_user_id": currentProfileId, "receiving_user_id": userInfo.users[curUserId].user_id })
+    if (flag) {
+      // add the current user to who liked this profile
+      if (!users_liked) {
+        users_liked = [{ "liked_field": "temp_field", "liked_message": "temp_message", "receiving_user_id": curUserId }]
+      } else {
+        users_liked.push({ "liked_field": "temp_field", "liked_message": "temp_message", "receiving_user_id": curUserId })
+      }
+
+      // add the profile to whom the current user has liked
+      if (!liked_users) {
+        liked_users = [{ "liked_field": "temp_field", "liked_message": "temp_message", "liking_user_id": currentProfileId }]
+      } else {
+        liked_users.push({ "liked_field": "temp_field", "liked_message": "temp_message", "liking_user_id":  currentProfileId })
+      }
+
+      // add the profile to the seen list
+      if (!current_user_seen) {
+        current_user_seen = [currentProfileId]
+      } else {
+        current_user_seen.push(currentProfileId)
+      }
     }
 
-    // add the profile to whom the current user has liked
-    if (!liked_users) {
-      liked_users = [{ "liked_field": "temp_field", "liked_message": "temp_message", "liking_user_id": currentProfileId, "receiving_user_id": userInfo.users[curUserId].user_id }]
-    } else {
-      liked_users.push({ "liked_field": "temp_field", "liked_message": "temp_message", "liking_user_id": currentProfileId, "receiving_user_id": userInfo.users[curUserId].user_id })
-    }
 
     try {
       setData(`/users/` + curUserId + `/seen_users`, current_user_seen);
@@ -72,6 +85,7 @@ const User = ({ user }) => {
     }
   }
   console.log("index", index)
+  console.log("user[currentProfileId]", user)
   return (
     <Card style={{ width: 'auto', margin: 'auto' }}>
       <Card.Body>
