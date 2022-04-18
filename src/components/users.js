@@ -22,6 +22,7 @@ const User = ({ user }) => {
   var currentProfileId = Object.keys(userInfo.users)[index];
   console.log("currentProfileId:", currentProfileId)
 
+  //need to fix becaue we can't delete the user and step with the index and can't find...
   if (currentUser) {
     for (const info in userInfo.users) {
       if (userInfo.users[info]["user_id"] === currentUser.uid) {
