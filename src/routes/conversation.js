@@ -66,7 +66,7 @@ export default function Conversation() {
 
   return (
     <div >
-      <h1 id="conversation-head"> Conversation</h1>
+      <h1 class="top-bar"> Conversation</h1>
       <body id="conversation-body">
         <MessageList messages={conversation_sorted_chronologically} />
         <div id="send_message">

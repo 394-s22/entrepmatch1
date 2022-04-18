@@ -21,7 +21,8 @@ textarea {
   width: 90%;
 }
 .send_message_button {
-  width: 5%;
+  width: 15%;
+  font-size: medium;
 }
 
 

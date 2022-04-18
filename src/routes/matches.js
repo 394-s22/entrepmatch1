@@ -1,9 +1,19 @@
 import '../App.css';
 import React,{useState,useEffect} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import User from '../components/users.js'
 import { useData, useUserState } from '../utilities/firebase.js';
 import { Link } from "react-router-dom";
+
+import Box from '@mui/material/Box';
+import BottomNavigation from '@mui/material/BottomNavigation';
+import BottomNavigationAction from '@mui/material/BottomNavigationAction';
+import Paper from '@mui/material/Paper';
+
+import ListItem from '@mui/material/ListItem';
+import ListItemText from '@mui/material/ListItemText';
+import ListItemAvatar from '@mui/material/ListItemAvatar';
+import Avatar from '@mui/material/Avatar';
+import Typography from '@mui/material/Typography';
 
 
 export default function Matches() {
@@ -71,28 +81,52 @@ export default function Matches() {
   
   return (
     <div >
-      <h1> Matches Page...</h1>
+      <h1 class="top-bar"> Matches</h1>
 
-      {matches.map(function(object, i){
+
+
+      {matches.map(function (object, i) {
         console.log("object is", object)
 
-        return <div><Link to={"/conversation?user_id=" + object} key={i}>{users_to_show[i].name}</Link><br></br></div>;
+        // Stylish the matches page
+        return <div>
+          <ListItem alignItems="flex-start" onClick={(e) => {
+            e.preventDefault();
+            window.location.href = "/conversation?user_id=" + object;
+          }}>
+            <ListItemAvatar >
+              <Avatar alt="Remy Sharp" src={users_to_show[i].pictures} />
+            </ListItemAvatar>
+            <ListItemText
+              primary={users_to_show[i].name}
+              secondary={
+                <React.Fragment>
+                  <Typography
+                    sx={{ display: 'inline' }}
+                    component="span"
+                    variant="body2"
+                    color="text.primary"
+                  >
+                    You matched
+                  </Typography>
+                  {" — Start chatting!"}
+                </React.Fragment>
+              }
+            />
+          </ListItem>
+        </div>;
       })}
 
-      <nav
-        style={{
-          padding:10,
-          display:"flex",
-          flexDirection: 'row',
-          justifyContent: 'space-around',
-          backgroundColor: 'white',
-        }}
-      >
-        <Link to="/" className='navlink'> 🌠 Profiles </Link>
-        <Link to="/likes" className='navlink'> 👍 Likes </Link>
-        <Link to="/matches" className='navlink'> 😲 Matches</Link>
-        <Link to="/settings" className='navlink'> ⚙️ Settings</Link>
-      </nav>
+      <Paper sx={{ position: 'fixed', bottom: 0, left: 0, right: 0 }} elevation={3}>
+        <BottomNavigation
+        showLabels
+        >
+          <BottomNavigationAction label="Profiles" component={Link} to="/" />
+          <BottomNavigationAction label="Likes" component={Link} to="/likes" />
+          <BottomNavigationAction label="Matches" component={Link} to="/matches" />
+          <BottomNavigationAction label="Settings" component={Link} to="/settings" />
+        </BottomNavigation>
+      </Paper>
     </div>
   );
 

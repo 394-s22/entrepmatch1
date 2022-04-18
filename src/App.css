@@ -40,12 +40,13 @@
   }
 }
 
-#conversation-head {
+.top-bar {
   text-align: center;
   color: aliceblue;
   background: #248bf5;
   padding: 4%;
   font-family: "SanFrancisco";
+  width: 100%;
 }
 
 #conversation-body {
