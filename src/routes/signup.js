@@ -103,7 +103,7 @@ export default function SignUp() {
         skills: {
           artistic: document.getElementById("artistic_skills").value.split(","),
           technical: document.getElementById("technical_skills").value.split(","),
-          soft: document.getElementById("soft_skills").value.split(","),
+          softSkills: document.getElementById("soft_skills").value.split(","),
         },
         liked_users : [],
         users_liked :[],
