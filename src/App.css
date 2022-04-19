@@ -40,25 +40,38 @@
   }
 }
 
-#conversation-head {
+.top-bar {
   text-align: center;
   color: aliceblue;
-  background: rgb(95, 48, 184);
+  background: #248bf5;
   padding: 4%;
-  font-family: "Times New Roman", Times, serif;
+  font-family: "SanFrancisco";
+  width: 100%;
 }
 
 #conversation-body {
   padding: 2%;
+  font-family: "SanFrancisco";
+  font-size: 1.25rem;
 }
 
-.message {
-  font-family: "Times New Roman", Times, serif;
-  font-size: medium;
+#message {
+  align-items: flex-start;
+  background-color: #e5e5ea;
+  color: #000;
+  border-radius: 0.38rem;
+  padding: 1%;
 }
 
-/* .navlink{
+.nav {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: space-around;
+  position: absolute;
+  bottom: 0;
   width: 100%;
-} */
+}
+
+#name {
+  margin-left: 5px;
+}

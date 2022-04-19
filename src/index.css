@@ -12,6 +12,20 @@ code {
     monospace;
 }
 
+#send_message {
+  width: 100%;
+  display: flex;
+  gap: 5%;
+}
+textarea {
+  width: 90%;
+}
+.send_message_button {
+  width: 15%;
+  font-size: medium;
+}
+
+
 .header {
   font-family: "Arial";
   text-align: center;
