@@ -1,7 +1,7 @@
 import '../App.css';
 import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { useData, setData } from '../utilities/firebase.js';
+import { useData, setData, useUserState } from '../utilities/firebase.js';
 import { Link } from "react-router-dom";
 import Avatar from 'react-avatar';
 
@@ -9,8 +9,7 @@ import Avatar from 'react-avatar';
 
 export default function Conversation() {
   const [userInfo, loading, error] = useData('/');
-
-  const current_user_id = 0 // need to update this after testing to be the current user
+  const [currentUser] = useUserState();
 
   const queryParams = new URLSearchParams(window.location.search)
   const conversation_user_id = queryParams.get("user_id") // person the conversation is opened with
@@ -19,8 +18,26 @@ export default function Conversation() {
   if (error) return <h1>{error}</h1>;
   if (loading) return <h1>Loading...</h1>
 
+  // Get the current user index
+  if (currentUser) {
+    for (const info in userInfo.users) {
+      if (userInfo.users[info]["user_id"] === currentUser.uid) {
+        var current_user_id = info
+        break;
+      }
+    }
+  }
+
   var all_user_messages = userInfo.users[current_user_id]['conversations'] // every message the user has sent to any user
   var all_conversation_partner_messages = userInfo.users[conversation_user_id]['conversations'] // every message the user has sent to any user
+
+  // if message lists are empty, initialized them
+  if (!all_user_messages) {
+    all_user_messages = []
+  }
+  if (!all_conversation_partner_messages) {
+    all_conversation_partner_messages = []
+  }
 
   // filtering all the users' conversations to find conversations between current_user_id and conversation_user_id (users' match)
   var messages_user_sent = []
@@ -53,16 +70,16 @@ export default function Conversation() {
   console.log("conversation_sorted_chronologically: ", conversation_sorted_chronologically)
 
   const sendMessage = async () => {
-      const message = document.getElementById("message_textarea").value
-    all_user_messages.push({"message": message, "receiving_userID": conversation_user_id, "sending_userID": current_user_id, "timestamp": Date.now()})
-    all_conversation_partner_messages.push({"message": message, "receiving_userID": conversation_user_id, "sending_userID": current_user_id, "timestamp": Date.now()})
+    const message = document.getElementById("message_textarea").value
+    all_user_messages.push({ "message": message, "receiving_userID": conversation_user_id, "sending_userID": current_user_id, "timestamp": Date.now() })
+    all_conversation_partner_messages.push({ "message": message, "receiving_userID": conversation_user_id, "sending_userID": current_user_id, "timestamp": Date.now() })
     try {
-        setData(`/users/` + current_user_id + `/conversations`, all_user_messages);
-        setData(`/users/` + conversation_user_id + `/conversations`, all_conversation_partner_messages);
+      setData(`/users/` + current_user_id + `/conversations`, all_user_messages);
+      setData(`/users/` + conversation_user_id + `/conversations`, all_conversation_partner_messages);
     } catch (error) {
-        alert(error);
-        }
+      alert(error);
     }
+  }
 
   return (
     <div >
@@ -70,8 +87,8 @@ export default function Conversation() {
       <body id="conversation-body">
         <MessageList messages={conversation_sorted_chronologically} />
         <div id="send_message">
-        <textarea id="message_textarea" placeholder="Say something!"></textarea>
-        <button className="send_message_button" onClick={sendMessage}>Send</button>
+          <textarea id="message_textarea" placeholder="Say something!"></textarea>
+          <button className="send_message_button" onClick={sendMessage}>Send</button>
         </div>
       </body>
       <nav className='nav'>
