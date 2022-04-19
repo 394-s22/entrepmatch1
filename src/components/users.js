@@ -19,6 +19,8 @@ const User = ({ user }) => {
   if (error) return <h1>{error}</h1>;
   if (loading) return <h1>Loading...</h1>
 
+  console.log("all users is", userInfo.users)
+
   var currentProfileId = Object.keys(userInfo.users)[index];
   console.log("currentProfileId:", currentProfileId)
 
@@ -27,6 +29,7 @@ const User = ({ user }) => {
     for (const info in userInfo.users) {
       if (userInfo.users[info]["user_id"] === currentUser.uid) {
         var curUserId = info
+        console.log("deleting", user[info]);
         delete user[info]
       }
     }
@@ -87,31 +90,32 @@ const User = ({ user }) => {
   }
   console.log("index", index)
   console.log("user[currentProfileId]", user)
+  console.log("Justin:", user[currentProfileId]);
   return (
     <Card style={{ width: 'auto', margin: 'auto' }}>
       <Card.Body>
 
-        <Card.Title>{user[currentProfileId].name}</Card.Title>
+        <Card.Title>{userInfo.users[currentProfileId].name}</Card.Title>
 
-        <Card.Img variant="top" src={user[currentProfileId].pictures} />
+        <Card.Img variant="top" src={userInfo.users[currentProfileId].pictures} />
 
 
         <Card.Title>Projects:</Card.Title>
-        <ProjectsList projects={user[currentProfileId].projects} />
+        <ProjectsList projects={userInfo.users[currentProfileId].projects} />
 
         <Card.Title>About me: </Card.Title>
         <ListGroup variant="flush">
-          <ListGroup.Item>Favorite Entrepreneur: {user[currentProfileId].favoriteEntreprenuer}</ListGroup.Item>
-          <ListGroup.Item>Industry Interest: {user[currentProfileId].industryInterest}</ListGroup.Item>
-          <ListGroup.Item>School: {user[currentProfileId].school}</ListGroup.Item>
-          <ListGroup.Item>Major: {user[currentProfileId].major}</ListGroup.Item>
+          <ListGroup.Item>Favorite Entrepreneur: {userInfo.users[currentProfileId].favoriteEntreprenuer}</ListGroup.Item>
+          <ListGroup.Item>Industry Interest: {userInfo.users[currentProfileId].industryInterest}</ListGroup.Item>
+          <ListGroup.Item>School: {userInfo.users[currentProfileId].school}</ListGroup.Item>
+          <ListGroup.Item>Major: {userInfo.users[currentProfileId].major}</ListGroup.Item>
         </ListGroup>
 
         <Carousel>
           <Carousel.Item>
             <Card.Title>Artistic Skills: </Card.Title>
             <ListGroup variant="flush">
-              <SkillsList skills={user[currentProfileId].skills.artistic} />
+              <SkillsList skills={userInfo.users[currentProfileId].skills.artistic} />
             </ListGroup>
           </Carousel.Item>
 
@@ -119,14 +123,14 @@ const User = ({ user }) => {
           <Carousel.Item>
             <Card.Title>Technical Skills: </Card.Title>
             <ListGroup variant="flush">
-              <SkillsList skills={user[currentProfileId].skills.technical} />
+              <SkillsList skills={userInfo.users[currentProfileId].skills.technical} />
             </ListGroup>
           </Carousel.Item>
 
           <Carousel.Item>
             <Card.Title>Soft Skills: </Card.Title>
             <ListGroup variant="flush">
-              <SkillsList skills={user[currentProfileId].skills.softSkills} />
+              <SkillsList skills={userInfo.users[currentProfileId].skills.softSkills} />
             </ListGroup>
           </Carousel.Item>
 

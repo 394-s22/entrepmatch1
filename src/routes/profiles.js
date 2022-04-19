@@ -16,6 +16,7 @@ function Profiles() {
   //temp: remove user 1
   const users = userInfo.users;
 
+
   return (
     <div >
       <User user= {users} />
