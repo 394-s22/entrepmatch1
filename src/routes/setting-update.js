@@ -1,10 +1,8 @@
 import '../App.css';
-import React,{useState,useEffect} from 'react';
+import React,{useState} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useData, setData, useUserState } from '../utilities/firebase.js';
-import { Link } from "react-router-dom";
-import Form from 'react-bootstrap/Form';
-import { Button } from 'react-bootstrap';
+
 
 export default function SettingUpdate() {
   const [userInfo, loading, error] = useData('/'); 
@@ -19,7 +17,7 @@ export default function SettingUpdate() {
   var currentUserId = "";
   if(user){
     for (const info in userInfo.users) {
-      if(userInfo.users[info]["user_id"] == user.uid){
+      if(userInfo.users[info]["user_id"] === user.uid){
         currentUser = userInfo.users[info];
         currentUserId = info;
       }
@@ -41,16 +39,15 @@ export default function SettingUpdate() {
 
   const updateInput = async () => {
     try {
-        setData(`/users/` + currentUserId + `/name`, inputs.name);
-        setData(`/users/` + currentUserId + `school`, inputs.school);
-        setData(`/users/` + currentUserId + `favoriteEntreprenuer`, inputs.fav);
-        setData(`/users/` + currentUserId + `major`, inputs.major);
-        setData(`/users/` + currentUserId + `phoneNumber`, inputs.number);
+        if(inputs.name) setData(`/users/` + currentUserId + `/name`, inputs.name);
+        if(inputs.school) setData(`/users/` + currentUserId + `/school`, inputs.school);
+        if(inputs.fav) setData(`/users/` + currentUserId + `/favoriteEntreprenuer`, inputs.fav);
+        if(inputs.major) setData(`/users/` + currentUserId + `/major`, inputs.major);
+        if(inputs.number) setData(`/users/` + currentUserId + `/phoneNumber`, inputs.number);
     } catch (error) {
         alert(error);
     }
   };
-  
   return (
     <div >
       <form onSubmit={handleSubmit}>
@@ -58,7 +55,7 @@ export default function SettingUpdate() {
         <input 
             type="text" 
             name="name" 
-            value={inputs.name || ""} 
+            value={inputs.name || currentUser['name']} 
             onChange={handleChange}
         />
         </label><br/>
@@ -66,7 +63,7 @@ export default function SettingUpdate() {
         <input 
             type="text" 
             name="school" 
-            value={inputs.school || ""} 
+            value={inputs.school || currentUser['school']} 
             onChange={handleChange}
         />
         </label><br/>
@@ -74,7 +71,7 @@ export default function SettingUpdate() {
         <input 
             type="text" 
             name="fav" 
-            value={inputs.fav || ""} 
+            value={inputs.fav || currentUser['favoriteEntreprenuer']} 
             onChange={handleChange}
         />
         </label><br/>
@@ -82,7 +79,7 @@ export default function SettingUpdate() {
         <input 
             type="text" 
             name="major" 
-            value={inputs.major || ""} 
+            value={inputs.major || currentUser['major']} 
             onChange={handleChange}
         />
         </label><br/>
@@ -90,7 +87,7 @@ export default function SettingUpdate() {
         <input 
             type="text" 
             name="number" 
-            value={inputs.number || ""} 
+            value={inputs.number || currentUser['phoneNumber']} 
             onChange={handleChange}
         />
         </label><br/>
