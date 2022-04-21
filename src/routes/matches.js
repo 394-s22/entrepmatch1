@@ -35,7 +35,7 @@ export default function Matches() {
   var current_user = {};
   if(currentUser){
     for (const info in userInfo.users) {
-      if(userInfo.users[info]["user_id"] == current_user_id){
+      if(userInfo.users[info]["user_id"] === current_user_id){
         current_user = userInfo.users[info]
       }
     }

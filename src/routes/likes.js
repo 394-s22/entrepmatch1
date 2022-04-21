@@ -27,7 +27,7 @@ export default function Likes() {
   var current_user = {};
   if(currentUser){
     for (const info in userInfo.users) {
-      if(userInfo.users[info]["user_id"] == current_user_id){
+      if(userInfo.users[info]["user_id"] === current_user_id){
         current_user = userInfo.users[info]
       }
     }
@@ -65,9 +65,6 @@ export default function Likes() {
 
   // getting users who have liked the current user 
   for (var i = 0; i < users_who_have_liked_the_user_but_the_user_hasnt_liked_back.length; i++){
-    // if (users_who_have_liked_the_user_but_the_user_hasnt_liked_back.includes(users[i].user_id) && users[i].user_id != curr){
-    //   users_to_show.push(users[i])
-    // }
     users_to_show.push(users[users_who_have_liked_the_user_but_the_user_hasnt_liked_back[i]])
   }
 

@@ -88,9 +88,11 @@ const User = ({ user }) => {
       alert(error);
     }
   }
-  console.log("index", index)
-  console.log("user[currentProfileId]", user)
-  console.log("Justin:", user[currentProfileId]);
+  // console.log("index", index)
+  // console.log("user[currentProfileId]", user)
+  // console.log("Justin:", user[currentProfileId]);
+
+
   return (
     <Card style={{ width: 'auto', margin: 'auto' }}>
       <Card.Body>
