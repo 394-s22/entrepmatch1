@@ -59,8 +59,6 @@ function Profiles() {
     users_to_not_show.push(users[matches[i]])
   }
 
-  console.log("users_to_not_show before like:", users_to_not_show)
-
   //GET ALL PEOPLE WHO HAVE LIKED YOU
   const users_who_have_liked_the_user_but_the_user_hasnt_liked_back = []
 
@@ -80,23 +78,36 @@ function Profiles() {
   }  
 
   //CREATING THEY DON'T LIKE YOU AND NOT MATCHED as trueUsers
+  //list of users_to_not_show_id
+  console.log("users_to_not_show", users_to_not_show)
+  const id_user_to_not_show = []
+  for (var i =0; users_to_not_show.length; i++) {
+    // console.log("%s error", i)
+    if (users_to_not_show[i] === undefined) {
+      //This is an errror and doesn't take whole list... continue doesn't work
+      break;
+    }
+    id_user_to_not_show.push(users_to_not_show[i]['user_id'])
+  }
+
+  console.log("id_user_to_not_show", id_user_to_not_show)
   const users_to_show = []
-  console.log("users keys:", Object.keys(users))
-  for (var i = 0; i < users.length; i++) {
-    console.log("enter loop")
-    console.log("users[i]", users[i])
-    if (!(users_to_not_show.includes(users[i]))) {
-      users_to_show.push(users[i]);
+  const userKeys = Object.keys(users)
+  // console.log("usersKeys", userKeys)
+
+  for (var i = 0; i < userKeys.length; i++) {
+    if (!(id_user_to_not_show.includes(userKeys[i]))) {
+      users_to_show.push(users[userKeys[i]]);
       }
     }
 
-  console.log("trueusers:", users_to_show)
+  console.log("users_to_show:", users_to_show)
   
   
 
   return (
     <div >
-      <User user= {users} />
+      <User user= {users_to_show} />
       <nav
         style={{
           padding:10,
