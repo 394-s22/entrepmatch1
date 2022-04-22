@@ -2,6 +2,7 @@ import { initializeApp } from 'firebase/app';
 import { getDatabase, onValue, push, ref, set } from 'firebase/database';
 import { useState, useEffect } from 'react';
 import { getAuth, GoogleAuthProvider, onIdTokenChanged, signInWithPopup, signOut } from 'firebase/auth';
+import { getStorage } from 'firebase/storage';
 
 
 const firebaseConfig = {
@@ -17,6 +18,7 @@ const firebaseConfig = {
 
 const firebase = initializeApp(firebaseConfig);
 const database = getDatabase(firebase);
+export const storage = getStorage(firebase);
 
 export const useData = (path, transform) => {
     const [data, setData] = useState();
