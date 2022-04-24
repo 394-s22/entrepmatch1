@@ -81,6 +81,7 @@ const UserLike = ({ user }) => {
     for (const info in userInfo.users) {
       if (userInfo.users[info]["user_id"] === currentUser.uid) {
         var curUserId = info
+        console.log("afterCur:", curUserId)
         delete user[info]
       }
     }
@@ -183,16 +184,12 @@ const UserLike = ({ user }) => {
     )
 };
 
-const UserLikeList = ({ user, users }) => {
-    const [curr, diffUser] = useState(0);
-    const userIdArray = () => (
-      Object.values(user[curr].liked_users).map(user => user.liking_user_id)
-    );
+const UserLikeList = ({ users }) => {
 
     return (  
       <div>
           {Object.values(users).map(user => 
-            <UserLike key={user.user_id} user={user} />)}
+            <UserLike key={user} user={user} />)}
       </div>
       )
 };

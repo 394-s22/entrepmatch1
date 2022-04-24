@@ -55,21 +55,29 @@ export default function Matches() {
     users_the_user_has_liked = Object.values(current_user.users_liked).map(user => user.receiving_user_id)
   }
   console.log("uesrs the userhas liked", users_the_user_has_liked)
-  const matches = []
+  const matchesId = []
   const users_to_show = []
 
   for (var i = 0; i < userIdArray.length; i++){
     if (users_the_user_has_liked.includes(userIdArray[i])){
-      matches.push(userIdArray[i])
+      matchesId.push(userIdArray[i])
+    }
+  }
+  const matchesUsers = []
+  for (var i = 0; i < users.length; i++){
+    if (matchesId.includes(users[i].user_id)) {
+      matchesUsers.push(users[i])
     }
   }
 
-  for (var i = 0; i < matches.length; i++){
-    users_to_show.push(users[matches[i]])
+  console.log("users", users)
+  for (var i = 0; i < matchesUsers.length; i++){
+    console.log("users_to_show: %s", matchesUsers[i])
+    users_to_show.push(users[matchesUsers[i]])
   }
 
 
-  console.log("matches is", matches)
+  console.log("matches is", matchesUsers)
   console.log("users to show is", users_to_show)
 
   if (error) return <h1>{error}</h1>;
@@ -85,7 +93,7 @@ export default function Matches() {
 
 
 
-      {matches.map(function (object, i) {
+      {users_to_show.map(function (object, i) {
         console.log("object is", object)
 
         // Stylish the matches page
