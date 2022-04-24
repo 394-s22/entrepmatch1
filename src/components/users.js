@@ -19,9 +19,10 @@ const User = ({ user }) => {
   if (error) return <h1>{error}</h1>;
   if (loading) return <h1>Loading...</h1>
 
-  console.log("all users is", userInfo.users)
+  console.log("all users is", user)
 
-  var currentProfileId = Object.keys(userInfo.users)[index];
+  var currentProfileId = Object.keys(user)[index];
+  
   console.log("currentProfileId:", currentProfileId)
 
   //need to fix becaue we can't delete the user and step with the index and can't find...
@@ -38,7 +39,7 @@ const User = ({ user }) => {
 
   const likeUser = async () => {
 
-    setIndex((index + 1) % (Object.keys(userInfo.users).length - 1))
+    setIndex((index + 1) % (Object.keys(user).length))
 
     var liked_users = userInfo.users[curUserId]['liked_users']
     var users_liked = userInfo.users[currentProfileId]['users_liked']
@@ -145,7 +146,7 @@ const User = ({ user }) => {
         <>
           <button onClick={likeUser}> Like </button >
         </>
-        <button onClick={() => setIndex((index + 1) % (Object.keys(userInfo.users).length - 1))}> Dislike </button>
+        <button onClick={() => setIndex((index + 1) % (Object.keys(user).length))}> Dislike </button>
       </div>
     </Card>
   );
