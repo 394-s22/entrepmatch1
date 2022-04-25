@@ -4,6 +4,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import ProfileEdit from '../components/profileEdit.js'
 import { useData, useUserState, signOut } from '../utilities/firebase.js';
 import { Link } from "react-router-dom";
+import BottomNavigation from '@mui/material/BottomNavigation';
+import BottomNavigationAction from '@mui/material/BottomNavigationAction';
+import Paper from '@mui/material/Paper';
 
 const SignOutButton = () => (
   <button className="btn btn-secondary btn-sm"
@@ -37,20 +40,16 @@ if (!(user)) {
     <div >
       <ProfileEdit user= { currentUser } />
       <SignOutButton/>
-      <nav
-        style={{
-          padding:10,
-          display:"flex",
-          flexDirection: 'row',
-          justifyContent: 'space-around',
-          backgroundColor: 'white',
-        }}
-      >
-        <Link to="/" className='navlink'> 🌠 Profiles </Link>
-        <Link to="/likes" className='navlink'> 👍 Likes </Link>
-        <Link to="/matches" className='navlink'> 😲 Matches</Link>
-        <Link to="/settings" className='navlink'> ⚙️ Settings</Link>
-      </nav>
+      <Paper sx={{ position: 'fixed', bottom: 0, left: 0, right: 0 }} elevation={3}>
+        <BottomNavigation
+        showLabels
+        >
+          <BottomNavigationAction label="Profiles" component={Link} to="/" />
+          <BottomNavigationAction label="Likes" component={Link} to="/likes" />
+          <BottomNavigationAction label="Matches" component={Link} to="/matches" />
+          <BottomNavigationAction label="Settings" component={Link} to="/settings" />
+        </BottomNavigation>
+      </Paper>
     </div>
   );
 
