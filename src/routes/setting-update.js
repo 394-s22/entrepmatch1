@@ -55,23 +55,29 @@ export default function SettingUpdate() {
           padding:10,
           display:"flex",
           flexDirection: 'column',
-          justifyContent: 'space-around',
         }}
         >
       <h3>Update Profile</h3>
       <br/>
       <form onSubmit={handleSubmit}>
-      <TextField label="name" variant="outlined" name="name" defaultValue={currentUser['name']} onChange={handleChange}/>
+      <TextField fullWidth label="name" variant="outlined" name="name" defaultValue={currentUser['name']} onChange={handleChange}/>
       <br/><br/>
-      <TextField label="phone number" variant="outlined" name="number" defaultValue={currentUser['phoneNumber']} onChange={handleChange}/>
+      <TextField fullWidth label="phone number" variant="outlined" name="number" defaultValue={currentUser['phoneNumber']} onChange={handleChange}/>
       <br/><br/>
-      <TextField label="school" variant="outlined" name="school" defaultValue={currentUser['school']} onChange={handleChange}/>
+      <TextField fullWidth label="school" variant="outlined" name="school" defaultValue={currentUser['school']} onChange={handleChange}/>
       <br/><br/>
-      <TextField label="favorite entreprenuer" variant="outlined" name="fav" defaultValue={currentUser['favoriteEntreprenuer']} onChange={handleChange}/>
+      <TextField fullWidth label="favorite entreprenuer" variant="outlined" name="fav" defaultValue={currentUser['favoriteEntreprenuer']} onChange={handleChange}/>
       <br/><br/>
-      <TextField label="major" variant="outlined" name="major" defaultValue={currentUser['major']} onChange={handleChange}/>
+      <TextField fullWidth label="major" variant="outlined" name="major" defaultValue={currentUser['major']} onChange={handleChange}/>
       <br/><br/>
-      <Button variant="contained" color="primary" type="submit">Submit</Button>
+      <div 
+      style={{
+          display:"flex",
+          justifyContent: 'space-around',
+        }}>
+        <Button fullWidth variant="contained" color="primary" type="submit">Submit</Button>
+        <Button fullWidth variant="outlined" color="primary" href="/settings">Cancel</Button>
+      </div>
       </form>
     </div>
   );
