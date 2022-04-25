@@ -13,11 +13,8 @@ import CardMedia from '@mui/material/CardMedia';
 import Box from '@mui/material/Box';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
-import { borders, textAlign } from '@mui/system';
-import { Grid } from '@mui/material';
 import { ListItemText } from '@mui/material';
 import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 
