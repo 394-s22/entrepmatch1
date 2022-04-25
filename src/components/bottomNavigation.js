@@ -8,7 +8,7 @@ import PeopleIcon from '@mui/icons-material/People';
 import InsertEmoticonIcon from '@mui/icons-material/InsertEmoticon';
 
 const NavigationBar = () => (
-<Paper sx={{ position: 'sticky'}} elevation={3}>
+<Paper sx={{ position: 'sticky', bottom: 0, left: 0, right: 0}} elevation={3}>
         <BottomNavigation
         showLabels
         >
