@@ -1,13 +1,26 @@
 import React, { useState, useEffect } from 'react';
 import { Modal } from 'react-bootstrap';
-import { Button } from 'react-bootstrap';
 import { ProjectsList } from './projects';
-import Card from 'react-bootstrap/Card';
 import Carousel from 'react-bootstrap/Carousel';
 import ListGroup from 'react-bootstrap/ListGroup';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { SkillsList, Skill } from './skills';
+import { SkillsList, TabPanel, a11yProps } from './skills';
 import { useData, setData, useUserState, pushData } from '../utilities/firebase.js';
+import Button from '@mui/material/Button';
+import Card from '@mui/material/Card';
+import CardHeader from '@mui/material/CardHeader';
+import CardMedia from '@mui/material/CardMedia';
+import Box from '@mui/material/Box';
+import CardContent from '@mui/material/CardContent';
+import Typography from '@mui/material/Typography';
+import { borders, textAlign } from '@mui/system';
+import { Grid } from '@mui/material';
+import { ListItemText } from '@mui/material';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
+
 
 
 const User = ({ user }) => {
@@ -15,6 +28,11 @@ const User = ({ user }) => {
 
   const [index, setIndex] = useState(0);
   const [currentUser] = useUserState();
+
+  const [skillValue, setSkillValue] = useState(0)
+  const handleSkillChange = (event, newValue) => {
+    setSkillValue(newValue)
+  }
 
   if (error) return <h1>{error}</h1>;
   if (loading) return <h1>Loading...</h1>
@@ -93,64 +111,78 @@ const User = ({ user }) => {
   console.log("user[currentProfileId]", user)
   console.log("Justin:", user[currentProfileId]);
   return (
-    <Card style={{ width: 'auto', margin: 'auto' }}>
-      <Card.Body>
 
-        <Card.Title>{userInfo.users[currentProfileId].name}</Card.Title>
-
-        <Card.Img variant="top" src={userInfo.users[currentProfileId].pictures} />
-
-
-        <Card.Title>Projects:</Card.Title>
-        <ProjectsList projects={userInfo.users[currentProfileId].projects} />
-
-        <Card.Title>About me: </Card.Title>
-        <ListGroup variant="flush">
-          <ListGroup.Item>Favorite Entrepreneur: {userInfo.users[currentProfileId].favoriteEntreprenuer}</ListGroup.Item>
-          <ListGroup.Item>Industry Interest: {userInfo.users[currentProfileId].industryInterest}</ListGroup.Item>
-          <ListGroup.Item>School: {userInfo.users[currentProfileId].school}</ListGroup.Item>
-          <ListGroup.Item>Major: {userInfo.users[currentProfileId].major}</ListGroup.Item>
-        </ListGroup>
-
-        <Carousel>
-          <Carousel.Item>
-            <Card.Title>Artistic Skills: </Card.Title>
-            <ListGroup variant="flush">
-              <SkillsList skills={userInfo.users[currentProfileId].skills.artistic} />
-            </ListGroup>
-          </Carousel.Item>
-
-
-          <Carousel.Item>
-            <Card.Title>Technical Skills: </Card.Title>
-            <ListGroup variant="flush">
-              <SkillsList skills={userInfo.users[currentProfileId].skills.technical} />
-            </ListGroup>
-          </Carousel.Item>
-
-          <Carousel.Item>
-            <Card.Title>Soft Skills: </Card.Title>
-            <ListGroup variant="flush">
-              <SkillsList skills={userInfo.users[currentProfileId].skills.softSkills} />
-            </ListGroup>
-          </Carousel.Item>
-
-
-
-
-        </Carousel>
-
-      </Card.Body>
-
-      <div className="like_dislike_buttons" >
-        <>
-          <button onClick={likeUser}> Like </button >
-        </>
-        <button onClick={() => setIndex((index + 1) % (Object.keys(user).length))}> Dislike </button>
-      </div>
-    </Card>
+    <Card sx={{ width: 'auto', margin: 'auto' }}>
+         <CardHeader
+        title={userInfo.users[currentProfileId].name}
+      />
+        <CardMedia
+          component="img"
+          sx={{
+              margin: "auto",
+              width: "60%",
+              borderRadius: 10,
+              }} 
+          image={userInfo.users[currentProfileId].pictures}
+        />
+        <CardContent>
+          <Typography gutterBottom variant="h5" container="div">
+            Projects:
+          </Typography>
+            <ProjectsList projects = {userInfo.users[currentProfileId].projects} />
+            <Typography gutterBottom variant="h5" container="div">
+            About Me:
+          </Typography>
+          <Box sx={{width:"100%", border: 1, paddingLeft: "4px", borderRadius:2}}>
+              <List>
+                <ListItemText primary={"Favorite Entrepreneur: " + userInfo.users[currentProfileId].favoriteEntreprenuer} />
+                <ListItemText primary={"Industry Interest: " + userInfo.users[currentProfileId].industryInterest} />
+                <ListItemText primary={"School: " + userInfo.users[currentProfileId].school} />
+                <ListItemText primary={"Major: " + userInfo.users[currentProfileId].major} />
+              </List>
+          </Box>
+          <Typography gutterBottom variant="h5" container="div">
+            Skills:
+          </Typography>
+          <Box sx={{width:"100%", border: 1, paddingLeft: "4px", borderRadius:2}}>
+          <Tabs value={skillValue} onChange={handleSkillChange} centered>
+          <Tab label="Technical" {...a11yProps(0)} />
+          <Tab label="Artistic" {...a11yProps(1)} />
+          <Tab label="Soft Skills" {...a11yProps(2)} />
+          </Tabs>
+              <TabPanel value={skillValue} index={0}>
+              <SkillsList skills = {userInfo.users[currentProfileId].skills.technical} />
+              </TabPanel>
+              <TabPanel value={skillValue} index={1}>
+                <SkillsList skills = {userInfo.users[currentProfileId].skills.artistic} />  
+              </TabPanel>
+              <TabPanel value={skillValue} index={2}>
+              <SkillsList skills = {userInfo.users[currentProfileId].skills.softSkills} /> 
+              </TabPanel>
+          </Box>
+          </CardContent>
+      
+       <div class="like_dislike_buttons" >
+            <>
+            <Button variant="contained" onClick={likeUser}> Like </Button >
+            </>
+          <Button variant="contained" onClick={() => setIndex((index + 1) % (Object.keys(user).length))}> Dislike </Button>
+        </div>
+       </Card>
   );
-};
+}
+
+//       </Card.Body>
+
+//       <div className="like_dislike_buttons" >
+//         <>
+//           <button onClick={likeUser}> Like </button >
+//         </>
+//         <button onClick={() => setIndex((index + 1) % (Object.keys(user).length))}> Dislike </button>
+//       </div>
+//     </Card>
+//   );
+// };
 
 export const UserInfoList = ({ users }) => (
 
