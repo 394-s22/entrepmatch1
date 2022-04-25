@@ -5,6 +5,7 @@ import User from '../components/users.js'
 import { UserInfoList } from '../components/users.js';
 import { Link } from "react-router-dom";
 import { useData, useUserState } from '../utilities/firebase.js';
+import NavigationBar from '../components/bottomNavigation';
 function Profiles() {
   const [currentUser] = useUserState();
   const [userInfo, loading, error] = useData('/');
@@ -114,20 +115,7 @@ function Profiles() {
   return (
     <div >
       <User user={users_to_show} />
-      <nav
-        style={{
-          padding: 10,
-          display: "flex",
-          flexDirection: 'row',
-          justifyContent: 'space-around',
-          backgroundColor: 'white',
-        }}
-      >
-        <Link to="/" className='navlink'> 🌠 Profiles </Link>
-        <Link to="/likes" className='navlink'> 👍 Likes </Link>
-        <Link to="/matches" className='navlink'> 😲 Matches</Link>
-        <Link to="/settings" className='navlink'> ⚙️ Settings</Link>
-      </nav>
+      <NavigationBar />
     </div>
   );
 }

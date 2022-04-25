@@ -5,6 +5,7 @@ import User from '../components/users.js'
 import { useData, useUserState } from '../utilities/firebase.js';
 import { Link } from "react-router-dom";
 import UserLikeList from '../components/likesList'; 
+import NavigationBar from '../components/bottomNavigation';
 
 export default function Likes() {
   const [userInfo, loading, error] = useData('/'); 
@@ -74,20 +75,7 @@ export default function Likes() {
   if (users_to_show.length === 0) return (
     <div >
       <h1> No users who have liked you </h1>
-      <nav
-        style={{
-          padding:10,
-          display:"flex",
-          flexDirection: 'row',
-          justifyContent: 'space-around',
-          backgroundColor: 'white',
-        }}
-      >
-        <Link to="/" className='navlink'> 🌠 Profiles </Link>
-        <Link to="/likes" className='navlink'> 👍 Likes </Link>
-        <Link to="/matches" className='navlink'> 😲 Matches</Link>
-        <Link to="/settings" className='navlink'> ⚙️ Settings</Link>
-      </nav>
+      <NavigationBar />
     </div>
   )
 
@@ -96,20 +84,7 @@ export default function Likes() {
     <div >
       <h1> Likes </h1>
       <UserLikeList users= {users_to_show} />
-      <nav
-        style={{
-          padding:10,
-          display:"flex",
-          flexDirection: 'row',
-          justifyContent: 'space-around',
-          backgroundColor: 'white',
-        }}
-      >
-        <Link to="/" className='navlink'> 🌠 Profiles </Link>
-        <Link to="/likes" className='navlink'> 👍 Likes </Link>
-        <Link to="/matches" className='navlink'> 😲 Matches</Link>
-        <Link to="/settings" className='navlink'> ⚙️ Settings</Link>
-      </nav>
+      <NavigationBar />
     </div>
   );
     }
