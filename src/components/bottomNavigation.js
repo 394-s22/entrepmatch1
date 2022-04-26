@@ -12,7 +12,7 @@ const NavigationBar = () => (
         <BottomNavigation
         showLabels
         >
-          <BottomNavigationAction label="Profiles" component={Link} icon ={<PeopleIcon/>} to="/" />
+          <BottomNavigationAction label="Profiles" component={Link} icon ={<PeopleIcon/>} to="/profiles" />
           <BottomNavigationAction label="Likes" component={Link} icon={<FavoriteIcon />} to="/likes" />
           <BottomNavigationAction label="Matches" component={Link} icon ={<InsertEmoticonIcon/>} to="/matches" />
           <BottomNavigationAction label="Settings" component={Link} icon={<SettingsIcon/>} to="/settings" />
