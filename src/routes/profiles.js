@@ -114,7 +114,9 @@ function Profiles() {
 
   return (
     <div >
-      <User user={users_to_show} />
+      <div class="cover">
+        <User user={users_to_show} />
+      </div>
       <NavigationBar />
     </div>
   );

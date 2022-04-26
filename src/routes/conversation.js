@@ -4,8 +4,15 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { useData, setData, useUserState } from '../utilities/firebase.js';
 import { Link } from "react-router-dom";
 import Avatar from 'react-avatar';
-import NavigationBar from '../components/bottomNavigation';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
 
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
+import IconButton from '@mui/material/IconButton';
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+import Paper from '@mui/material/Paper';
 
 export default function Conversation() {
   const [userInfo, loading, error] = useData('/');
@@ -83,15 +90,36 @@ export default function Conversation() {
 
   return (
     <div >
-      <h1 class="top-bar"> Conversation</h1>
-      <body id="conversation-body">
-        <MessageList messages={conversation_sorted_chronologically} />
-        <div id="send_message">
-          <textarea id="message_textarea" placeholder="Say something!"></textarea>
-          <button className="send_message_button" onClick={sendMessage}>Send</button>
+      <AppBar position="static">
+        <Toolbar>
+          <IconButton
+            size="large"
+            edge="start"
+            color="inherit"
+            aria-label="menu"
+            sx={{ mr: 2 }}
+            component={Link}
+            to="/matches"
+          >
+            <ArrowBackIosIcon />
+          </IconButton>
+          <Typography variant="h6" component="div" alignCenter>
+            {userInfo.users[conversation_user_id]["name"]}
+          </Typography>
+        </Toolbar>
+      </AppBar>
+
+      <div id="conversation-body">
+        <div class="cover">
+          <MessageList messages={conversation_sorted_chronologically} />
         </div>
-      </body>
-      <NavigationBar />
+        <Paper sx={{ position: 'fixed', bottom: 0, left: 0, right: 0 }} elevation={2}>
+          <div id="send_message" >
+            <TextField variant="standard" id="message_textarea" label="Say Something!" fullWidth />
+            <Button variant="contained" onClick={sendMessage}>Send</Button>
+          </div>
+        </Paper>
+      </div>
 
     </div>
   );
@@ -136,6 +164,4 @@ function GetUserInfo(userID) {
   return thisUser;
 
 };
-
-
 

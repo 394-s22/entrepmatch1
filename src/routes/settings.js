@@ -38,7 +38,7 @@ if (!(user)) {
     <div >
       <ProfileEdit user= { currentUser } />
 
-      <div style={{margin:"10px 10px"}}>
+      <div style={{margin:"10px 10px"}} class="cover">
         <Button halfWidth variant="contained" color="primary" href="/setting-update">Update Profile</Button>
         <div style={{float:"right"}}>
           <SignOutButton/>
