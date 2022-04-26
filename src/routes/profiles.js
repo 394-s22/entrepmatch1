@@ -111,7 +111,17 @@ function Profiles() {
 
   console.log("users_to_show:", users_to_show)
   console.log("users length:", userKeys.length)
-
+  if (users_to_show.length === 0) {
+    return (
+      <div >
+      <div class="cover">
+       <h1> There are no users left for you to like... </h1>
+      </div>
+      <NavigationBar />
+    </div>
+    );
+  }
+  
   return (
     <div >
       <div class="cover">

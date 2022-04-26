@@ -7,7 +7,9 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import PeopleIcon from '@mui/icons-material/People';
 import InsertEmoticonIcon from '@mui/icons-material/InsertEmoticon';
 
-const NavigationBar = () => (
+const NavigationBar = () => {
+
+return (
 <Paper sx={{ position: 'fixed', bottom: 0, left: 0, right: 0}} elevation={2}>
         <BottomNavigation
         showLabels
@@ -18,7 +20,8 @@ const NavigationBar = () => (
           <BottomNavigationAction label="Settings" component={Link} icon={<SettingsIcon/>} to="/settings" />
         </BottomNavigation>
       </Paper>
-
 );
+
+};
 
 export default NavigationBar;
