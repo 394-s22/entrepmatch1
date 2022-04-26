@@ -4,7 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { useData, setData, useUserState } from '../utilities/firebase.js';
 import { Link } from "react-router-dom";
 import Avatar from 'react-avatar';
-
+import NavigationBar from '../components/bottomNavigation';
 
 
 export default function Conversation() {
@@ -91,12 +91,7 @@ export default function Conversation() {
           <button className="send_message_button" onClick={sendMessage}>Send</button>
         </div>
       </body>
-      <nav className='nav'>
-        <Link to="/" > 🌠 Profiles </Link>
-        <Link to="/likes" > 👍 Likes </Link>
-        <Link to="/matches"> 😲 Matches</Link>
-        <Link to="/settings" > ⚙️ Settings</Link>
-      </nav>
+      <NavigationBar />
 
     </div>
   );

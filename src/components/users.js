@@ -18,6 +18,7 @@ import List from '@mui/material/List';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 
+import Paper from '@mui/material/Paper';
 
 
 const User = ({ user }) => {
@@ -131,6 +132,7 @@ const User = ({ user }) => {
             About Me:
           </Typography>
           <Box sx={{width:"100%", border: 1, paddingLeft: "4px", borderRadius:2}}>
+            
               <List>
                 <ListItemText primary={"Favorite Entrepreneur: " + userInfo.users[currentProfileId].favoriteEntreprenuer} />
                 <ListItemText primary={"Industry Interest: " + userInfo.users[currentProfileId].industryInterest} />

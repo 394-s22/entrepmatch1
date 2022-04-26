@@ -14,6 +14,7 @@ import ListItemText from '@mui/material/ListItemText';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
+import NavigationBar from '../components/bottomNavigation';
 
 
 export default function Matches() {
@@ -117,16 +118,7 @@ export default function Matches() {
         </div>;
       })}
 
-      <Paper sx={{ position: 'fixed', bottom: 0, left: 0, right: 0 }} elevation={3}>
-        <BottomNavigation
-        showLabels
-        >
-          <BottomNavigationAction label="Profiles" component={Link} to="/" />
-          <BottomNavigationAction label="Likes" component={Link} to="/likes" />
-          <BottomNavigationAction label="Matches" component={Link} to="/matches" />
-          <BottomNavigationAction label="Settings" component={Link} to="/settings" />
-        </BottomNavigation>
-      </Paper>
+      <NavigationBar />
     </div>
   );
 
