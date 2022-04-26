@@ -1,9 +1,9 @@
 import '../App.css';
-import React,{useState,useEffect} from 'react';
+import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import ProfileEdit from '../components/profileEdit.js'
 import { useData, useUserState, signOut } from '../utilities/firebase.js';
-import { Link } from "react-router-dom";
+import { Button } from '@mui/material';
 import NavigationBar from '../components/bottomNavigation';
 
 const SignOutButton = () => (
@@ -37,8 +37,14 @@ if (!(user)) {
   return (
     <div >
       <ProfileEdit user= { currentUser } />
+
+      <div style={{margin:"10px 10px"}}>
+        <Button halfWidth variant="contained" color="primary" href="/setting-update">Update Profile</Button>
+        <div style={{float:"right"}}>
+          <SignOutButton/>
+        </div>
+      </div>
       
-      <SignOutButton/>
       <NavigationBar />
     </div>
   );
