@@ -2,12 +2,13 @@ import '../App.css';
 import React,{useState} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useData, setData, useUserState } from '../utilities/firebase.js';
+import { Button, TextField } from '@mui/material';
 
 
 export default function SettingUpdate() {
   const [userInfo, loading, error] = useData('/'); 
   const [user] = useUserState();
-  
+
   var [inputs, setInputs] = useState({});
   
   if (error) return <h1>{error}</h1>;
@@ -49,49 +50,34 @@ export default function SettingUpdate() {
     }
   };
   return (
-    <div >
+    <div 
+      style={{
+          padding:10,
+          display:"flex",
+          flexDirection: 'column',
+        }}
+        >
+      <h3>Update Profile</h3>
+      <br/>
       <form onSubmit={handleSubmit}>
-        <label>Name:
-        <input 
-            type="text" 
-            name="name" 
-            value={inputs.name || currentUser['name']} 
-            onChange={handleChange}
-        />
-        </label><br/>
-        <label>School:
-        <input 
-            type="text" 
-            name="school" 
-            value={inputs.school || currentUser['school']} 
-            onChange={handleChange}
-        />
-        </label><br/>
-        <label>Favorite Entreprenuer:
-        <input 
-            type="text" 
-            name="fav" 
-            value={inputs.fav || currentUser['favoriteEntreprenuer']} 
-            onChange={handleChange}
-        />
-        </label><br/>
-        <label>Major:
-        <input 
-            type="text" 
-            name="major" 
-            value={inputs.major || currentUser['major']} 
-            onChange={handleChange}
-        />
-        </label><br/>
-        <label>Phone Number:
-        <input 
-            type="text" 
-            name="number" 
-            value={inputs.number || currentUser['phoneNumber']} 
-            onChange={handleChange}
-        />
-        </label><br/>
-        <input type="submit" />
+      <TextField fullWidth label="name" variant="outlined" name="name" defaultValue={currentUser['name']} onChange={handleChange}/>
+      <br/><br/>
+      <TextField fullWidth label="phone number" variant="outlined" name="number" defaultValue={currentUser['phoneNumber']} onChange={handleChange}/>
+      <br/><br/>
+      <TextField fullWidth label="school" variant="outlined" name="school" defaultValue={currentUser['school']} onChange={handleChange}/>
+      <br/><br/>
+      <TextField fullWidth label="favorite entreprenuer" variant="outlined" name="fav" defaultValue={currentUser['favoriteEntreprenuer']} onChange={handleChange}/>
+      <br/><br/>
+      <TextField fullWidth label="major" variant="outlined" name="major" defaultValue={currentUser['major']} onChange={handleChange}/>
+      <br/><br/>
+      <div 
+      style={{
+          display:"flex",
+          justifyContent: 'space-around',
+        }}>
+        <Button fullWidth variant="contained" color="primary" type="submit">Submit</Button>
+        <Button fullWidth variant="outlined" color="primary" href="/settings">Cancel</Button>
+      </div>
       </form>
     </div>
   );
