@@ -74,7 +74,8 @@ export default function Likes() {
 
   if (users_to_show.length === 0) return (
     <div >
-      <h1> No users who have liked you </h1>
+      <h1 class="top-bar"> Likes </h1>
+      <h2> No users who have liked you </h2>
       <NavigationBar />
     </div>
   )
@@ -82,7 +83,7 @@ export default function Likes() {
 
   return (
     <div >
-      <h1> Likes </h1>
+      <h1 class="top-bar"> Likes </h1>
       <UserLikeList users= {users_to_show} />
       <NavigationBar />
     </div>

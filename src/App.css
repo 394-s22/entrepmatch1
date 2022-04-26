@@ -55,13 +55,13 @@
   color: aliceblue;
   background: #248bf5;
   padding: 4%;
-  font-family: "SanFrancisco";
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
   width: 100%;
 }
 
 #conversation-body {
   padding: 2%;
-  font-family: "SanFrancisco";
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
   font-size: 1.25rem;
 }
 
@@ -84,4 +84,8 @@
 
 #name {
   margin-left: 5px;
+}
+
+.cover {
+  padding-bottom: 13%;
 }

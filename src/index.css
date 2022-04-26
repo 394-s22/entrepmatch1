@@ -13,10 +13,12 @@ code {
 }
 
 #send_message {
+  padding: 2%;
   width: 100%;
   display: flex;
   gap: 5%;
 }
+
 textarea {
   width: 90%;
 }
