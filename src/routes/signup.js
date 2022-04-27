@@ -183,8 +183,8 @@ export default function SignUp() {
           alignItems="center"
           justifyContent="center"
         >
-          <Typography>About You</Typography>
-          <Grid item xs={12} sm={6}>
+          <h3>About You</h3>
+          {/* <Grid item xs={12} sm={6}> */}
           
                 <TextField
                   name="fullname"
@@ -203,7 +203,7 @@ export default function SignUp() {
                   label="phone Number"
                   autoFocus
                 />
-                <Typography>Interests</Typography>
+          <h3>Interests</h3>
                 <TextField
                   name="favoriteEntreprenuer"
                   required
@@ -236,7 +236,7 @@ export default function SignUp() {
                   label="major"
                   autoFocus
                 />
-                <Typography>Skills</Typography>
+                <h3>Skills</h3>
                 <TextField
                   name="artistic_skills"
                   required
@@ -288,7 +288,7 @@ export default function SignUp() {
       {[...Array(num_projects).keys()].map(function(object, i){
         return AddProjectForm(object);
       })}
-      </Grid>   
+      {/* </Grid>    */}
       
       <br></br>
       <Button variant="contained" onClick={update_num_projects}>Add another project</Button>
