@@ -6,17 +6,69 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { useData, useUserState, pushData, storage } from '../utilities/firebase.js';
 import { ref, uploadBytes, listAll, getDownloadURL } from 'firebase/storage';
 
+import Avatar from '@mui/material/Avatar';
+import Button from '@mui/material/Button';
+import CssBaseline from '@mui/material/CssBaseline';
+import TextField from '@mui/material/TextField';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Checkbox from '@mui/material/Checkbox';
+import Link from '@mui/material/Link';
+import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import Typography from '@mui/material/Typography';
+import Container from '@mui/material/Container';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+
+
 var num_projects = 1;
 const AddProjectForm = (_num_projects) => (
     
   <div class="add_project_form">
-    <input type="text" id={'project_name' + _num_projects} placeholder="project name"></input> 
-    <input type="text" id={'team_size' + _num_projects} placeholder="team size"></input>
-    <input type="text" id={"project_duration" + _num_projects} placeholder="project duration"></input>
-    <input type="text" id={"greatest_moment" + _num_projects} placeholder="greatest moment"></input>
-    <input type="text" id={"project_link" + _num_projects} placeholder="project link"></input>
-    <input type="text" id={"project_description" + _num_projects} placeholder="project description"></input>
+     <br>
+  </br>
+  
+        <TextField
+                  fullWidth
+                  id={'project_name' + _num_projects}
+                  label="project name"
+                  autoFocus
+                />
+    <TextField
+                  fullWidth
+                  id={'team_size' + _num_projects}
+                  label="team size"
+                  autoFocus
+                />
+
+    <TextField
+                  fullWidth
+                  id={'project_duration' + _num_projects}
+                  label="project duration"
+                  autoFocus
+                />
+    <TextField
+                  fullWidth
+                  id={'greatest_moment' + _num_projects}
+                  label="greatest moment"
+                  autoFocus
+                />
+    <TextField
+                  fullWidth
+                  id={'project_link' + _num_projects}
+                  label="project link"
+                  autoFocus
+                />
+    <TextField
+                  fullWidth
+                  id={'project_description' + _num_projects}
+                  label="project description"
+                  autoFocus
+                />
+   <br>
+  </br>
   </div>
+ 
 );
 
 var projectsArray = [AddProjectForm(1)]
@@ -46,6 +98,9 @@ export default function SignUp() {
     
     //DO this for all fields
     const message = document.getElementById("fullname").value;
+    console.log("message");
+    console.log(message);
+
     var avatarUrl = "";
     if(imageUpload){
       const imageRef = ref(storage, `${user.uid}/${imageUpload.name}`);
@@ -115,28 +170,111 @@ export default function SignUp() {
           backgroundColor: 'white',
         }}
         >
-      {/* <input type="text" id="name" placeholder ="Trial"></input>
-      <input type="text" id="phoneNumber" placeholder="phone Number"></input>
-      <input type="text" id="favoriteEntreprenuer" placeholder="favorite entrepreneur"></input>
-      <input type="text" id="industryInterest" placeholder="industry interest(can be a list)"></input>
-      <input type="text" id="school" placeholder="school"></input>
-       */}
-       <h3>About You</h3>
-      <input type="text" id="fullname" placeholder ="Full Name" required></input>
+      <Grid
+          container
+          spacing={0}
+          direction="column"
+          alignItems="center"
+          justifyContent="center"
+        >
+          <h3>About You</h3>
+          {/* <Grid item xs={12} sm={6}> */}
+          
+                <TextField
+                  name="fullname"
+                  required
+                  fullWidth
+                  id="fullname"
+                  label="Full Name"
+                  autoFocus
+                />
+              
+                <TextField
+                  name="phoneNumber"
+                  required
+                  fullWidth
+                  id="phoneNumber"
+                  label="phone Number"
+                  autoFocus
+                />
+          <h3>Interests</h3>
+                <TextField
+                  name="favoriteEntreprenuer"
+                  required
+                  fullWidth
+                  id="favoriteEntreprenuer"
+                  label="favorite entrepreneur"
+                  autoFocus
+                />
+                <TextField
+                  name="industryInterest"
+                  required
+                  fullWidth
+                  id="industryInterest"
+                  label="industry Interest"
+                  autoFocus
+                />
+                <TextField
+                  name="school"
+                  required
+                  fullWidth
+                  id="school"
+                  label="school"
+                  autoFocus
+                />
+                <TextField
+                  name="major"
+                  required
+                  fullWidth
+                  id="major"
+                  label="major"
+                  autoFocus
+                />
+                <h3>Skills</h3>
+                <TextField
+                  name="artistic_skills"
+                  required
+                  fullWidth
+                  id="artistic_skills"
+                  label="artistic_skills"
+                  autoFocus
+                />
+                <TextField
+                  name="technical_skills"
+                  required
+                  fullWidth
+                  id="technical_skills"
+                  label="matechnical_skillsjor"
+                  autoFocus
+                />
+                <TextField
+                  name="soft_skills"
+                  fullWidth
+                  id="soft_skills"
+                  label="Soft skills (can be a list seperated by commas)"
+                  autoFocus
+                />
+                
+                    
+       
+      {/* <input type="text" id="fullname" placeholder ="Full Name" required></input>
       <input type="file" id="pictures" onChange={(event) => {setImageUpload(event.target.files[0])}}></input>
       <input type="text" id="phoneNumber" placeholder="phone Number"></input>
+      <br></br> */}
       <br></br>
-      <h3>Interests</h3>
-      <input type="text" id="favoriteEntreprenuer" placeholder="favorite entrepreneur"></input>
+      <h3>Upload Image By Chosing File</h3>
+      <input type="file" id="pictures" onChange={(event) => {setImageUpload(event.target.files[0])}}></input>
+      {/* <h3>Interests</h3> */}
+      {/* <input type="text" id="favoriteEntreprenuer" placeholder="favorite entrepreneur"></input>
       <input type="text" id="industryInterest" placeholder="industry interest(can be a list seperated by commas)"></input>
       <input type="text" id="school" placeholder="school"></input>
-      <input type="text" id="major" placeholder="major"></input>
+      <input type="text" id="major" placeholder="major"></input> */}
       <br></br>
-      <h3>Skills</h3>
-      <input type="text" id="artistic_skills" placeholder="Artistic skills (can be a list seperated by commas)"></input>
+      {/* <h3>Skills</h3> */}
+      {/* <input type="text" id="artistic_skills" placeholder="Artistic skills (can be a list seperated by commas)"></input>
       <input type="text" id="technical_skills" placeholder="Technical skills (can be a list seperated by commas)"></input>
       <input type="text" id="soft_skills" placeholder="Soft skills (can be a list seperated by commas)"></input>
-      <br></br>
+      <br></br> */}
 
       <h3>Projects</h3>
       {/*Array(num_projects).fill(null).map((value, index) => (
@@ -146,10 +284,14 @@ export default function SignUp() {
       {[...Array(num_projects).keys()].map(function(object, i){
         return AddProjectForm(object);
       })}
+      {/* </Grid>    */}
       
-      <button onClick={update_num_projects}>Add another project</button>
-      <button onClick={sendMessage}>Enter</button>
-
+      <br></br>
+      <Button variant="contained" onClick={update_num_projects}>Add another project</Button>
+      <br></br>
+      
+      <Button variant="contained" onClick={sendMessage}>Enter</Button>
+      </Grid>
     </div>
   );
 }
