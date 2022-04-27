@@ -65,12 +65,6 @@ const AddProjectForm = (_num_projects) => (
                   label="project description"
                   autoFocus
                 />
-    {/* <input type="text" id={'project_name' + _num_projects} placeholder="project name"></input>  */}
-    {/* <input type="text" id={'team_size' + _num_projects} placeholder="team size"></input>
-    <input type="text" id={"project_duration" + _num_projects} placeholder="project duration"></input>
-    <input type="text" id={"greatest_moment" + _num_projects} placeholder="greatest moment"></input>
-    <input type="text" id={"project_link" + _num_projects} placeholder="project link"></input>
-    <input type="text" id={"project_description" + _num_projects} placeholder="project description"></input> */}
    <br>
   </br>
   </div>
@@ -267,6 +261,8 @@ export default function SignUp() {
       <input type="file" id="pictures" onChange={(event) => {setImageUpload(event.target.files[0])}}></input>
       <input type="text" id="phoneNumber" placeholder="phone Number"></input>
       <br></br> */}
+      <br></br>
+      <h3>Upload Image By Chosing File</h3>
       <input type="file" id="pictures" onChange={(event) => {setImageUpload(event.target.files[0])}}></input>
       {/* <h3>Interests</h3> */}
       {/* <input type="text" id="favoriteEntreprenuer" placeholder="favorite entrepreneur"></input>
@@ -293,6 +289,7 @@ export default function SignUp() {
       <br></br>
       <Button variant="contained" onClick={update_num_projects}>Add another project</Button>
       <br></br>
+      
       <Button variant="contained" onClick={sendMessage}>Enter</Button>
       </Grid>
     </div>
