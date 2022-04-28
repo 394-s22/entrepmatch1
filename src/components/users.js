@@ -56,6 +56,7 @@ const User = ({ user }) => {
   const likeUser = async () => {
 
     setIndex((index + 1) % (Object.keys(user).length))
+    window.scrollTo(0, 0);
 
     var liked_users = userInfo.users[curUserId]['liked_users']
     var users_liked = userInfo.users[currentProfileId]['users_liked']
@@ -108,6 +109,12 @@ const User = ({ user }) => {
   console.log("index", index)
   console.log("user[currentProfileId]", user)
   console.log("Justin:", user[currentProfileId]);
+
+  const dislikeUser = () => {
+    setIndex((index + 1) % (Object.keys(user).length));
+    window.scrollTo(0, 0);
+  }
+
   return (
 
     <Card sx={{ width: 'auto', margin: 'auto' }}>
@@ -165,7 +172,7 @@ const User = ({ user }) => {
             <>
             <Button variant="contained" onClick={likeUser}> Like </Button >
             </>
-          <Button variant="contained" onClick={() => setIndex((index + 1) % (Object.keys(user).length))}> Dislike </Button>
+          <Button variant="contained" onClick={dislikeUser}> Dislike </Button>
         </div>
        </Card>
   );
