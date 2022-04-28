@@ -71,8 +71,8 @@ export default function Likes() {
     // }
     users_to_show.push(users[users_who_have_liked_the_user_but_the_user_hasnt_liked_back[i]])
   }
-
-  if (users_to_show.length === 0) return (
+  //Need to fix because shouldn't be undefined but patch for now...
+  if (users_to_show.length === 0 || users_to_show[0] === undefined) return (
     <div >
       <h1 class="top-bar"> Likes </h1>
       <h2> No users who have liked you </h2>
