@@ -117,7 +117,7 @@ function Profiles() {
       <div class="cover">
        <h1> There are no users left for you to like... </h1>
       </div>
-      <NavigationBar />
+      <NavigationBar  />
     </div>
     );
   }
@@ -127,7 +127,7 @@ function Profiles() {
       <div class="cover">
         <User user={users_to_show} />
       </div>
-      <NavigationBar />
+      <NavigationBar  />
     </div>
   );
 }

@@ -125,7 +125,7 @@ const User = ({ user }) => {
           component="img"
           sx={{
               margin: "auto",
-              width: "60%",
+              width: "40%",
               borderRadius: 10,
               }} 
           image={userInfo.users[currentProfileId].pictures}

@@ -76,7 +76,7 @@ export default function Likes() {
     <div >
       <h1 class="top-bar"> Likes </h1>
       <h2> No users who have liked you </h2>
-      <NavigationBar />
+      <NavigationBar page={"likes"} />
     </div>
   )
 
