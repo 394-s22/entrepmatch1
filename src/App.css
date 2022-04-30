@@ -12,10 +12,9 @@
   flex-direction: column;
   justify-content: center;
   align-items: center; 
-  /* width: 100vw; */
-  /* height: 40vh;  */
+  text-align: center;
   position: relative;
-  top: 40vh;
+  top: 30vh;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -89,3 +88,9 @@
 .cover {
   padding-bottom: 14%;
 }
+
+.frontImage {
+  width: 80%;
+  border-radius: 20;
+}
+

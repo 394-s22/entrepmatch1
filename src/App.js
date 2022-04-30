@@ -5,13 +5,24 @@ import User from './components/users.js'
 import { UserInfoList } from './components/users.js';
 import { useData, signInWithGoogle, signOut, useUserState } from './utilities/firebase.js';
 import { Link } from "react-router-dom";
-import { Button } from 'bootstrap';
+import { Button, Typography } from '@mui/material';
+import microCloud from "./microCloud-noBackground.png";
+import { Paper } from '@mui/material';
+import Stack from '@mui/material/Stack';
+import { styled } from '@mui/material/styles';
+
+
+const Div = styled('div')(({ theme }) => ({
+  ...theme.typography.button,
+  backgroundColor: theme.palette.background.paper,
+  padding: theme.spacing(1),
+}));
 
 const SignInButton = () => (
-  <button className="btn btn-secondary btn-sm"
+  <Button variant='contained' size='large'
       onClick={() => signInWithGoogle()}>
     Sign In
-  </button>
+  </Button>
 );
 
 const SignOutButton = () => (
@@ -44,14 +55,18 @@ function App() {
   }
 
   return (
-    < div className="wpsection" >
-      <div className="welcomepage">
-            <h1>
-                Entrepmatch
-            </h1>
+      <Div className="welcomepage">
+        <Stack spacing={2}>
+            <h1>🚀 micro</h1>
+            <h3> 👋 Meet and connect with other entrepreniual thinkers</h3>
+            {/* <Paper elevation={3}>
+            <img className= "frontImage" src={microCloud} alt="logo" />
+            </Paper> */}
+            <h3> 🛠 start building.</h3>
+            <h3> 🐣 start bonding. </h3>
             { user ? <SignOutButton /> : <SignInButton /> }
-      </div>
-    </div>
+            </Stack>
+      </Div>
   );
 
 }

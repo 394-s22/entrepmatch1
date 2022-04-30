@@ -7,10 +7,10 @@ import { Button } from '@mui/material';
 import NavigationBar from '../components/bottomNavigation';
 
 const SignOutButton = () => (
-  <button className="btn btn-secondary btn-sm"
+  <Button variant='outlined'
       onClick={() => signOut()}>
     Sign Out
-  </button>
+  </Button>
 );
 
 
