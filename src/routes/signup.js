@@ -251,7 +251,7 @@ export default function SignUp() {
                   name="soft_skills"
                   fullWidth
                   id="soft_skills"
-                  label="Soft skills (can be a list seperated by commas)"
+                  label="Soft Skills (can be a list seperated by commas)"
                   autoFocus
                 />
                 
