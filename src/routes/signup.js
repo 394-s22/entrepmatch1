@@ -236,7 +236,7 @@ export default function SignUp() {
                   required
                   fullWidth
                   id="artistic_skills"
-                  label="artistic_skills"
+                  label="Artistic Skills (can be a list seperated by commas)"
                   autoFocus
                 />
                 <TextField
@@ -244,7 +244,7 @@ export default function SignUp() {
                   required
                   fullWidth
                   id="technical_skills"
-                  label="matechnical_skillsjor"
+                  label="Technical Skills (can be a list seperated by commas)"
                   autoFocus
                 />
                 <TextField
