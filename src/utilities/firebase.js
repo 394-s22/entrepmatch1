@@ -18,13 +18,13 @@ const firebaseConfig = {
 
 const firebase = initializeApp(firebaseConfig);
 const database = getDatabase(firebase);
-export const storage = getStorage(firebase);
-if (window.location.hostname === 'localhost')  {
-  connectAuthEmulator(getAuth(firebase), "http://127.0.0.1:9099");
+const auth = getAuth(firebase);
+if (process.env.REACT_APP_EMULATE) {
+  connectAuthEmulator(auth, "http://127.0.0.1:9099");
   connectDatabaseEmulator(database, "127.0.0.1", 9000);
 
-  signInWithCredential(getAuth(firebase), GoogleAuthProvider.credential(
-    '{"sub": "qEvli4msW0eDz5mSVO6j3W7i8w1k", "email": "tester@gmail.com", "displayName":"Test User", "email_verified": true}'
+  signInWithCredential(auth, GoogleAuthProvider.credential(
+    '{"sub": "fWlGmygXKTMRXD1AFgtfj8MMbCxn", "email": "tester@gmail.com", "displayName":"tester 1", "email_verified": true}'
   ));
 }
 
