@@ -19,6 +19,7 @@ const firebaseConfig = {
 const firebase = initializeApp(firebaseConfig);
 const database = getDatabase(firebase);
 const auth = getAuth(firebase);
+export const storage = getStorage(firebase);
 if (process.env.REACT_APP_EMULATE) {
   connectAuthEmulator(auth, "http://127.0.0.1:9099");
   connectDatabaseEmulator(database, "127.0.0.1", 9000);

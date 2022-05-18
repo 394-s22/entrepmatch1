@@ -1,2 +1,9 @@
-10:07:06.507 [NamespaceSystem-akka.actor.default-dispatcher-5] INFO akka.event.slf4j.Slf4jLogger - Slf4jLogger started
-10:07:06.657 [main] INFO com.firebase.server.forge.App$ - Listening at localhost:9000
+10:17:53.034 [NamespaceSystem-akka.actor.default-dispatcher-5] INFO akka.event.slf4j.Slf4jLogger - Slf4jLogger started
+10:17:53.217 [main] INFO com.firebase.server.forge.App$ - Listening at localhost:9000
+10:27:34.652 [Thread-0] INFO com.firebase.server.forge.App$ - Attempting graceful shutdown.
+10:27:34.663 [NamespaceSystem-akka.actor.default-dispatcher-9] INFO com.firebase.core.namespace.Terminator$Terminator - 2 actors left to terminate: entrepmatch-default-rtdb, entrepmatch
+10:27:34.671 [NamespaceSystem-akka.actor.default-dispatcher-11] INFO com.firebase.core.namespace.NamespaceActor - Stopping namespace actor for entrepmatch
+10:27:34.671 [NamespaceSystem-akka.actor.default-dispatcher-10] INFO com.firebase.core.namespace.NamespaceActor - Stopping namespace actor for entrepmatch-default-rtdb
+10:27:34.672 [NamespaceSystem-akka.actor.default-dispatcher-11] INFO com.firebase.core.namespace.NamespaceActor - Gauges removed for entrepmatch
+10:27:34.672 [NamespaceSystem-akka.actor.default-dispatcher-10] INFO com.firebase.core.namespace.NamespaceActor - Gauges removed for entrepmatch-default-rtdb
+10:27:34.676 [Thread-0] INFO com.firebase.server.forge.App$ - Graceful shutdown complete.
