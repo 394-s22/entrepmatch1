@@ -11,5 +11,9 @@ describe ('Test App', () => {
     it ('launches', () => {
       cy.visit ('/');
     });
-  
+
+    it ('opens with welcome message', () => {
+      cy.visit ('/');
+      cy.get('[data-cy=welcome]').should('contain', '🚀 micro');
+    });
   });
