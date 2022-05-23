@@ -19,8 +19,8 @@ const Div = styled('div')(({ theme }) => ({
 }));
 
 const SignInButton = () => (
-  <Button variant='contained' size='large'
-      onClick={() => signInWithGoogle()}>
+  <Button variant='contained' size='large' 
+      onClick={() => signInWithGoogle()} data-cy="login">
     Sign In
   </Button>
 );

@@ -16,4 +16,13 @@ describe ('Test App', () => {
       cy.visit ('/');
       cy.get('[data-cy=welcome]').should('contain', '🚀 micro');
     });
+
+    it('opens google pop up', () => {
+      cy.visit ('/');
+      cy.get('[data-cy=login]').click();
+      //Could add some more here to test more on Google side
+      // cy.get('[data-cy=SignIn]').should('contain' ,'Sign in');
+    });
+  
   });
+
