@@ -19,8 +19,8 @@ const Div = styled('div')(({ theme }) => ({
 }));
 
 const SignInButton = () => (
-  <Button variant='contained' size='large'
-      onClick={() => signInWithGoogle()}>
+  <Button variant='contained' size='large' 
+      onClick={() => signInWithGoogle()} data-cy="login">
     Sign In
   </Button>
 );
@@ -55,7 +55,7 @@ function App() {
   }
 
   return (
-      <Div className="welcomepage">
+      <Div className="welcomepage" data-cy="welcome">
         <Stack spacing={2}>
             <h1>🚀 micro</h1>
             <h3> 👋 Meet and connect with other entrepreniual thinkers</h3>
