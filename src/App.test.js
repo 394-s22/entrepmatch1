@@ -10,6 +10,6 @@ it('shows the micro title', async () => {
 
 it('shows Sign In if not logged in', async () => {
   render(<App />);
-  const button = screen.queryByText(/Sign In/i);
+  const button = await screen.findByText(/Sign In/i);
   expect(button).toBeInTheDocument();
 });
