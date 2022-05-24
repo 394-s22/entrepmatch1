@@ -1,8 +1,15 @@
 import { render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
 import App from './App';
 
-test('renders learn react link', () => {
+it('shows the micro title', async () => {
   render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+  const title = await screen.findByText(/🚀 micro/i);
+  expect(title).toBeInTheDocument();
+});
+
+it('shows Sign In if not logged in', async () => {
+  render(<App />);
+  const button = screen.queryByText(/Sign In/i);
+  expect(button).toBeInTheDocument();
 });
