@@ -2,6 +2,7 @@ import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { useData, useUserState } from './utilities/firebase.js';
 import App from './App';
+import Settings from "./routes/settings";
 
 
 
@@ -1753,6 +1754,185 @@ const userInfo = [{
   }
 }]
 
+const singleUser =  {
+  "conversations": [
+    {
+      "message": "Hello",
+      "receiving_userID": "-N0c8WhEUSRIWzKQnQQ-",
+      "sending_userID": "-N0c7e1ve1uuQ8y8JnuS",
+      "timestamp": 1651015268747
+    },
+    {
+      "message": "Hi",
+      "receiving_userID": "-N0c8WhEUSRIWzKQnQQ-",
+      "sending_userID": "-N0c7e1ve1uuQ8y8JnuS",
+      "timestamp": 1651015286297
+    }
+  ],
+  "favoriteEntreprenuer": "Steve Jobs",
+  "industryInterest": [
+    "EdTech",
+    " Consumer",
+    " Crypto"
+  ],
+  "liked_users": [
+    {
+      "liked_field": "temp_field",
+      "liked_message": "temp_message",
+      "liking_user_id": "-N0c8WhEUSRIWzKQnQQ-"
+    },
+    {
+      "liked_field": "temp_field",
+      "liked_message": "temp_message",
+      "liking_user_id": "-N0c8zvawaMfrxL0kvmy"
+    },
+    {
+      "liked_field": "temp_field",
+      "liked_message": "temp_message",
+      "liking_user_id": "-N1-fZgtUeMGLot57C-h"
+    },
+    {
+      "liked_field": "temp_field",
+      "liked_message": "temp_message",
+      "liking_user_id": "-N1-xYdu361XBs-_Bn-f"
+    },
+    {
+      "liked_field": "temp_field",
+      "liked_message": "temp_message",
+      "liking_user_id": "-N1-yNT3y0E6zOSBwUJG"
+    },
+    {
+      "liked_field": "temp_field",
+      "liked_message": "temp_message",
+      "liking_user_id": "-N108AxeO0iNvIPXkOYv"
+    },
+    {
+      "liked_field": "temp_field",
+      "liked_message": "temp_message",
+      "liking_user_id": "-N108AyOC3CiABsmlfls"
+    }
+  ],
+  "major": "Economics, Business, Entrepreneurship",
+  "name": "Robbie Waxman",
+  "phoneNumber": "9148068212",
+  "pictures": "https://thegarage.northwestern.edu/wp-content/uploads/2021/03/Robbie-Waxman.jpg",
+  "projects": [
+    {
+      "greatestMoment": "150th Client",
+      "name": "Mobile Camp",
+      "projectDescription": "Backyard Summer Camp",
+      "projectDuration": "2 years",
+      "projectLink": "link",
+      "teamSize": "50+"
+    },
+    {
+      "greatestMoment": "",
+      "name": "",
+      "projectDescription": "",
+      "projectDuration": "",
+      "projectLink": "",
+      "teamSize": ""
+    }
+  ],
+  "school": "Northwestern",
+  "seen_users": [
+    "-N0c8WhEUSRIWzKQnQQ-",
+    "-N0c8zvawaMfrxL0kvmy",
+    "-N1-fZgtUeMGLot57C-h",
+    "-N1-xYdu361XBs-_Bn-f",
+    "-N1-yNT3y0E6zOSBwUJG",
+    "-N108AxeO0iNvIPXkOYv",
+    "-N108AyOC3CiABsmlfls"
+  ],
+  "skills": {
+    "artistic": [
+      "Powerpoint",
+      " Canva"
+    ],
+    "softSkills": [
+      "Leadership",
+      " Storytelling"
+    ],
+    "technical": [
+      "Excel",
+      " Financial Modeling"
+    ]
+  },
+  "user_id": "4n903odyOTdWvocTHmTEViQhZgK2",
+  "users_liked": [
+    {
+      "liked_field": "temp_field",
+      "liked_message": "temp_message",
+      "receiving_user_id": "-N0c8WhEUSRIWzKQnQQ-"
+    },
+    {
+      "liked_field": "temp_field",
+      "liked_message": "temp_message",
+      "receiving_user_id": "-N0cO5cYVHUGEveGmAmR"
+    },
+    {
+      "liked_field": "temp_field",
+      "liked_message": "temp_message",
+      "receiving_user_id": "-N0cNiy6JOaEOd528ryM"
+    },
+    {
+      "liked_field": "temp_field",
+      "liked_message": "temp_message",
+      "receiving_user_id": "-N0fS92g7o2ZBd1wcGAa"
+    },
+    {
+      "liked_field": "temp_field",
+      "liked_message": "temp_message",
+      "receiving_user_id": "-N0fSO-HY_lkiXwnRjBP"
+    },
+    {
+      "liked_field": "temp_field",
+      "liked_message": "temp_message",
+      "receiving_user_id": "-N1-fZgtUeMGLot57C-h"
+    },
+    {
+      "liked_field": "temp_field",
+      "liked_message": "temp_message",
+      "receiving_user_id": "-N1-yNT3y0E6zOSBwUJG"
+    },
+    {
+      "liked_field": "temp_field",
+      "liked_message": "temp_message",
+      "receiving_user_id": "-N108Ayuly4-x-DkmkHx"
+    },
+    {
+      "liked_field": "temp_field",
+      "liked_message": "temp_message",
+      "receiving_user_id": "-N1B5fvhGPUAy020KdrA"
+    },
+    {
+      "liked_field": "temp_field",
+      "liked_message": "temp_message",
+      "receiving_user_id": "-N1KpAMb9pyOA6HXS6_9"
+    },
+    {
+      "liked_field": "temp_field",
+      "liked_message": "temp_message",
+      "receiving_user_id": "-N1p3GGjtiJHccezuIWx"
+    },
+    {
+      "liked_field": "temp_field",
+      "liked_message": "temp_message",
+      "receiving_user_id": "-N1y89yc51TxgyRKdeDC"
+    },
+    {
+      "liked_field": "temp_field",
+      "liked_message": "temp_message",
+      "receiving_user_id": "-N11QEWCkbxF-rKC5LsR"
+    },
+    {
+      "liked_field": "temp_field",
+      "liked_message": "temp_message",
+      "receiving_user_id": "-N2vl2CFwxmwGygf2EZ1"
+    }
+  ]
+}
+
 it('shows the micro title', async () => {
   useData.mockReturnValue([userInfo, false, null]);
   useUserState.mockReturnValue([null]);
@@ -1768,6 +1948,15 @@ it('shows Sign In if not logged in', async () => {
   const button = await screen.findByText(/Sign In/i);
   expect(button).toBeInTheDocument();
 });
+
+it('shows Sign Out if logged in', async () => {
+  useData.mockReturnValue([userInfo, false, null]);
+  useUserState.mockReturnValue([{ displayName: 'Test user' }]);
+  render(<App />);
+  const button = await screen.findByText(/Sign Out/i);
+  expect(button).toBeInTheDocument();
+});
+
 
 // it('logs error if no user', async () => {
 //   useData.mockReturnValue([userInfo, false, null]);
