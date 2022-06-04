@@ -3,7 +3,7 @@ import '@testing-library/jest-dom';
 import { useData, useUserState } from './utilities/firebase.js';
 import App from './App';
 import Settings from "./routes/settings";
-
+import ProfileEdit from "./components/profileEdit.js"
 
 
 jest.mock('./utilities/firebase.js');
@@ -1956,6 +1956,15 @@ it('shows Sign Out if logged in', async () => {
   const button = await screen.findByText(/Sign Out/i);
   expect(button).toBeInTheDocument();
 });
+
+it('settings page displays name', async () => {
+  useData.mockReturnValue([userInfo, false, null]);
+  useUserState.mockReturnValue([{ displayName: 'Test user' }]);
+  render(<ProfileEdit />);
+  const title = await screen.findByText(/Test User/i);
+  expect(title).toBeInTheDocument();
+});
+
 
 
 // it('logs error if no user', async () => {
