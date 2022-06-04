@@ -32,6 +32,9 @@
     "em:start": "firebase emulators:start --import=./saved-data --export-on-exit",
     "em:exec": "REACT_APP_EMULATE=true firebase emulators:exec --import=./saved-data 'npm start'"
   },
+  "jest": {
+    "resetMocks": true
+  },
   "eslintConfig": {
     "extends": [
       "react-app",
