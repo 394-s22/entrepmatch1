@@ -91,10 +91,10 @@ it('shows Sign Out if logged in', async () => {
   expect(button).toBeInTheDocument();
 });
 
-it('settings page displays name', async () => {
-  useData.mockReturnValue([userInfo, false, null]);
-  useUserState.mockReturnValue([{ displayName: 'Test user' }]);
-  render(<Settings />);
-  const title = await screen.findByText(/Sign Out/i);
-  expect(title).toBeInTheDocument();
-});
+// it('settings page displays name', async () => {
+//   useData.mockReturnValue([userInfo, false, null]);
+//   useUserState.mockReturnValue([{ displayName: 'Test user' }]);
+//   render(<Settings />);
+//   const title = await screen.findByText(/Sign Out/i);
+//   expect(title).toBeInTheDocument();
+// });

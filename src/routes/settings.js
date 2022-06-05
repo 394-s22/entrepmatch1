@@ -34,6 +34,7 @@ if (!(user)) {
   window.location.href= './'
 }
 
+console.log("user", user)
   return (
     <div >
       <ProfileEdit user= { currentUser } />
