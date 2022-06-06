@@ -5,7 +5,7 @@ import App from './App';
 import Settings from "./routes/settings";
 import ProfileEdit from "./components/profileEdit.js"
 import SignUp from './routes/signup.js';
-
+import userEvent from '@testing-library/user-event';
 
 jest.mock('./utilities/firebase.js');
 
@@ -1942,3 +1942,35 @@ it('no user then sign In', async () => {
   expect(title).toBeInTheDocument();
 });
 
+it('empty fields no sign up', async () => {
+  useData.mockReturnValue([userInfo, false, null]);
+  useUserState.mockReturnValue([null]);
+  render(<SignUp />);
+  const title = await screen.findByText(/Enter/i);
+  userEvent.click(title)
+  const linkElement = screen.getByText(/About You/i);
+  expect(linkElement).toBeInTheDocument();
+});
+
+it('difftest', async () => {
+  useData.mockReturnValue([userInfo, false, null]);
+  useUserState.mockReturnValue([null]);
+  render(<SignUp />);
+  const title = await screen.findByText(/Enter/i);
+  userEvent.click(title)
+  const linkElement = screen.getByText(/About You/i);
+  expect(linkElement).toBeInTheDocument();
+});
+
+
+
+// it('empty skills leads to alert', () => {
+//   render(<SignUp />);
+//   const incrementButton = screen.getByText(/Enter/i)
+  
+//   userEvent.click(incrementButton)
+//   const linkElement = screen.getByText(/"please upload your profile image/i);
+//   expect(linkElement).toBeInTheDocument();
+
+
+// })
