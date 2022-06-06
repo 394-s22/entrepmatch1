@@ -7,7 +7,7 @@ import { Button } from '@mui/material';
 import NavigationBar from '../components/bottomNavigation';
 
 const SignOutButton = () => (
-  <Button variant='outlined'
+  <Button variant='outlined' data-testid="singout-button"
       onClick={() => signOut()}>
     Sign Out
   </Button>
@@ -20,7 +20,7 @@ export default function Settings() {
   
   if (error) return <h1>{error}</h1>;
   if (loading) return <h1>Loading...</h1>
-
+  // console.log("useruid", user.uid)
   var currentUser = {};
   if(user){
     for (const info in userInfo.users) {
@@ -33,8 +33,9 @@ export default function Settings() {
 if (!(user)) {
   window.location.href= './'
 }
-
-console.log("user", user)
+// console.log("userInfo", userInfo)
+// console.log("currentUser", currentUser)
+// console.log("user", user)
   return (
     <div >
       <ProfileEdit user= { currentUser } />
