@@ -451,3 +451,15 @@ it('settings page displays industryInterest', async () => {
   expect(title).toBeInTheDocument();
   expect(() => screen.getByText(/Health/i)).toThrow()
 });
+
+// Cynthia test 2
+test('Click update button', () => {
+  useData.mockReturnValue([userInfo, false, null]);
+  useUserState.mockReturnValue([{ displayName: 'Josh Breite', uid: 's1NUnpPSs5etMq2xaNkPVdpb9TJ3' }]);
+  render(<BrowserRouter> <Settings /></BrowserRouter>);
+
+  const eventButton = screen.getByTestId('update-button');
+  fireEvent.click(eventButton, { button: 0})
+  console.log("href", global.window.location.href)
+  expect(screen.getByText('Josh Breite')).toBeInTheDocument();
+  });

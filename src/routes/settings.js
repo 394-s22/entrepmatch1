@@ -29,6 +29,7 @@ export default function Settings() {
       }
     }
   }
+  console.log(user);
   
 if (!(user)) {
   window.location.href= './'
@@ -41,7 +42,7 @@ if (!(user)) {
       <ProfileEdit user= { currentUser } />
 
       <div style={{margin:"10px 10px"}} class="cover">
-        <Button halfWidth variant="contained" color="primary" href="/setting-update">Update Profile</Button>
+        <Button data-testid="update-button" halfWidth variant="contained" color="primary" href="/setting-update">Update Profile</Button>
         <div style={{float:"right"}}>
           <SignOutButton/>
         </div>
