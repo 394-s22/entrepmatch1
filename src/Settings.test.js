@@ -1963,6 +1963,7 @@ it('press log out and no user', async () => {
   expect(window.location.href).toEqual('http://localhost/');  
 });
 
+// Justin test 2
 it('settings page displays name', async () => {
   useData.mockReturnValue([userInfo, false, null]);
   useUserState.mockReturnValue([{ displayName: 'Robbie Waxman', uid: '4n903odyOTdWvocTHmTEViQhZgK2' }]);
@@ -1981,4 +1982,23 @@ it('settings page displays school', async () => {
   // const phone_number = await screen.findByText(/9148068212/i);
   // expect(phone_number).toBeInTheDocument();
   expect(() => screen.getByText(/123123123123123 not in the document/i)).toThrow()
+});
+
+// Cynthia test 1
+it('settings page displays favorite entrepreneur', async () => {
+  useData.mockReturnValue([userInfo, false, null]);
+  useUserState.mockReturnValue([{ displayName: 'Robbie Waxman', uid: '4n903odyOTdWvocTHmTEViQhZgK2' }]);
+  render(<BrowserRouter> <Settings /></BrowserRouter>);
+  const title = await screen.findByText(/Steve Jobs/i);
+  expect(title).toBeInTheDocument();
+  expect(() => screen.getByText(/Elon Musk/i)).toThrow()
+});
+
+it('settings page displays major', async () => {
+  useData.mockReturnValue([userInfo, false, null]);
+  useUserState.mockReturnValue([{ displayName: 'Robbie Waxman', uid: '4n903odyOTdWvocTHmTEViQhZgK2' }]);
+  render(<BrowserRouter> <Settings /></BrowserRouter>);
+  const title = await screen.findByText(/Economics, Business, Entrepreneurship/i);
+  expect(title).toBeInTheDocument();
+  expect(() => screen.getByText(/Computer Science/i)).toThrow()
 });
