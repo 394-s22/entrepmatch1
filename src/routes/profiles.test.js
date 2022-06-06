@@ -2,7 +2,7 @@ import React from "react";
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import Profiles from "./profiles.js";
 import User from '../components/users.js'
-import { expect } from "chai";
+// import { expect } from "chai";
 import "@testing-library/jest-dom/extend-expect";
 const profile = `{
   "cu": "-N-eZIUmBfQ9fQJKYb4H",
