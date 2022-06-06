@@ -1939,31 +1939,32 @@ const userInfo = [
 //Josh Tests #2
 
 it('log out button on settings Page', async () => {
-    useData.mockReturnValue([userInfo, false, null]);
-    useUserState.mockReturnValue([singleUser]);
-    // console.log("test User", userInfo.users)
-    render(<BrowserRouter> <Settings /></BrowserRouter>);
-    const title = await screen.findByText(/Sign Out/i);
-    expect(title).toBeInTheDocument();
-  });
+  useData.mockReturnValue([userInfo, false, null]);
+  useUserState.mockReturnValue([singleUser]);
+  // console.log("test User", userInfo.users)
+  render(<BrowserRouter> <Settings /></BrowserRouter>);
+  const title = await screen.findByText(/Sign Out/i);
+  expect(title).toBeInTheDocument();
+});
 
-  it('shows name on settings page', async () => {
-    useData.mockReturnValue([userInfo, false, null]);
-    useUserState.mockReturnValue([singleUser]);
-    render(<BrowserRouter> <Settings /></BrowserRouter>);
-    const title = await screen.findByText(/Josh Breite/i);
-    expect(title).toBeInTheDocument();
-  });
+it('shows name on settings page', async () => {
+  useData.mockReturnValue([userInfo, false, null]);
+  useUserState.mockReturnValue([singleUser]);
+  render(<BrowserRouter> <Settings /></BrowserRouter>);
+  const title = await screen.findByText(/Josh Breite/i);
+  expect(title).toBeInTheDocument();
+});
 
-  it('press log out and no user', async () => {
-    useData.mockReturnValue([userInfo, false, null]);
-    useUserState.mockReturnValue([singleUser]);
-    render(<BrowserRouter> <Settings /></BrowserRouter>);
-    
-    const signoutButton = screen.getByTestId('singout-button');
-    fireEvent.click(signoutButton); 
+it('press log out and no user', async () => {
+  useData.mockReturnValue([userInfo, false, null]);
+  useUserState.mockReturnValue([singleUser]);
+  render(<BrowserRouter> <Settings /></BrowserRouter>);
 
-    expect(window.location.href).toEqual('http://localhost/');  
+  const signoutButton = screen.getByTestId('singout-button');
+  fireEvent.click(signoutButton);
+
+  expect(window.location.href).toEqual('http://localhost/')
+});
 
 it('settings page displays name', async () => {
   useData.mockReturnValue([userInfo, false, null]);
