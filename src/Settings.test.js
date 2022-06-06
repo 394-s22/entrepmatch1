@@ -1954,4 +1954,6 @@ it('settings page displays school', async () => {
   expect(title).toBeInTheDocument();
   const phone_number = await screen.findByText(/9148068212/i);
   expect(phone_number).toBeInTheDocument();
+  const wrong_phone_number = await screen.findByText(/123123123123123/i);
+  expect(wrong_phone_number).not.toBeInTheDocument();
 });
