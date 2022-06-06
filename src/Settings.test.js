@@ -1,194 +1,42 @@
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { useData, useUserState } from './utilities/firebase.js';
 import App from './App';
 import Settings from "./routes/settings";
 import ProfileEdit from "./components/profileEdit.js"
 import SignUp from './routes/signup.js';
-
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 jest.mock('./utilities/firebase.js');
 
 const singleUser = {
-          "conversations": [
-            {
-              "message": "Hello",
-              "receiving_userID": "-N0c8WhEUSRIWzKQnQQ-",
-              "sending_userID": "-N0c7e1ve1uuQ8y8JnuS",
-              "timestamp": 1651015268747
-            },
-            {
-              "message": "Hi",
-              "receiving_userID": "-N0c8WhEUSRIWzKQnQQ-",
-              "sending_userID": "-N0c7e1ve1uuQ8y8JnuS",
-              "timestamp": 1651015286297
-            }
-          ],
-          "favoriteEntreprenuer": "Steve Jobs",
-          "industryInterest": [
-            "EdTech",
-            " Consumer",
-            " Crypto"
-          ],
-          "liked_users": [
-            {
-              "liked_field": "temp_field",
-              "liked_message": "temp_message",
-              "liking_user_id": "-N0c8WhEUSRIWzKQnQQ-"
-            },
-            {
-              "liked_field": "temp_field",
-              "liked_message": "temp_message",
-              "liking_user_id": "-N0c8zvawaMfrxL0kvmy"
-            },
-            {
-              "liked_field": "temp_field",
-              "liked_message": "temp_message",
-              "liking_user_id": "-N1-fZgtUeMGLot57C-h"
-            },
-            {
-              "liked_field": "temp_field",
-              "liked_message": "temp_message",
-              "liking_user_id": "-N1-xYdu361XBs-_Bn-f"
-            },
-            {
-              "liked_field": "temp_field",
-              "liked_message": "temp_message",
-              "liking_user_id": "-N1-yNT3y0E6zOSBwUJG"
-            },
-            {
-              "liked_field": "temp_field",
-              "liked_message": "temp_message",
-              "liking_user_id": "-N108AxeO0iNvIPXkOYv"
-            },
-            {
-              "liked_field": "temp_field",
-              "liked_message": "temp_message",
-              "liking_user_id": "-N108AyOC3CiABsmlfls"
-            }
-          ],
-          "major": "Economics, Business, Entrepreneurship",
-          "name": "Robbie Waxman",
-          "phoneNumber": "9148068212",
-          "pictures": "https://thegarage.northwestern.edu/wp-content/uploads/2021/03/Robbie-Waxman.jpg",
-          "projects": [
-            {
-              "greatestMoment": "150th Client",
-              "name": "Mobile Camp",
-              "projectDescription": "Backyard Summer Camp",
-              "projectDuration": "2 years",
-              "projectLink": "link",
-              "teamSize": "50+"
-            },
-            {
-              "greatestMoment": "",
-              "name": "",
-              "projectDescription": "",
-              "projectDuration": "",
-              "projectLink": "",
-              "teamSize": ""
-            }
-          ],
-          "school": "Northwestern",
-          "seen_users": [
-            "-N0c8WhEUSRIWzKQnQQ-",
-            "-N0c8zvawaMfrxL0kvmy",
-            "-N1-fZgtUeMGLot57C-h",
-            "-N1-xYdu361XBs-_Bn-f",
-            "-N1-yNT3y0E6zOSBwUJG",
-            "-N108AxeO0iNvIPXkOYv",
-            "-N108AyOC3CiABsmlfls"
-          ],
-          "skills": {
-            "artistic": [
-              "Powerpoint",
-              " Canva"
-            ],
-            "softSkills": [
-              "Leadership",
-              " Storytelling"
-            ],
-            "technical": [
-              "Excel",
-              " Financial Modeling"
-            ]
-          },
-          "user_id": "4n903odyOTdWvocTHmTEViQhZgK2",
-          "users_liked": [
-            {
-              "liked_field": "temp_field",
-              "liked_message": "temp_message",
-              "receiving_user_id": "-N0c8WhEUSRIWzKQnQQ-"
-            },
-            {
-              "liked_field": "temp_field",
-              "liked_message": "temp_message",
-              "receiving_user_id": "-N0cO5cYVHUGEveGmAmR"
-            },
-            {
-              "liked_field": "temp_field",
-              "liked_message": "temp_message",
-              "receiving_user_id": "-N0cNiy6JOaEOd528ryM"
-            },
-            {
-              "liked_field": "temp_field",
-              "liked_message": "temp_message",
-              "receiving_user_id": "-N0fS92g7o2ZBd1wcGAa"
-            },
-            {
-              "liked_field": "temp_field",
-              "liked_message": "temp_message",
-              "receiving_user_id": "-N0fSO-HY_lkiXwnRjBP"
-            },
-            {
-              "liked_field": "temp_field",
-              "liked_message": "temp_message",
-              "receiving_user_id": "-N1-fZgtUeMGLot57C-h"
-            },
-            {
-              "liked_field": "temp_field",
-              "liked_message": "temp_message",
-              "receiving_user_id": "-N1-yNT3y0E6zOSBwUJG"
-            },
-            {
-              "liked_field": "temp_field",
-              "liked_message": "temp_message",
-              "receiving_user_id": "-N108Ayuly4-x-DkmkHx"
-            },
-            {
-              "liked_field": "temp_field",
-              "liked_message": "temp_message",
-              "receiving_user_id": "-N1B5fvhGPUAy020KdrA"
-            },
-            {
-              "liked_field": "temp_field",
-              "liked_message": "temp_message",
-              "receiving_user_id": "-N1KpAMb9pyOA6HXS6_9"
-            },
-            {
-              "liked_field": "temp_field",
-              "liked_message": "temp_message",
-              "receiving_user_id": "-N1p3GGjtiJHccezuIWx"
-            },
-            {
-              "liked_field": "temp_field",
-              "liked_message": "temp_message",
-              "receiving_user_id": "-N1y89yc51TxgyRKdeDC"
-            },
-            {
-              "liked_field": "temp_field",
-              "liked_message": "temp_message",
-              "receiving_user_id": "-N11QEWCkbxF-rKC5LsR"
-            },
-            {
-              "liked_field": "temp_field",
-              "liked_message": "temp_message",
-              "receiving_user_id": "-N2vl2CFwxmwGygf2EZ1"
-            }
-          ]
+    "uid": "s1NUnpPSs5etMq2xaNkPVdpb9TJ3",
+    "email": "joshuabreite2022@u.northwestern.edu",
+    "emailVerified": true,
+    "displayName": "Joshua Breite",
+    "isAnonymous": false,
+    "photoURL": "https://lh3.googleusercontent.com/a/AATXAJy_JBpq_jrkCCN2iol0GfE7lN9mdLIxoiPmF_It=s96-c",
+    "providerData": [
+        {
+            "providerId": "google.com",
+            "uid": "105386373661343947415",
+            "displayName": "Joshua Breite",
+            "email": "joshuabreite2022@u.northwestern.edu",
+            "phoneNumber": null,
+            "photoURL": "https://lh3.googleusercontent.com/a/AATXAJy_JBpq_jrkCCN2iol0GfE7lN9mdLIxoiPmF_It=s96-c"
         }
-const userInfo = [
-    {
+    ],
+    "stsTokenManager": {
+        "refreshToken": "AIwUaOn0jCqAG6VpSzfguc2Xv2YtQC0Mkfxv9noZMTWBoZFYCEdkji8rqgdWuc4krwio4kXtN9ers7X1r2k9LeJrUcxgCiJleU10RBZawZHt4JNhLdHWT_PLAmHRAR_-yHL18jAszRQHqfQiDVGFP_SwCGGwm46WJ9goJYRx6P6G1uQVax9VyUZKfFxsrT6dXUMDyHIsnF-ctexIc2bBwkb20BrHGAhkE0Z_RGte5x-omf0z4EPhpv5ND-fUM0IltCGiblEYf0gNRdBKqfXT8mlBFbs51UgmCEmFhIzPd563HkLuXTGmVi-0l_4CfDat0a16HvmApuBhq2iFAqgOPLyuf6R05nQ3EWCG6zYHwx1jKxH3OUuTGXeSMsRoisdERYopqMRLWj8P-Sna6tmFt1rhy4VZ4bujU5NVyLO92GQGnIGcC11t5eM",
+        "accessToken": "eyJhbGciOiJSUzI1NiIsImtpZCI6ImY0ZTc2NDk3ZGE3Y2ZhOWNjMDkwZDcwZTIyNDQ2YTc0YjVjNTBhYTkiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiSm9zaHVhIEJyZWl0ZSIsInBpY3R1cmUiOiJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vYS9BQVRYQUp5X0pCcHFfanJrQ0NOMmlvbDBHZkU3bE45bWRMSXhvaVBtRl9JdD1zOTYtYyIsImlzcyI6Imh0dHBzOi8vc2VjdXJldG9rZW4uZ29vZ2xlLmNvbS9lbnRyZXBtYXRjaCIsImF1ZCI6ImVudHJlcG1hdGNoIiwiYXV0aF90aW1lIjoxNjU0NDUyMDgxLCJ1c2VyX2lkIjoiczFOVW5wUFNzNWV0TXEyeGFOa1BWZHBiOVRKMyIsInN1YiI6InMxTlVucFBTczVldE1xMnhhTmtQVmRwYjlUSjMiLCJpYXQiOjE2NTQ1MzgxMTMsImV4cCI6MTY1NDU0MTcxMywiZW1haWwiOiJqb3NodWFicmVpdGUyMDIyQHUubm9ydGh3ZXN0ZXJuLmVkdSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJmaXJlYmFzZSI6eyJpZGVudGl0aWVzIjp7Imdvb2dsZS5jb20iOlsiMTA1Mzg2MzczNjYxMzQzOTQ3NDE1Il0sImVtYWlsIjpbImpvc2h1YWJyZWl0ZTIwMjJAdS5ub3J0aHdlc3Rlcm4uZWR1Il19LCJzaWduX2luX3Byb3ZpZGVyIjoiZ29vZ2xlLmNvbSJ9fQ.IY54q_kGC5i2MDCIjt1JOfihuUsNHJOGQeCGMDCVL7svaKBS4oyTBI1jir4YApWsCgNtBTKZC0urPJEjYnlEtavdsDhTIGX5LchpH3peJ8t6rbPCTfbYUEfpkuWevMxx4Dp1n8IS5JnKxqrz2Cd98Qjm9QErp6CGUV7XNb0zU6s9zon_PC6ORAYnN2AVtPFc5PSIU8eqoXgoxJXeqlvn03zcjdBmiasbqOv6QxxwfMLV8g7snaMjkCBwhQEfoPpaFN1VMciwNe7HZiLSLR6Y1r-yu64GV9qQEgk1j3VFpksOh2RI0yBVu1c8Qgz-1rexggfjyHBf6nwOXj_PKAnzdA",
+        "expirationTime": 1654541713000
+    },
+    "createdAt": "1650220015238",
+    "lastLoginAt": "1654453567432",
+    "apiKey": "AIzaSyCOXyXKim_wbUjqI8kfr-zMyaVBkwMo5No",
+    "appName": "[DEFAULT]"
+}
+const userInfo = {
         "cu": "-N-eZIUmBfQ9fQJKYb4H",
         "users": {
           "-N0c7e1ve1uuQ8y8JnuS": {
@@ -1934,13 +1782,36 @@ const userInfo = [
         }
       }
       
-]
 
+//Josh Tests #2
 
-it('settings page displays name', async () => {
-  useData.mockReturnValue([userInfo, false, null]);
-  useUserState.mockReturnValue([singleUser]);
-  render(<Settings />);
-  const title = await screen.findByText(/Robbie Waxman/i);
-  expect(title).toBeInTheDocument();
-});
+it('log out button on settings Page', async () => {
+    useData.mockReturnValue([userInfo, false, null]);
+    useUserState.mockReturnValue([singleUser]);
+    // console.log("test User", userInfo.users)
+    render(<BrowserRouter> <Settings /></BrowserRouter>);
+    const title = await screen.findByText(/Sign Out/i);
+    expect(title).toBeInTheDocument();
+  });
+
+  it('shows name on settings page', async () => {
+    useData.mockReturnValue([userInfo, false, null]);
+    useUserState.mockReturnValue([singleUser]);
+    render(<BrowserRouter> <Settings /></BrowserRouter>);
+    const title = await screen.findByText(/Josh Breite/i);
+    expect(title).toBeInTheDocument();
+  });
+
+  it('press log out and no user', async () => {
+    useData.mockReturnValue([userInfo, false, null]);
+    useUserState.mockReturnValue([singleUser]);
+    render(<BrowserRouter> <Settings /></BrowserRouter>);
+    
+    const signoutButton = screen.getByTestId('singout-button');
+    fireEvent.click(signoutButton); 
+
+    expect(window.location.href).toEqual('http://localhost/');  
+
+  });
+  
+  
