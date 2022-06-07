@@ -453,6 +453,18 @@ it('settings page displays industryInterest', async () => {
   expect(() => screen.getByText(/Health/i)).toThrow()
 });
 
+//Aavi test 1
+it('settings page displays skills', async () => {
+  useData.mockReturnValue([userInfo, false, null]);
+  useUserState.mockReturnValue([{ displayName: 'Robbie Waxman', uid: '4n903odyOTdWvocTHmTEViQhZgK2' }]);
+  render(<BrowserRouter> <Settings /></BrowserRouter>);
+  const title = await screen.findByText(/Excel/i);
+  expect(title).toBeInTheDocument();
+  
+});
+
+
+
 // Cynthia test 2
 test('Click update button', () => {
   useData.mockReturnValue([userInfo, false, null]);

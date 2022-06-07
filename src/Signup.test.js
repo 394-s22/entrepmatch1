@@ -1949,18 +1949,9 @@ it('empty fields no sign up', async () => {
   const title = await screen.findByText(/Enter/i);
   userEvent.click(title)
   const linkElement = screen.getByText(/About You/i);
-  expect(linkElement).toBeInTheDocument();
+  expect(linkElement).toBeInTheDocument();  
 });
 
-it('difftest', async () => {
-  useData.mockReturnValue([userInfo, false, null]);
-  useUserState.mockReturnValue([null]);
-  render(<SignUp />);
-  const title = await screen.findByText(/Enter/i);
-  userEvent.click(title)
-  const linkElement = screen.getByText(/About You/i);
-  expect(linkElement).toBeInTheDocument();
-});
 
 
 
