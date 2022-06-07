@@ -4,6 +4,7 @@ import { useData, useUserState } from './utilities/firebase.js';
 import Settings from "./routes/settings";
 import SettingUpdate from './routes/setting-update.js';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import userEvent from '@testing-library/user-event';
 
 jest.mock('./utilities/firebase.js');
 

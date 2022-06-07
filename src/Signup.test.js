@@ -1942,7 +1942,7 @@ it('no user then sign In', async () => {
   expect(title).toBeInTheDocument();
 });
 
-it('empty fields no sign up', async () => {
+it('empty fields do not allow user to sign up', async () => {
   useData.mockReturnValue([userInfo, false, null]);
   useUserState.mockReturnValue([null]);
   render(<SignUp />);
