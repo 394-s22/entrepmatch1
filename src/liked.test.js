@@ -82,3 +82,4 @@ it('shows name on settings page', async () => {
     expect(title).toBeInTheDocument();
     expect(() => screen.getByText(/Alex Lee/i)).toThrow()
 });
+

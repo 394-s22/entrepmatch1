@@ -454,13 +454,18 @@ it('settings page displays industryInterest', async () => {
 });
 
 //Aavi test 1
-it('settings page displays skills', async () => {
+it('settings page displays technical skills, not soft or artistic skills', async () => {
   useData.mockReturnValue([userInfo, false, null]);
   useUserState.mockReturnValue([{ displayName: 'Robbie Waxman', uid: '4n903odyOTdWvocTHmTEViQhZgK2' }]);
   render(<BrowserRouter> <Settings /></BrowserRouter>);
+  //technical
   const title = await screen.findByText(/Excel/i);
   expect(title).toBeInTheDocument();
-  
+  //artistic
+  expect(() => screen.getByText(/Leadership/i)).toThrow()
+  //soft
+  expect(() => screen.getByText(/Canva/i)).toThrow()
+
 });
 
 
