@@ -455,20 +455,28 @@ it('settings page displays industryInterest', async () => {
 });
 
 //Aavi test 1
-it('settings page displays technical skills, not soft or artistic skills', async () => {
+it('settings display correct skills based on the tab selected', async () => {
   useData.mockReturnValue([userInfo, false, null]);
   useUserState.mockReturnValue([{ displayName: 'Robbie Waxman', uid: '4n903odyOTdWvocTHmTEViQhZgK2' }]);
   render(<BrowserRouter> <Settings /></BrowserRouter>);
-  //technical
+  //technical skills should initially be on page
   const title = await screen.findByText(/Excel/i);
   expect(title).toBeInTheDocument();
-  //artistic
-  expect(() => screen.getByText(/Leadership/i)).toThrow()
+  //artistic 
+  expect(() => screen.getByText(/Powerpoint/i)).toThrow()
   //soft
   expect(() => screen.getByText(/Canva/i)).toThrow()
 
-});
+  //test changing to artistic tab
+  const titleARTISTIC = await screen.findByText(/ARTISTIC/i);
+  userEvent.click(titleARTISTIC);
+  const linkElement = screen.getByText(/Powerpoint/i);
+  expect(linkElement).toBeInTheDocument();  
+    //technical skill should no longer be on page
+    expect(() => screen.getByText(/Excel/i)).toThrow()
 
+
+});
 
 
 
