@@ -185,6 +185,7 @@ export default function SignUp() {
                   required
                   fullWidth
                   id="fullname"
+                  data-testid="fullname_test"
                   label="Full Name"
                   autoFocus
                 />
@@ -194,6 +195,7 @@ export default function SignUp() {
                   required
                   fullWidth
                   id="phoneNumber"
+                  data-testid="phonenumber_test"
                   label="phone Number"
                   autoFocus
                 />
@@ -203,6 +205,7 @@ export default function SignUp() {
                   required
                   fullWidth
                   id="favoriteEntreprenuer"
+                  data-testid="favoriteentreprenuer_test"
                   label="favorite entrepreneur"
                   autoFocus
                 />
@@ -211,6 +214,7 @@ export default function SignUp() {
                   required
                   fullWidth
                   id="industryInterest"
+                  data-testid="findustryinterest_test"
                   label="industry Interest"
                   autoFocus
                 />
@@ -219,6 +223,7 @@ export default function SignUp() {
                   required
                   fullWidth
                   id="school"
+                  data-testid="school_test"
                   label="school"
                   autoFocus
                 />
@@ -227,6 +232,7 @@ export default function SignUp() {
                   required
                   fullWidth
                   id="major"
+                  data-testid="major_test"
                   label="major"
                   autoFocus
                 />
@@ -236,6 +242,7 @@ export default function SignUp() {
                   required
                   fullWidth
                   id="artistic_skills"
+                  data-testid="artisticskills_test"
                   label="Artistic Skills (can be a list seperated by commas)"
                   autoFocus
                 />
@@ -244,6 +251,7 @@ export default function SignUp() {
                   required
                   fullWidth
                   id="technical_skills"
+                  data-testid="technicalskills_test"
                   label="Technical Skills (can be a list seperated by commas)"
                   autoFocus
                 />
@@ -251,9 +259,11 @@ export default function SignUp() {
                   name="soft_skills"
                   fullWidth
                   id="soft_skills"
+                  data-testid="softskills_test"
                   label="Soft Skills (can be a list seperated by commas)"
                   autoFocus
                 />
+
                 
                     
        

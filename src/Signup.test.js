@@ -1952,6 +1952,39 @@ it('Stay on same page and do not allow user to signup if a field is empty', asyn
   expect(linkElement).toBeInTheDocument();  
 });
 
+//Amritanshu test 2
+it('type checking fields', async () => {
+  useData.mockReturnValue([userInfo, false, null]);
+  useUserState.mockReturnValue([null]);
+  render(<SignUp />);
+  const full_name = await screen.getByTestId('fullname_test');
+  expect(full_name).toHaveTextContent(/Full Name/i);
+
+  const phone_no = await screen.getByTestId('phonenumber_test');
+  expect(phone_no).toHaveTextContent(/Phone Number/i);
+
+  const fav_entrep = await screen.getByTestId('favoriteentreprenuer_test');
+  expect(fav_entrep).toHaveTextContent(/Favorite Entrepreneur/i);
+
+  const industry = await screen.getByTestId('findustryinterest_test');
+  expect(industry).toHaveTextContent(/Industry Interest/i);
+
+  const school = await screen.getByTestId('school_test');
+  expect(school).toHaveTextContent(/School/i);
+
+  const major = await screen.getByTestId('major_test');
+  expect(major).toHaveTextContent(/Major/i);
+
+  const art_skills = await screen.getByTestId('artisticskills_test');
+  expect(art_skills).toHaveTextContent(/Artistic Skills/i);
+
+  const tech_skills = await screen.getByTestId('technicalskills_test');
+  expect(tech_skills).toHaveTextContent(/Technical Skills/i);
+
+  const soft_skills = await screen.getByTestId('softskills_test');
+  expect(soft_skills).toHaveTextContent(/Soft Skills/i);
+
+});
 
 
 
