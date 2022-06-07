@@ -2,6 +2,7 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { useData, useUserState } from './utilities/firebase.js';
 import Settings from "./routes/settings";
+import SettingUpdate from './routes/setting-update.js';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 jest.mock('./utilities/firebase.js');
@@ -462,4 +463,26 @@ test('Click update button', () => {
   fireEvent.click(eventButton, { button: 0})
   console.log("href", global.window.location.href)
   expect(screen.getByText('Josh Breite')).toBeInTheDocument();
+  });
+
+  //Jerry 1
+  it('settings page displays about me', async () => {
+    useData.mockReturnValue([userInfo, false, null]);
+    useUserState.mockReturnValue([{ displayName: 'Robbie Waxman', uid: '4n903odyOTdWvocTHmTEViQhZgK2' }]);
+    render(<BrowserRouter> <Settings /></BrowserRouter>);
+    const title = await screen.findByText(/About Me/i);
+    expect(title).toBeInTheDocument();
+  });
+  //Jerry 2
+  it('settings update page can submit with no changes', async () => {
+    useData.mockReturnValue([userInfo, false, null]);
+    useUserState.mockReturnValue([{ displayName: 'Robbie Waxman', uid: '4n903odyOTdWvocTHmTEViQhZgK2' }]);
+    render(<BrowserRouter> <SettingUpdate /></BrowserRouter>);
+    const title = await screen.findByText(/Update Profile/i);  
+    expect(title).toBeInTheDocument();
+    const submitButton = screen.getByTestId('submit-button');
+    fireEvent.click(submitButton);
+    render(<BrowserRouter> <Settings /></BrowserRouter>);
+    const name = await screen.findByText(/Robbie Waxman/i);
+    expect(name).toBeInTheDocument();   
   });

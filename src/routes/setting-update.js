@@ -75,7 +75,7 @@ export default function SettingUpdate() {
           display:"flex",
           justifyContent: 'space-around',
         }}>
-        <Button fullWidth variant="contained" color="primary" type="submit">Submit</Button>
+        <Button fullWidth variant="contained" color="primary" type="submit" data-testid="submit-button">Submit</Button>
         <Button fullWidth variant="outlined" color="primary" href="/settings">Cancel</Button>
       </div>
       </form>
