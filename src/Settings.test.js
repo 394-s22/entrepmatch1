@@ -471,6 +471,7 @@ it('settings page displays technical skills, not soft or artistic skills', async
 
 
 
+
 // Cynthia test 2
 test('Click update button', () => {
   useData.mockReturnValue([userInfo, false, null]);
