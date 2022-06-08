@@ -513,3 +513,28 @@ test('Click update button', () => {
     const name = await screen.findByText(/Robbie Waxman/i);
     expect(name).toBeInTheDocument();   
   });
+
+  //Jeremy 1
+  // test('cancel button leads you to settings page', async () => {
+  //   useData.mockReturnValue([userInfo, false, null]);
+  //   useUserState.mockReturnValue([{ displayName: 'Robbie Waxman', uid: '4n903odyOTdWvocTHmTEViQhZgK2' }]);
+  //   render(<BrowserRouter> <SettingUpdate /></BrowserRouter>);
+  //   // const cancel = await screen.findByText(/Cancel/i);
+  //   // const cancelButton = screen.getByTestId('cancel-button');
+  //   // fireEvent.click(cancelButton);
+  //   const eventButton = screen.getByTestId('cancel-button');
+  //   fireEvent.click(eventButton, { button: 0})
+  //   console.log("href", global.window.location.href)
+  //   expect(screen.getByText('Robbie Waxman')).toBeInTheDocument();
+  // });
+
+  //Jeremy 1
+  test('Click cancel button', () => {
+    useData.mockReturnValue([userInfo, false, null]);
+    useUserState.mockReturnValue([{ displayName: 'Josh Breite', uid: 's1NUnpPSs5etMq2xaNkPVdpb9TJ3' }]);
+    render(<BrowserRouter> <SettingUpdate /></BrowserRouter>);
+    const eventButton = screen.getByTestId('cancel-button');
+    fireEvent.click(eventButton, { button: 0})
+    console.log("href", global.window.location.href)
+    expect(screen.findByText('Josh Breite')).toBeInTheDocument();
+    });

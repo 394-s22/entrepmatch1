@@ -76,7 +76,7 @@ export default function SettingUpdate() {
           justifyContent: 'space-around',
         }}>
         <Button fullWidth variant="contained" color="primary" type="submit" data-testid="submit-button">Submit</Button>
-        <Button fullWidth variant="outlined" color="primary" href="/settings">Cancel</Button>
+        <Button fullWidth variant="outlined" color="primary" data-testid="cancel-button" href="/settings">Cancel</Button>
       </div>
       </form>
     </div>
