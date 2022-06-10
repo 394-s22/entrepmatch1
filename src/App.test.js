@@ -129,6 +129,7 @@ it('shows Sign Out if logged in', async () => {
   expect(button).toBeInTheDocument();
 });
 
+//Jeremy
 it('profiles page displays correctly', async () => {
   useData.mockReturnValue(userInfo);
   useUserState.mockReturnValue([{ displayName: 'Robbie Waxman', uid: '1' }]);
