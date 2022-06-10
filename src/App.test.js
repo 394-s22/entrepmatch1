@@ -6,6 +6,7 @@ import User from './components/users.js'
 import Settings from "./routes/settings";
 import ProfileEdit from "./components/profileEdit.js"
 import { async } from '@firebase/util';
+import Profiles from './routes/profiles';
 
 
 jest.mock('./utilities/firebase.js');
@@ -128,10 +129,10 @@ it('shows Sign Out if logged in', async () => {
   expect(button).toBeInTheDocument();
 });
 
-// it('settings page displays name', async () => {
-//   useData.mockReturnValue([userInfo, false, null]);
-//   useUserState.mockReturnValue([{ displayName: 'Test user' }]);
-//   render(<Settings />);
-//   const title = await screen.findByText(/Sign Out/i);
-//   expect(title).toBeInTheDocument();
-// });
+it('profiles page displays correctly', async () => {
+  useData.mockReturnValue(userInfo);
+  useUserState.mockReturnValue([{ displayName: 'Robbie Waxman', uid: '1' }]);
+  render(<Profiles />);
+  const title = await screen.findByText(/About Me:/i);
+  expect(title).toBeInTheDocument();
+});
